@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ゆびもじタイピング</title>
+
+    <!-- css読み込み -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/keen-slider@6.7.0/keen-slider.min.css" />
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- js読み込み -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js" type="text/javascript"></script>
+    <!-- font Awesome -->
+    <script src="https://kit.fontawesome.com/61c21d08fc.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div id="viewArea">
+        <div id="top" class="frame">
+            <div class="title">ゆびもじ タイピング</div>
+            <div class="animationArea">
+
+            </div>
+            <div class="start button" data-index="1" onclick="turnNextPage(this)">
+                <div class="innerText">
+                    スタート
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="divContainer">
+        <!-- inject html -->
+        <div id="chooseHand" class="frame">
+            <div class="instructionText">どちらの手で遊びますか？</div>
+            <div class="handImageArea">
+                <img class="leftHand" src="./images/hand_left.PNG" alt="左手の画像">
+                <img class="rightHand" src="./images/hand_right.PNG" alt="右手の画像">
+            </div>
+            <div class="chooseHandButtonArea">
+                <div class="handButtons button leftHandButton" onclick="chooseLeftHand(this)">
+                    <div class="innerText">左手</div>
+                </div>
+                <div class="handButtons button rightHandButton" data-index="2" onclick="turnNextPage(this)">
+                    <div class="innerText">右手</div>
+                </div>
+
+            </div>
+        </div>
+        <div id="arrowUseCamera" class="frame">
+            <div class="instructionText">このゲームで遊ぶにはカメラが必要です</div>
+            <div class="iconContainer">
+                <i class="fa-solid fa-camera"></i>
+            </div>
+            <div class="cameraButton button" data-index="3" onclick="turnNextPage(this)">
+                <div class="innerText">カメラをオンにする</div>
+            </div>
+        </div>
+
+        <div id="tutorialNameInput" class="frame">
+            <div class="instructionText">なまえを入力してください</div>
+            <div class="inputArea">
+                <input id="typeYourName" type="text">
+                <div class="cautionText">
+                    ひらがなで入力してください<br>
+                    チュートリアルのみに使用します
+                </div>
+            </div>
+            <div class="nextButton button" data-index="4" onclick="turnNextPage(this)">
+                <div class="innerText">次へ</div>
+            </div>
+            <div class="skipTutorialButton" data-index="6" onclick="turnNextPage(this)">
+                <div class="skipTriangle"></div>
+                <div class="innerText">スキップ</div>
+            </div>
+        </div>
+        <div id="tutorialMode" class="frame">
+            <div class="gameInstructionText">
+                <div class="tutorialWordArea">
+                    
+                </div>
+                <div class="subText">をつづってみよう</div>
+            </div>
+            <div class="yubimojiInputArea">
+                <div class="showExampleArea">
+                    <div class="letterArea">ゆ</div>
+                    <div class="showImageArea">
+                        <img src="./images/yu.PNG" alt="指文字の画像">
+                    </div>
+
+                </div>
+                <video class="input_video" hidden=""></video>
+                <canvas id="output_canvas" width="1280px" height="720px" hidden=""></canvas>
+                <div id="tutorialCanvas"></div>
+            </div>
+            <div class="skipTutorialButton" data-index="6" onclick="turnNextPage(this)">
+                <div class="skipTriangle"></div>
+                <div class="innerText">スキップ</div>
+            </div>
+        </div>
+        <div id="tutorialEnd" class="frame">
+            <div class="tutorialEndText">素晴らしい！！</div>
+            <div class="nextButton button" data-index="6" onclick="turnNextPage(this)">
+                <div class="innerText">次へ</div>
+            </div>
+        </div>
+        <div id="selectMode" class="frame">
+            <div class="instructionText">モードを選んでください</div>
+            <div class="modeList">
+                <div class="item empty"></div>
+                <div class="item modeButton" data-index="7" onclick="turnNextPage(this)">
+                    <div class="button" data-level="0" onmouseover="showExplanation(this)" onmouseleave="hiddenExplanation(this)">
+                        <div class="innerText">初級</div>
+                    </div>
+                </div>
+                <div class="item explanation">「あいうえお」の5文字を使うよ</div>
+                <div class="item empty"></div>
+                <div class="item modeButton">
+                    <div class="button" data-level="1" onmouseover="showExplanation(this)" onmouseleave="hiddenExplanation(this)">
+                        <div class="innerText">中級</div>
+                    </div>
+                </div>
+                <div class="item explanation">coming soon</div>
+                <div class="item empty"></div>
+                <div class="item modeButton">
+                    <div class="button" data-level="2" onmouseover="showExplanation(this)" onmouseleave="hiddenExplanation(this)">
+                        <div class="innerText">上級</div>
+                    </div>
+                </div>
+                <div class="item explanation">coming soon</div>
+            </div>
+            <div class="yubimojiListLink" data-index="8" onclick="turnNextPage(this)">
+                <a href="#">指文字一覧</a>
+            </div>
+        </div>
+
+        <div id="gameMode" class="frame">
+
+        </div>
+        <div id="yubimojiList" class="frame">
+            <div class="backPageArrow" onclick="returnSelectMode()"><i class="fa-solid fa-arrow-left"></i></div>
+            <ul class="hiraganaList">
+                <li data-index="9" onclick="turnNextPage(this)">
+                    <span class="listTriangle"><i class="fa-solid fa-play"></i></span>
+                    <span class="gyouName">あ行</span>
+                </li>
+                <li>
+                    <span class="listTriangle"><i class="fa-solid fa-play"></i></span>
+                    <span class="gyouName">か行</span>
+                </li>
+                <li>
+                    <span class="listTriangle"><i class="fa-solid fa-play"></i></span>
+                    <span class="gyouName">さ行</span>
+                </li>
+                <li>
+                    <span class="listTriangle"><i class="fa-solid fa-play"></i></span>
+                    <span class="gyouName">た行</span>
+                </li>
+                <li>
+                    <span class="listTriangle"><i class="fa-solid fa-play"></i></span>
+                    <span class="gyouName">な行</span>
+                </li>
+                <li>
+                    <span class="listTriangle"><i class="fa-solid fa-play"></i></span>
+                    <span class="gyouName">は行</span>
+                </li>
+                <li>
+                    <span class="listTriangle"><i class="fa-solid fa-play"></i></span>
+                    <span class="gyouName">ま行</span>
+                </li>
+                <li>
+                    <span class="listTriangle"><i class="fa-solid fa-play"></i></span>
+                    <span class="gyouName">や行</span>
+                </li>
+                <li>
+                    <span class="listTriangle"><i class="fa-solid fa-play"></i></span>
+                    <span class="gyouName">ら行</span>
+                </li>
+                <li>
+                    <span class="listTriangle"><i class="fa-solid fa-play"></i></span>
+                    <span class="gyouName">わ行</span>
+                </li>
+            </ul>
+        </div>
+        <div id="yubimojiImageContainer" class="frame">
+            <div id="a-o">
+                <div id="my-keen-slider" class="keen-slider">
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">あ</div>
+                            <img src="./images/a_nuri.PNG" alt="「あ」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">い</div>
+                            <img src="./images/i_nuri.PNG" alt="「い」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">う</div>
+                            <img src="./images/u_nuri.PNG" alt="「う」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">え</div>
+                            <img src="./images/e_nuri.PNG" alt="「え」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">お</div>
+                            <img src="./images/o_nuri.PNG" alt="「お」の指文字">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="ka-ko">
+
+            </div>
+            <div id="sa-so">
+
+            </div>
+            <div id="ta-to">
+
+            </div>
+            <div id="na-no">
+
+            </div>
+            <div id="ha-ho">
+
+            </div>
+            <div id="ma-mo">
+
+            </div>
+            <div id="ya-yo">
+
+            </div>
+            <div id="ra-ro">
+
+            </div>
+            <div id="wa-wo">
+
+            </div>
+        </div>
+        
+        <!-- endinject -->
+    </div>
+
+
+    <!-- p5.js -->
+    <script src="./js/lib/p5.min.js"></script>
+    <!-- keen-slider.js -->
+    <script src="https://cdn.jsdelivr.net/npm/keen-slider@6.7.0/keen-slider.min.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+html, body, div, span, applet, object, iframe, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, span {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    scroll-behavior: smooth;
+    font-family: 'Noto Sans JP', sans-serif;
+    text-align: center;
+    text-decoration: none;
+}
+
+body {
+    background-color: #96ceb4;
+    color: #fff8e5;
+}
+
+#gameMode {
+    margin: 10vw;
+}
+.gameInstructionText {
+    padding-left: 10vw;
+}
+.gameInstructionText div{
+    display: inline-block;
+}
+.word {
+    width: 20vw;
+    height: 6vh;
+    font-size: 2.1rem;
+    font-weight: bold;
+    border: solid 8px #ffb344;
+    border-radius: 22px;
+    background-color: #fff;
+    color: #444444;
+    vertical-align: middle;
+}
+.subText {
+    font-size: 1.6rem;
+    font-weight: bold;
+    vertical-align: bottom;
+}
+.yubimojiInputArea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 9vh auto 2vh;
+}
+.letterArea {
+    background-color: #fff;
+    font-size: 1.6rem;
+    color: #444444;
+    width: 20%;
+    margin: auto;
+}
+.imageArea {
+    background-color: #fff;
+    width: 60%;
+    height: auto;
+    margin: 3vh auto;
+    padding: 3vh;
+    border-radius: 30px;
+}
+.imageArea img{
+    width: 60%;
+    transform: scale(-1, 1);
+}
+
+#scoreAndTime {
+    display: flex;
+    justify-content: flex-end;
+}
+.scoreBoard div, .timeBoard div{
+    display: inline-block;
+    margin: auto 1vh;
+}
+.scoreBoard, .timeBoard {
+    background-color: #fff8e5;
+    margin: auto 1vh;
+    padding: 0.8vh 3vh;
+    border-radius: 50px;
+}
+.scoreBoard {
+    color: #e05d5d;
+}
+.timeBoard {
+    color: #00a19d;
+}
+#score, #time {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+#result {
+    display: none;
+    background-color: #fff8e5;
+    padding: 10vh 15vw;
+}
+#result.show {
+    display: block;
+}
+
+.instructionText {
+    font-size: 2.4rem;
+    font-weight: bold;
+    margin: 2vw;
+    color: #e05d5d;
+}
+.evaluations {
+    margin: 10vh 20vw;
+}
+.evaluation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #00a19d;
+    margin: 10vh;
+    border-bottom: #00a19d 3px solid;
+}
+.title {
+    font-size: 1.2rem;
+}
+.point {
+    font-size: 1.8rem;
+    font-weight: bold;
+}

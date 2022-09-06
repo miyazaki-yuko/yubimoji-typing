@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html land="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>game test</title>
+
+    <link rel="stylesheet" href="./game_test.css">
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="gameMode">
+        <div class="gameInstructionText">
+            <div class="word">
+                あいうえお
+            </div>
+            <div class="subText">をつづってみよう</div>
+        </div>
+        <div class="yubimojiInputArea">
+            <div class="showExampleArea">
+                <div class="letterArea">あ</div>
+                <div class="imageArea">
+                    <img src="./image/a.PNG" alt="指文字の画像">
+                </div>
+            </div>
+            <video class="input_video" hidden=""></video>
+            <canvas class="output_canvas" hidden=""></canvas>
+            <div id="gameCanvas"></div>
+        </div>
+        <div id="scoreAndTime">
+            <div class="scoreBoard">
+                <div class="label">スコア: </div>
+                <div id="score">0</div>
+                <div class="unit">pt</div>
+            </div>
+            <div class="timeBoard">
+                <div class="label">タイム: </div>
+                <div id="time">0</div>
+                <div class="unit">sec</div>
+            </div>
+        </div>
+        
+    </div>
+    <div id="result">
+        <div class="instructionText">結果</div>
+        <div class="evaluations">
+            <div class="evaluation">
+                <div class="title">スコア：</div>
+                <div class="resultScore point">0</div>
+                <div class="unit">pt</div>
+            </div>
+            <div class="evaluation">
+                <div class="title">文字数：</div>
+                <div class="resultLetterNum point">10</div>
+                <div class="unit">文字</div>
+            </div>
+            <div class="evaluation">
+                <div class="title">タイム：</div>
+                <div class="resultTime point">10</div>
+                <div class="unit">sec</div>
+            </div>
+            <div class="evaluation">
+                <div class="title">ランク：</div>
+                <div class="rank point">中級者</div>
+            </div>
+        </div>
+        <div class="comment">
+            <div class="innerText">スピードがより出せるといいですね</div>
+        </div>
+        
+    </div>
+
+    <script src="./p5.min.js" type="text/javascript"></script>
+    <script src="./game_test.js" type="text/javascript"></script>
+</body>
+
+</html>
