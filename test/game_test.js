@@ -106,30 +106,30 @@ function calcAngle() {
 }
 
 function calcDistance() {
-  let data_angle = [];
-  let distance = 0;
-  
+  distances = [];
+  draw_distances = [];
+
+  let difference = 0;
   if(inputs.length > 0) {
-    for(let i = 0; i < data.length; i++) {
-      let squared_val = 0;
-      data_angle = data[i].angles;
-      // console.log(data_angle);
-      for(let j = 0; j < inputs.length; j++) {
-        squared_val += pow(data_angle[j] - inputs[j], 2);
+    for(let i = 0; i < inputs.length; i++) {
+      difference = abs(data_angles[i] - inputs[i]);
+      if(difference > 180) {
+        if(data_angles[i] < 180) {
+          difference = 360 - inputs[i] + data_angles[i];
+        }else{
+          difference = 360 - data_angles[i] + inputs[i];
+        }
+      }else{
+        difference = data_angles[i] - inputs[i];
       }
-      distance = sqrt(squared_val);
-      data[i].distance = distance;
+      distances.push(abs(difference));
+      draw_distances.push(abs(difference));
     }
-    data.sort(function(a,b) {
-      if(a.distance > b.distance) return 1;
-      else return -1;
-    });
-    // console.log(data);
-    if(data[0].distance < 60) {
-      console.log(data[0].word); 
-      label = data[0].word;
-    }else{
-      label = 'nothing';
+    for(let i = 0; i < finger_tips.length; i++) {
+      draw_distances.splice(finger_tips[i], 0, 0);
+    }
+    if(max(distances) < max_distance) {
+      getKeyWord();
     }
   }
 }

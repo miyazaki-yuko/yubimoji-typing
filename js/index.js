@@ -12,11 +12,18 @@ let finger_tips = [4, 8, 12, 16, 20];
 let isTip;
 
 let inputs = [];
+let data_angles = [];
+let distances = [];
+let draw_distances = [];
+let draw_angles = [];
+
+const max_distance = 30;
 
 let data;
 let keyWord;
 let label;
 
+let view_area = document.querySelector('#viewArea');
 let current_page;
 
 let frames = [];
@@ -24,6 +31,8 @@ let explanations;
 
 let tutorial_word;
 let tutorial_letters = [];
+let tutorialMode = false;
+let letter_num = 0; // 文字数
 
 
 function preload() {
@@ -36,10 +45,27 @@ function onResults(results) {
       g_landmarks = landmarks;
     }
     //追記必要
-    calcAngleZero();
-    calcAngle();
-    calcDistance();
-    inputs = [];
+
+    if (tutorialMode) {
+      const current_letter = document.querySelector('.current_letter').innerText;
+      for(let i = 0; i < data.length; i++) {
+        if(data[i].word == current_letter) {
+          data_angles = data[i].angles;
+        }
+      }
+
+      calcAngleZero();
+      calcAngle();
+      calcDistance();
+      inputs = [];
+
+      
+    }
+
+    // calcAngleZero();
+    // calcAngle();
+    // calcDistance();
+    // inputs = [];
   }
 }
 
@@ -109,30 +135,31 @@ function calcAngle() {
 }
 
 function calcDistance() {
-  let data_angle = [];
-  let distance = 0;
+  distances = [];
+  draw_distances = [];
 
+  let difference = 0;
   if (inputs.length > 0) {
-    for (let i = 0; i < data.length; i++) {
-      let squared_val = 0;
-      data_angle = data[i].angles;
-      // console.log(data_angle);
-      for (let j = 0; j < inputs.length; j++) {
-        squared_val += pow(data_angle[j] - inputs[j], 2);
+    for (let i = 0; i < inputs.length; i++) {
+      difference = abs(data_angles[i] - inputs[i]);
+      if (difference > 180) {
+        if (data_angles[i] < 180) {
+          difference = 360 - inputs[i] + data_angles[i];
+        } else {
+          difference = 360 - data_angles[i] + inputs[i];
+        }
+      } else {
+        difference = data_angles[i] - inputs[i];
       }
-      distance = sqrt(squared_val);
-      data[i].distance = distance;
+      distances.push(abs(difference));
+      draw_distances.push(abs(difference));
     }
-    data.sort(function (a, b) {
-      if (a.distance > b.distance) return 1;
-      else return -1;
-    });
-    // console.log(data);
-    if (data[0].distance < 50) {
-      console.log(data[0].word);
-      label = data[0].word;
-    } else {
-      label = 'nothing';
+    for (let i = 0; i < finger_tips.length; i++) {
+      draw_distances.splice(finger_tips[i], 0, 0);
+    }
+    if (max(distances) < max_distance) {
+      console.log(distances);
+      changeLetterClass();
     }
   }
 }
@@ -186,11 +213,19 @@ function draw() {
       let x = g_landmarks[i].x * 640;
       let y = g_landmarks[i].y * 360;
       let line_next;
-      fill(255, 0, 0);
-      stroke(255, 0, 0);
+      if(draw_distances[i] < max_distance) {
+        fill(150);
+        stroke(150);
+      } else {
+        fill(255, 0, 0);
+        stroke(255, 0, 0);
+      }
       strokeWeight(1);
+      textSize(12);
       rect(x - 2, y - 2, 4, 4);
-      //text(i, x, y);
+      
+      // text(data_angles[i], x, y);
+      text(draw_distances[i], x, y);
 
       // draw the skeleton
       isPalm = palms.indexOf(i); // is it a palm landmark or finger landmark?
@@ -205,31 +240,9 @@ function draw() {
       line(x, y, line_next.x * 640, line_next.y * 360);
     }
   }
-
-  // if (tutorial_letter[0] == 'ゆ') {
-  //   document.querySelector('.showImageArea').innerHTML = '<img src="./images/yu.PNG">';
-  // } else if (tutorial_letter[0] == 'う') {
-  //   document.querySelector('.showImageArea').innerHTML = '<img src="./images/u_nuri.PNG">';
-  // } else if (tutorial_letter[0] == 'こ') {
-  //   document.querySelector('.showImageArea').innerHTML = '<img src="./images/ko.PNG">';
-  // }
-
-  // if (label == tutorial_letter[0]) {
-  //   tutorial_letter.shift();
-  //   document.querySelector('.tutorialWord').textContent = tutorial_letter[0];
-  //   document.querySelector('.letterArea').textContent = tutorial_letter[0];
-  // } else if (tutorial_letter.length == 0) {
-  //   const current_page_id = view_area.firstChild.nextElementSibling.id;
-  //   current_page = view_area.firstElementChild;
-  //   if (current_page_id == "tutorialMode") {
-  //     current_page.remove();
-  //     view_area.appendChild(frames[5]);
-  //   }
-
-  // }
 }
 
-let view_area = document.querySelector('#viewArea');
+
 //DOM control
 window.onload = function () {
   console.log(frames);
@@ -264,43 +277,52 @@ function turnNextPage(e) {
 }
 
 function getTutorialLetter() {
+  // 1文字ずつに分割
   tutorial_letters = tutorial_word.split('');
   // document.querySelector('.tutorialWord').textContent = tutorial_letter[0];
   const tutorial_word_area = document.querySelector('.tutorialWordArea');
-  for(let i=0; i<tutorial_letters.length; i++) {
-    let add_tutorial_letter = document.createElement("span");
-    add_tutorial_letter.innerText = tutorial_letters[i];
-    if(i==0) {
-      add_tutorial_letter.classList.add("current_letter");
+
+  for (let i = 0; i < tutorial_letters.length; i++) {
+    // spanタグを追加
+    let span_tutorial_letter = document.createElement("span");
+    span_tutorial_letter.innerText = tutorial_letters[i];
+    // 1文字目を太く黒くする
+    if (i == 0) {
+      span_tutorial_letter.classList.add("current_letter");
     }
-    tutorial_word_area.appendChild(add_tutorial_letter);
+    // htmlに文字を追加
+    tutorial_word_area.appendChild(span_tutorial_letter);
   }
-  playTutorial();
+  tutorialMode = true;
+  // playTutorial();
 }
 
-let letter_num = 0;
+function changeLetterClass() {
+
+}
+
 function playTutorial() {
   const tutorial_word_area = document.querySelector('.tutorialWordArea');
   const tutorial_words = tutorial_word_area.children;
   current_page = view_area.firstElementChild;
   // console.log(tutorial_letters.length);
   // console.log(tutorial_words);
-  if(label) {
-    if(letter_num == tutorial_letters.length-1) {
-      if(label == tutorial_letters[letter_num]){
+  if (label) {
+    if (letter_num == tutorial_letters.length - 1) {
+      if (label == tutorial_letters[letter_num]) {
         current_page.remove();
         view_area.appendChild(frames[5]);
       }
-    }else if(label == tutorial_letters[letter_num]) {
+    } else if (label == tutorial_letters[letter_num]) {
       tutorial_words[letter_num].classList.remove('current_letter');
       tutorial_words[letter_num + 1].classList.add('current_letter');
-      document.querySelector('.letterArea').textContent = tutorial_letters[letter_num+1];
+      document.querySelector('.letterArea').textContent = tutorial_letters[letter_num + 1];
       letter_num++;
     }
   }
   setTimeout(playTutorial, 300);
-  
-  
+
+
   // playTutorial();
 }
 
@@ -396,9 +418,9 @@ function navigation(slider) {
     backPageArrow.innerHTML = "<i class='fa-solid fa-arrow-left'></i>";
     backPageArrow.addEventListener("click", () => {
       markup(true);
-    current_page = view_area.firstElementChild;
-    current_page.remove();
-    view_area.appendChild(frames[8]);
+      current_page = view_area.firstElementChild;
+      current_page.remove();
+      view_area.appendChild(frames[8]);
     });
 
     wrapper.appendChild(backPageArrow);
