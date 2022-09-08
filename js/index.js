@@ -46,10 +46,12 @@ function onResults(results) {
     }
     //追記必要
 
+
+    // Tutorial Mode
     if (tutorialMode) {
       const current_letter = document.querySelector('.current_letter').innerText;
-      for(let i = 0; i < data.length; i++) {
-        if(data[i].word == current_letter) {
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].word == current_letter) {
           data_angles = data[i].angles;
         }
       }
@@ -59,7 +61,12 @@ function onResults(results) {
       calcDistance();
       inputs = [];
 
-      
+      if (distances.length > 0) {
+        if (max(distances) < max_distance) {
+          console.log(distances);
+          changeLetterClass();
+        }
+      }
     }
 
     // calcAngleZero();
@@ -157,10 +164,6 @@ function calcDistance() {
     for (let i = 0; i < finger_tips.length; i++) {
       draw_distances.splice(finger_tips[i], 0, 0);
     }
-    if (max(distances) < max_distance) {
-      console.log(distances);
-      changeLetterClass();
-    }
   }
 }
 
@@ -196,7 +199,7 @@ function setup() {
 
   frames = document.querySelectorAll('body .frame');
   explanations = document.querySelectorAll('.explanation');
-  console.log(explanations);
+  // console.log(explanations);
 
   data = data.data;
 }
@@ -213,7 +216,7 @@ function draw() {
       let x = g_landmarks[i].x * 640;
       let y = g_landmarks[i].y * 360;
       let line_next;
-      if(draw_distances[i] < max_distance) {
+      if (draw_distances[i] < max_distance) {
         fill(150);
         stroke(150);
       } else {
@@ -223,7 +226,7 @@ function draw() {
       strokeWeight(1);
       textSize(12);
       rect(x - 2, y - 2, 4, 4);
-      
+
       // text(data_angles[i], x, y);
       text(draw_distances[i], x, y);
 
@@ -298,32 +301,21 @@ function getTutorialLetter() {
 }
 
 function changeLetterClass() {
-
-}
-
-function playTutorial() {
   const tutorial_word_area = document.querySelector('.tutorialWordArea');
   const tutorial_words = tutorial_word_area.children;
   current_page = view_area.firstElementChild;
-  // console.log(tutorial_letters.length);
-  // console.log(tutorial_words);
-  if (label) {
-    if (letter_num == tutorial_letters.length - 1) {
-      if (label == tutorial_letters[letter_num]) {
-        current_page.remove();
-        view_area.appendChild(frames[5]);
-      }
-    } else if (label == tutorial_letters[letter_num]) {
-      tutorial_words[letter_num].classList.remove('current_letter');
-      tutorial_words[letter_num + 1].classList.add('current_letter');
-      document.querySelector('.letterArea').textContent = tutorial_letters[letter_num + 1];
-      letter_num++;
-    }
+
+  if (letter_num == tutorial_letters.length - 1) {
+    current_page.remove();
+    view_area.appendChild(frames[5]);
+    tutorialMode = false;
+  } else {
+    tutorial_words[letter_num].classList.remove('current_letter');
+    tutorial_words[letter_num + 1].classList.add('current_letter');
+    document.querySelector('.letterArea').textContent = tutorial_letters[letter_num + 1];
+    letter_num++;
   }
-  setTimeout(playTutorial, 300);
 
-
-  // playTutorial();
 }
 
 function showExplanation(e) {
