@@ -100,7 +100,7 @@
                 </div>
                 <video class="input_video" hidden=""></video>
                 <canvas id="output_canvas" width="1280px" height="720px" hidden=""></canvas>
-                <div id="tutorialCanvas"></div>
+                <div id="gameCanvas"></div>
             </div>
             <div class="skipTutorialButton" data-index="6" onclick="turnNextPage(this)">
                 <div class="skipTriangle"></div>
@@ -144,7 +144,64 @@
         </div>
 
         <div id="gameMode" class="frame">
-
+            <div class="gameInstructionText">
+                <div class="word">
+                    あいうえお
+                </div>
+                <div class="subText">をつづってみよう</div>
+            </div>
+            <div class="yubimojiInputArea">
+                <div class="showExampleArea">
+                    <div class="letterArea">あ</div>
+                    <div class="showImageArea">
+                        <img src="./images/a.PNG" alt="指文字の画像">
+                    </div>
+                </div>
+                <video class="input_video" hidden=""></video>
+                <canvas class="output_canvas" hidden=""></canvas>
+                <div id="gameCanvas"></div>
+            </div>
+            <div id="scoreAndTime">
+                <div class="scoreBoard">
+                    <div class="label">スコア: </div>
+                    <div id="score">0</div>
+                    <div class="unit">pt</div>
+                </div>
+                <div class="timeBoard">
+                    <div class="label">タイム: </div>
+                    <div id="time">0</div>
+                    <div class="unit">sec</div>
+                </div>
+            </div>
+            
+        </div>
+        <div id="result" class="frame">
+            <div class="instructionText">結果</div>
+            <div class="evaluations">
+                <div class="evaluation">
+                    <div class="resultTitle">スコア：</div>
+                    <div class="resultScore point">0</div>
+                    <div class="unit">pt</div>
+                </div>
+                <div class="evaluation">
+                    <div class="resultTitle">文字数：</div>
+                    <div class="resultLetterNum point">10</div>
+                    <div class="unit">文字</div>
+                </div>
+                <div class="evaluation">
+                    <div class="resultTitle">タイム：</div>
+                    <div class="resultTime point">10</div>
+                    <div class="unit">sec</div>
+                </div>
+                <div class="evaluation">
+                    <div class="resultTitle">ランク：</div>
+                    <div class="rank point">中級者</div>
+                </div>
+            </div>
+            <div class="comment">
+                <div class="innerText">スピードがより出せるといいですね</div>
+            </div>
+            
         </div>
         <div id="yubimojiList" class="frame">
             <div class="backPageArrow" onclick="returnSelectMode()"><i class="fa-solid fa-arrow-left"></i></div>
@@ -197,31 +254,31 @@
                     <div class="keen-slider__slide">
                         <div class="letterAndImage">
                             <div class="letter">あ</div>
-                            <img src="./images/a_nuri.PNG" alt="「あ」の指文字">
+                            <img src="./images/a.PNG" alt="「あ」の指文字">
                         </div>
                     </div>
                     <div class="keen-slider__slide">
                         <div class="letterAndImage">
                             <div class="letter">い</div>
-                            <img src="./images/i_nuri.PNG" alt="「い」の指文字">
+                            <img src="./images/i.PNG" alt="「い」の指文字">
                         </div>
                     </div>
                     <div class="keen-slider__slide">
                         <div class="letterAndImage">
                             <div class="letter">う</div>
-                            <img src="./images/u_nuri.PNG" alt="「う」の指文字">
+                            <img src="./images/u.PNG" alt="「う」の指文字">
                         </div>
                     </div>
                     <div class="keen-slider__slide">
                         <div class="letterAndImage">
                             <div class="letter">え</div>
-                            <img src="./images/e_nuri.PNG" alt="「え」の指文字">
+                            <img src="./images/e.PNG" alt="「え」の指文字">
                         </div>
                     </div>
                     <div class="keen-slider__slide">
                         <div class="letterAndImage">
                             <div class="letter">お</div>
-                            <img src="./images/o_nuri.PNG" alt="「お」の指文字">
+                            <img src="./images/o.PNG" alt="「お」の指文字">
                         </div>
                     </div>
                 </div>

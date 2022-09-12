@@ -31,12 +31,13 @@ let explanations;
 
 let tutorial_word;
 let tutorial_letters = [];
-let tutorialMode = false;
+let tutorial_mode = false;
+let game_mode = false;
 let letter_num = 0; // 文字数
 
 
 function preload() {
-  data = loadJSON("./js/lib/yuko.json");
+  data = loadJSON("./js/lib/static_yubimoji.json");
 }
 
 function onResults(results) {
@@ -48,7 +49,7 @@ function onResults(results) {
 
 
     // Tutorial Mode
-    if (tutorialMode) {
+    if (tutorial_mode) {
       const current_letter = document.querySelector('.current_letter').innerText;
       for (let i = 0; i < data.length; i++) {
         if (data[i].word == current_letter) {
@@ -67,6 +68,16 @@ function onResults(results) {
           changeLetterClass();
         }
       }
+    }
+
+    // gameMode
+    if(game_mode) {
+
+
+      calcAngleZero();
+      calcAngle();
+      calcDistance();
+      inputs = [];
     }
 
     // calcAngleZero();
@@ -192,12 +203,13 @@ camera.start();
 
 function setup() {
   let mycanvas = createCanvas(640, 360);
-  mycanvas.parent("#tutorialCanvas");
+  mycanvas.parent("#gameCanvas");
   video = createCapture(VIDEO);
   video.size(640, 360);
   video.hide();
 
   frames = document.querySelectorAll('body .frame');
+  // console.log(frames);
   explanations = document.querySelectorAll('.explanation');
   // console.log(explanations);
 
@@ -269,7 +281,12 @@ function turnNextPage(e) {
       document.querySelector('.cautionText').innerHTML = "名前を入力してください";
       // alert('名前を入力してください');
     }
-  } else if (data_index == 9) {
+  } else if (data_index == 7) {
+    current_page.remove();
+    view_area.append(frames[data_index]);
+    remakeCanvas();
+  }
+  else if (data_index == 9) {
     current_page.remove();
     view_area.appendChild(frames[data_index]);
     var slider = new KeenSlider("#my-keen-slider", {}, [navigation]);
@@ -296,7 +313,7 @@ function getTutorialLetter() {
     // htmlに文字を追加
     tutorial_word_area.appendChild(span_tutorial_letter);
   }
-  tutorialMode = true;
+  tutorial_mode = true;
   // playTutorial();
 }
 
@@ -308,7 +325,7 @@ function changeLetterClass() {
   if (letter_num == tutorial_letters.length - 1) {
     current_page.remove();
     view_area.appendChild(frames[5]);
-    tutorialMode = false;
+    tutorial_mode = false;
   } else {
     tutorial_words[letter_num].classList.remove('current_letter');
     tutorial_words[letter_num + 1].classList.add('current_letter');
@@ -316,6 +333,22 @@ function changeLetterClass() {
     letter_num++;
   }
 
+}
+
+function remakeCanvas() {
+  console.log('remake canvas');
+  let mycanvas = createCanvas(640, 360);
+  mycanvas.parent("#gameCanvas");
+  video = createCapture(VIDEO);
+  video.size(640, 360);
+  video.hide();
+  
+  getRandomWord();
+}
+
+function getRandomWord() {
+  console.log('get word');
+  game_mode = true;
 }
 
 function showExplanation(e) {
