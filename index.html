@@ -30,7 +30,7 @@
             <div class="animationArea">
 
             </div>
-            <div class="start button" data-index="1" onclick="turnNextPage(this)">
+            <div id="startButton" class="start button">
                 <div class="innerText">
                     スタート
                 </div>
@@ -50,7 +50,7 @@
                 <div class="handButtons button leftHandButton" onclick="chooseLeftHand(this)">
                     <div class="innerText">左手</div>
                 </div>
-                <div class="handButtons button rightHandButton" data-index="2" onclick="turnNextPage(this)">
+                <div class="handButtons button rightHandButton">
                     <div class="innerText">右手</div>
                 </div>
 
@@ -75,10 +75,10 @@
                     チュートリアルのみに使用します
                 </div>
             </div>
-            <div class="nextButton button" data-index="4" onclick="turnNextPage(this)">
+            <div class="nextButton button">
                 <div class="innerText">次へ</div>
             </div>
-            <div class="skipTutorialButton" data-index="6" onclick="turnNextPage(this)">
+            <div class="skipTutorialButton button">
                 <div class="skipTriangle"></div>
                 <div class="innerText">スキップ</div>
             </div>
@@ -102,7 +102,7 @@
                 <canvas id="output_canvas" width="1280px" height="720px" hidden=""></canvas>
                 <div id="gameCanvas"></div>
             </div>
-            <div class="skipTutorialButton" data-index="6" onclick="turnNextPage(this)">
+            <div class="skipTutorialButton button">
                 <div class="skipTriangle"></div>
                 <div class="innerText">スキップ</div>
             </div>
@@ -117,7 +117,7 @@
             <div class="instructionText">モードを選んでください</div>
             <div class="modeList">
                 <div class="item empty"></div>
-                <div class="item modeButton" data-index="7" onclick="turnNextPage(this)">
+                <div class="item modeButton button">
                     <div class="button" data-level="0" onmouseover="showExplanation(this)" onmouseleave="hiddenExplanation(this)">
                         <div class="innerText">初級</div>
                     </div>
@@ -138,7 +138,7 @@
                 </div>
                 <div class="item explanation">coming soon</div>
             </div>
-            <div class="yubimojiListLink" data-index="8" onclick="turnNextPage(this)">
+            <div class="yubimojiListLink button">
                 <a href="#">指文字一覧</a>
             </div>
         </div>

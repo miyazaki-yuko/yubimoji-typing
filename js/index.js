@@ -71,7 +71,7 @@ function onResults(results) {
     }
 
     // gameMode
-    if(game_mode) {
+    if (game_mode) {
 
 
       calcAngleZero();
@@ -208,10 +208,11 @@ function setup() {
   video.size(640, 360);
   video.hide();
 
+  let button = document.querySelector('.button');
+  button.onclick = buttonClick;
   frames = document.querySelectorAll('body .frame');
   // console.log(frames);
   explanations = document.querySelectorAll('.explanation');
-  // console.log(explanations);
 
   data = data.data;
 }
@@ -258,12 +259,20 @@ function draw() {
 }
 
 
+
 //DOM control
 window.onload = function () {
   console.log(frames);
   for (let i = 1; i < frames.length; i++) {
     frames[i].remove();
   }
+
+}
+
+// Change page
+function buttonClick() {
+  current_page = view_area.firstElementChild;
+  current_page.remove();
 }
 
 function turnNextPage(e) {
@@ -342,7 +351,7 @@ function remakeCanvas() {
   video = createCapture(VIDEO);
   video.size(640, 360);
   video.hide();
-  
+
   getRandomWord();
 }
 
