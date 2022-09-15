@@ -20,7 +20,7 @@
                 24,
                 162
             ],
-            "html": "<img src='./images/a.PNG' alt='「あ」の画像'>"
+            "html": "<img src='./images/a.png' alt='「あ」の画像'>"
         },
         {
             "word":"い",
@@ -42,7 +42,7 @@
                 176,
                 178
             ],
-            "html": "<img src='./images/i.PNG' alt='「い」の画像'>"
+            "html": "<img src='./images/i.png' alt='「い」の画像'>"
         },
         {
             "word":"う",
@@ -64,7 +64,7 @@
                 74,
                 129
             ],
-            "html":"<img src='./images/u.PNG' alt='「う」の画像'>"
+            "html":"<img src='./images/u.png' alt='「う」の画像'>"
         },
         {
             "word":"え",
@@ -86,7 +86,7 @@
                 93,
                 99
             ],
-            "html":"<img src='./images/e.PNG' alt='「え」の画像'>"
+            "html":"<img src='./images/e.png' alt='「え」の画像'>"
         },
         {
             "word":"お",
@@ -108,7 +108,7 @@
                 131,
                 123
             ],
-            "html":"<img src='./images/o.PNG' alt='「お」の画像'>"
+            "html":"<img src='./images/o.png' alt='「お」の画像'>"
         },
         {
             "word":"か",
@@ -130,7 +130,7 @@
                 60,
                 155
             ],
-            "html":"<img src='./images/ka.PNG' alt='「か」の画像'>"
+            "html":"<img src='./images/ka.png' alt='「か」の画像'>"
         },
         {
             "word":"き",
@@ -152,7 +152,7 @@
                 175,
                 174
             ],
-            "html":"<img src='./images/ki.PNG' alt='「き」の画像'>"
+            "html":"<img src='./images/ki.png' alt='「き」の画像'>"
         },
         {
             "word":"く",
@@ -174,7 +174,7 @@
                 173,
                 180
             ],
-            "html":"<img src='./images/ku.PNG' alt='「く」の画像'>"
+            "html":"<img src='./images/ku.png' alt='「く」の画像'>"
         },
         {
             "word":"け",
@@ -196,7 +196,7 @@
                 178,
                 183
             ],
-            "html":"<img src='./images/ke.PNG' alt='「け」の画像'>"
+            "html":"<img src='./images/ke.png' alt='「け」の画像'>"
         },
         {
             "word":"こ",
@@ -218,7 +218,7 @@
                 166,
                 194
             ],
-            "html":"<img src='./images/ko.PNG' alt='「こ」の画像'>"
+            "html":"<img src='./images/ko.png' alt='「こ」の画像'>"
         },
         {
             "word":"さ",
@@ -240,7 +240,7 @@
                 21,
                 160
             ],
-            "html":"<img src='./images/sa.PNG' alt='「さ」の画像'>"
+            "html":"<img src='./images/sa.png' alt='「さ」の画像'>"
         },
         {
             "word":"し",
@@ -262,7 +262,7 @@
                 303,
                 162
             ],
-            "html":"<img src='./images/si.PNG' alt='「し」の画像'>"
+            "html":"<img src='./images/si.png' alt='「し」の画像'>"
         },
         {
             "word":"す",
@@ -284,7 +284,7 @@
                 323,
                 195
             ],
-            "html":"<img src='./images/su.PNG' alt='「す」の画像'>"
+            "html":"<img src='./images/su.png' alt='「す」の画像'>"
         },
         {
             "word":"せ",
@@ -306,7 +306,7 @@
                 34,
                 155
             ],
-            "html":"<img src='./images/se.PNG' alt='「せ」の画像'>"
+            "html":"<img src='./images/se.png' alt='「せ」の画像'>"
         },
         {
             "word":"そ",
@@ -328,7 +328,7 @@
                 140,
                 218
             ],
-            "html":"<img src='./images/so.PNG' alt='「そ」の画像'>"
+            "html":"<img src='./images/so.png' alt='「そ」の画像'>"
         },
         {
             "word":"た",
@@ -350,7 +350,7 @@
                 71,
                 123
             ],
-            "html":"<img src='./images/ta.PNG' alt='「た」の画像'>"
+            "html":"<img src='./images/ta.png' alt='「た」の画像'>"
         },
         {
             "word":"ち",
@@ -372,7 +372,7 @@
                 178,
                 175
             ],
-            "html":"<img src='./images/ti.PNG' alt='「ち」の画像'>"
+            "html":"<img src='./images/ti.png' alt='「ち」の画像'>"
         },
         {
             "word":"つ",
@@ -394,7 +394,7 @@
                 187,
                 175
             ],
-            "html":"<img src='./images/tu.PNG' alt='「つ」の画像'>"
+            "html":"<img src='./images/tu.png' alt='「つ」の画像'>"
         },
         {
             "word":"て",
@@ -416,7 +416,7 @@
                 177,
                 178
             ],
-            "html":"<img src='./images/te.PNG' alt='「て」の画像'>"
+            "html":"<img src='./images/te.png' alt='「て」の画像'>"
         },
         {
             "word":"と",
@@ -438,7 +438,7 @@
                 288,
                 218
             ],
-            "html":"<img src='./images/to.PNG' alt='「と」の画像'>"
+            "html":"<img src='./images/to.png' alt='「と」の画像'>"
         },
         {
             "word":"な",
@@ -460,7 +460,7 @@
                 307,
                 204
             ],
-            "html":"<img src='./images/na.PNG' alt='「な」の画像'>"
+            "html":"<img src='./images/na.png' alt='「な」の画像'>"
         },
         {
             "word":"に",
@@ -482,7 +482,7 @@
                 283,
                 211
             ],
-            "html":"<img src='./images/ni.PNG' alt='「に」の画像'>"
+            "html":"<img src='./images/ni.png' alt='「に」の画像'>"
         },
         {
             "word":"ぬ",
@@ -504,7 +504,7 @@
                 94,
                 126
             ],
-            "html":"<img src='./images/nu.PNG' alt='「ぬ」の画像'>"
+            "html":"<img src='./images/nu.png' alt='「ぬ」の画像'>"
         },
         {
             "word":"ね",
@@ -526,7 +526,7 @@
                 176,
                 183
             ],
-            "html":"<img src='./images/ne.PNG' alt='「ね」の画像'>"
+            "html":"<img src='./images/ne.png' alt='「ね」の画像'>"
         },
         {
             "word":"は",
@@ -548,7 +548,7 @@
                 84,
                 195
             ],
-            "html":"<img src='./images/ha.PNG' alt='「は」の画像'>"
+            "html":"<img src='./images/ha.png' alt='「は」の画像'>"
         },
         {
             "word":"ひ",
@@ -570,7 +570,7 @@
                 25,
                 158
             ],
-            "html":"<img src='./images/hi.PNG' alt='「ひ」の画像'>"
+            "html":"<img src='./images/hi.png' alt='「ひ」の画像'>"
         },
         {
             "word":"ふ",
@@ -592,7 +592,7 @@
                 326,
                 193
             ],
-            "html":"<img src='./images/hu.PNG' alt='「ふ」の画像'>"
+            "html":"<img src='./images/hu.png' alt='「ふ」の画像'>"
         },
         {
             "word":"へ",
@@ -614,7 +614,7 @@
                 169,
                 190
             ],
-            "html":"<img src='./images/he.PNG' alt='「へ」の画像'>"
+            "html":"<img src='./images/he.png' alt='「へ」の画像'>"
         },
         {
             "word":"ほ",
@@ -636,7 +636,7 @@
                 186,
                 181
             ],
-            "html":"<img src='./images/ho.PNG' alt='「ほ」の画像'>"
+            "html":"<img src='./images/ho.png' alt='「ほ」の画像'>"
         },
         {
             "word":"ま",
@@ -658,7 +658,7 @@
                 335,
                 196
             ],
-            "html":"<img src='./images/ma.PNG' alt='「ま」の画像'>"
+            "html":"<img src='./images/ma.png' alt='「ま」の画像'>"
         },
         {
             "word":"み",
@@ -680,7 +680,7 @@
                 300,
                 207
             ],
-            "html":"<img src='./images/mi.PNG' alt='「み」の画像'>"
+            "html":"<img src='./images/mi.png' alt='「み」の画像'>"
         },
         {
             "word":"む",
@@ -702,7 +702,7 @@
                 42,
                 163
             ],
-            "html":"<img src='./images/mu.PNG' alt='「む」の画像'>"
+            "html":"<img src='./images/mu.png' alt='「む」の画像'>"
         },
         {
             "word":"め",
@@ -724,7 +724,7 @@
                 170,
                 175
             ],
-            "html":"<img src='./images/me.PNG' alt='「め」の画像'>"
+            "html":"<img src='./images/me.png' alt='「め」の画像'>"
         },
         {
             "word":"や",
@@ -746,7 +746,7 @@
                 182,
                 171
             ],
-            "html":"<img src='./images/ya.PNG' alt='「や」の画像'>"
+            "html":"<img src='./images/ya.png' alt='「や」の画像'>"
         },
         {
             "word":"ゆ",
@@ -768,7 +768,7 @@
                 318,
                 202
             ],
-            "html":"<img src='./images/yu.PNG' alt='「ゆ」の画像'>"
+            "html":"<img src='./images/yu.png' alt='「ゆ」の画像'>"
         },
         {
             "word":"よ",
@@ -790,7 +790,7 @@
                 171,
                 185
             ],
-            "html":"<img src='./images/yo.PNG' alt='「よ」の画像'>"
+            "html":"<img src='./images/yo.png' alt='「よ」の画像'>"
         },
         {
             "word":"ら",
@@ -812,7 +812,7 @@
                 36,
                 161
             ],
-            "html":"<img src='./images/ra.PNG' alt='「ら」の画像'>"
+            "html":"<img src='./images/ra.png' alt='「ら」の画像'>"
         },
         {
             "word":"る",
@@ -834,7 +834,7 @@
                 23,
                 168
             ],
-            "html":"<img src='./images/ru.PNG' alt='「る」の画像'>"
+            "html":"<img src='./images/ru.png' alt='「る」の画像'>"
         },
         {
             "word":"れ",
@@ -856,7 +856,7 @@
                 17,
                 154
             ],
-            "html":"<img src='./images/re.PNG' alt='「れ」の画像'>"
+            "html":"<img src='./images/re.png' alt='「れ」の画像'>"
         },
         {
             "word":"ろ",
@@ -878,7 +878,7 @@
                 54,
                 154
             ],
-            "html":"<img src='./images/ro.PNG' alt='「ろ」の画像'>"
+            "html":"<img src='./images/ro.png' alt='「ろ」の画像'>"
         },
         {
             "word":"わ",
@@ -900,7 +900,7 @@
                 43,
                 166
             ],
-            "html":"<img src='./images/wa.PNG' alt='「わ」の画像'>"
+            "html":"<img src='./images/wa.png' alt='「わ」の画像'>"
         }
     ]
 }

@@ -16,6 +16,7 @@ let data_angles = [];
 let distances = [];
 let draw_distances = [];
 let draw_angles = [];
+let data_image;
 
 const max_distance = 30;
 
@@ -208,12 +209,10 @@ function setup() {
   video.size(640, 360);
   video.hide();
 
-  let button = document.querySelector('.button');
-  button.onclick = buttonClick;
-  frames = document.querySelectorAll('body .frame');
-  // console.log(frames);
-  explanations = document.querySelectorAll('.explanation');
 
+  frames = document.querySelectorAll('body .frame');
+  console.log(frames);
+  explanations = document.querySelectorAll('.explanation');
   data = data.data;
 }
 
@@ -258,21 +257,10 @@ function draw() {
   }
 }
 
-
-
-//DOM control
 window.onload = function () {
-  console.log(frames);
   for (let i = 1; i < frames.length; i++) {
     frames[i].remove();
   }
-
-}
-
-// Change page
-function buttonClick() {
-  current_page = view_area.firstElementChild;
-  current_page.remove();
 }
 
 function turnNextPage(e) {
@@ -295,7 +283,7 @@ function turnNextPage(e) {
     view_area.append(frames[data_index]);
     remakeCanvas();
   }
-  else if (data_index == 9) {
+  else if (data_index == 10) {
     current_page.remove();
     view_area.appendChild(frames[data_index]);
     var slider = new KeenSlider("#my-keen-slider", {}, [navigation]);
@@ -309,7 +297,9 @@ function getTutorialLetter() {
   // 1文字ずつに分割
   tutorial_letters = tutorial_word.split('');
   // document.querySelector('.tutorialWord').textContent = tutorial_letter[0];
-  const tutorial_word_area = document.querySelector('.tutorialWordArea');
+  const tutorial_word_area = document.querySelector('#tutorialMode .tutorialWordArea');
+  const tutorial_letter_area = document.querySelector('#tutorialMode .letterArea');
+  tutorial_letter_area.innerText = tutorial_letters[0];
 
   for (let i = 0; i < tutorial_letters.length; i++) {
     // spanタグを追加
@@ -322,6 +312,13 @@ function getTutorialLetter() {
     // htmlに文字を追加
     tutorial_word_area.appendChild(span_tutorial_letter);
   }
+  const current_letter = document.querySelector('.current_letter').innerText;
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].word == current_letter) {
+      data_image = data[i].html;
+    }
+  }
+  document.querySelector('#tutorialMode .showImageArea').innerHTML = data_image;
   tutorial_mode = true;
   // playTutorial();
 }
@@ -338,7 +335,14 @@ function changeLetterClass() {
   } else {
     tutorial_words[letter_num].classList.remove('current_letter');
     tutorial_words[letter_num + 1].classList.add('current_letter');
-    document.querySelector('.letterArea').textContent = tutorial_letters[letter_num + 1];
+    document.querySelector('#tutorialMode .letterArea').textContent = tutorial_letters[letter_num + 1];
+
+    for(let i = 0; i < data.length; i++) {
+      if(data[i].word == tutorial_letters[letter_num + 1]) {
+        data_image = data[i].html;
+      }
+    }
+    document.querySelector('#tutorialMode .showImageArea').innerHTML = data_image;
     letter_num++;
   }
 
@@ -370,12 +374,12 @@ function hiddenExplanation(e) {
   explanations[data_level].classList.remove('explanation__show');
 }
 
-function returnSelectMode() {
+function backPage(e) {
   // const current_page_id = view_area.firstChild.nextElementSibling.id;
   current_page = view_area.firstElementChild;
-  console.log();
+  let data_index = e.getAttribute('data-index');
   current_page.remove();
-  view_area.appendChild(frames[6]);
+  view_area.appendChild(frames[data_index]);
 
 }
 
@@ -449,12 +453,14 @@ function navigation(slider) {
       return
     }
     backPageArrow = createDiv("backPageArrow");
+    // backPageArrow.setAttribute('data-index', '9');
     backPageArrow.innerHTML = "<i class='fa-solid fa-arrow-left'></i>";
     backPageArrow.addEventListener("click", () => {
       markup(true);
       current_page = view_area.firstElementChild;
       current_page.remove();
-      view_area.appendChild(frames[8]);
+      view_area.appendChild(frames[9]);
+      // backPage();
     });
 
     wrapper.appendChild(backPageArrow);

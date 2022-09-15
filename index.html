@@ -30,7 +30,7 @@
             <div class="animationArea">
 
             </div>
-            <div id="startButton" class="start button">
+            <div class="start button" data-index="1" onclick="turnNextPage(this)">
                 <div class="innerText">
                     スタート
                 </div>
@@ -50,7 +50,7 @@
                 <div class="handButtons button leftHandButton" onclick="chooseLeftHand(this)">
                     <div class="innerText">左手</div>
                 </div>
-                <div class="handButtons button rightHandButton">
+                <div class="handButtons button rightHandButton" data-index="2" onclick="turnNextPage(this)">
                     <div class="innerText">右手</div>
                 </div>
 
@@ -75,10 +75,10 @@
                     チュートリアルのみに使用します
                 </div>
             </div>
-            <div class="nextButton button">
+            <div class="nextButton button" data-index="4" onclick="turnNextPage(this)">
                 <div class="innerText">次へ</div>
             </div>
-            <div class="skipTutorialButton button">
+            <div class="skipTutorialButton" data-index="6" onclick="turnNextPage(this)">
                 <div class="skipTriangle"></div>
                 <div class="innerText">スキップ</div>
             </div>
@@ -92,9 +92,9 @@
             </div>
             <div class="yubimojiInputArea">
                 <div class="showExampleArea">
-                    <div class="letterArea">ゆ</div>
+                    <div class="letterArea"></div>
                     <div class="showImageArea">
-                        <img src="./images/yu.PNG" alt="指文字の画像">
+                        <!-- <img src="./images/yu.PNG" alt="指文字の画像"> -->
                     </div>
 
                 </div>
@@ -102,7 +102,7 @@
                 <canvas id="output_canvas" width="1280px" height="720px" hidden=""></canvas>
                 <div id="gameCanvas"></div>
             </div>
-            <div class="skipTutorialButton button">
+            <div class="skipTutorialButton" data-index="6" onclick="turnNextPage(this)">
                 <div class="skipTriangle"></div>
                 <div class="innerText">スキップ</div>
             </div>
@@ -117,7 +117,7 @@
             <div class="instructionText">モードを選んでください</div>
             <div class="modeList">
                 <div class="item empty"></div>
-                <div class="item modeButton button">
+                <div class="item modeButton" data-index="7" onclick="turnNextPage(this)">
                     <div class="button" data-level="0" onmouseover="showExplanation(this)" onmouseleave="hiddenExplanation(this)">
                         <div class="innerText">初級</div>
                     </div>
@@ -138,7 +138,7 @@
                 </div>
                 <div class="item explanation">coming soon</div>
             </div>
-            <div class="yubimojiListLink button">
+            <div class="yubimojiListLink" data-index="9" onclick="turnNextPage(this)">
                 <a href="#">指文字一覧</a>
             </div>
         </div>
@@ -204,9 +204,9 @@
             
         </div>
         <div id="yubimojiList" class="frame">
-            <div class="backPageArrow" onclick="returnSelectMode()"><i class="fa-solid fa-arrow-left"></i></div>
+            <div class="backPageArrow"  data-index="6" onclick="backPage(this)"><i class="fa-solid fa-arrow-left"></i></div>
             <ul class="hiraganaList">
-                <li data-index="9" onclick="turnNextPage(this)">
+                <li data-index="10" onclick="turnNextPage(this)">
                     <span class="listTriangle"><i class="fa-solid fa-play"></i></span>
                     <span class="gyouName">あ行</span>
                 </li>
