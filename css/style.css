@@ -378,7 +378,7 @@ body {
     color: #ffb344;
 }
 
-#yubimojiImageContainer {
+.yubimojiExample {
     width: 100%;
     height: 100vh;
     background-color: #ffd99d;

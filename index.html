@@ -206,50 +206,50 @@
         <div id="yubimojiList" class="frame">
             <div class="backPageArrow"  data-index="6" onclick="backPage(this)"><i class="fa-solid fa-arrow-left"></i></div>
             <ul class="hiraganaList">
-                <li data-index="10" onclick="turnNextPage(this)">
+                <li id="aGyou" onclick="showYubimojiImages(this)">
                     <span class="listTriangle"><i class="fa-solid fa-play"></i></span>
                     <span class="gyouName">あ行</span>
                 </li>
-                <li>
+                <li id="kaGyou" onclick="showYubimojiImages(this)">
                     <span class="listTriangle"><i class="fa-solid fa-play"></i></span>
                     <span class="gyouName">か行</span>
                 </li>
-                <li>
+                <li id="saGyou" onclick="showYubimojiImages(this)">
                     <span class="listTriangle"><i class="fa-solid fa-play"></i></span>
                     <span class="gyouName">さ行</span>
                 </li>
-                <li>
+                <li id="taGyou" onclick="showYubimojiImages(this)">
                     <span class="listTriangle"><i class="fa-solid fa-play"></i></span>
                     <span class="gyouName">た行</span>
                 </li>
-                <li>
+                <li id="naGyou" onclick="showYubimojiImages(this)">
                     <span class="listTriangle"><i class="fa-solid fa-play"></i></span>
                     <span class="gyouName">な行</span>
                 </li>
-                <li>
+                <li id="haGyou" onclick="showYubimojiImages(this)">
                     <span class="listTriangle"><i class="fa-solid fa-play"></i></span>
                     <span class="gyouName">は行</span>
                 </li>
-                <li>
+                <li id="maGyou" onclick="showYubimojiImages(this)">
                     <span class="listTriangle"><i class="fa-solid fa-play"></i></span>
                     <span class="gyouName">ま行</span>
                 </li>
-                <li>
+                <li id="yaGyou" onclick="showYubimojiImages(this)">
                     <span class="listTriangle"><i class="fa-solid fa-play"></i></span>
                     <span class="gyouName">や行</span>
                 </li>
-                <li>
+                <li id="raGyou" onclick="showYubimojiImages(this)">
                     <span class="listTriangle"><i class="fa-solid fa-play"></i></span>
                     <span class="gyouName">ら行</span>
                 </li>
-                <li>
+                <li id="waGyou" onclick="showYubimojiImages(this)">
                     <span class="listTriangle"><i class="fa-solid fa-play"></i></span>
                     <span class="gyouName">わ行</span>
                 </li>
             </ul>
         </div>
-        <div id="yubimojiImageContainer" class="frame">
-            <div id="a-o">
+        <div id="yubimojiImageContainer">
+            <div id="a-o" class="yubimojiExample">
                 <div id="my-keen-slider" class="keen-slider">
                     <div class="keen-slider__slide">
                         <div class="letterAndImage">
@@ -283,32 +283,287 @@
                     </div>
                 </div>
             </div>
-            <div id="ka-ko">
-
+            <div id="ka-ko" class="yubimojiExample">
+                <div id="my-keen-slider" class="keen-slider">
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">か</div>
+                            <img src="./images/ka.PNG" alt="「か」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">き</div>
+                            <img src="./images/ki.PNG" alt="「き」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">く</div>
+                            <img src="./images/ku.PNG" alt="「く」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">け</div>
+                            <img src="./images/ke.PNG" alt="「け」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">こ</div>
+                            <img src="./images/ko.PNG" alt="「こ」の指文字">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="sa-so">
-
+            <div id="sa-so" class="yubimojiExample">
+                <div id="my-keen-slider" class="keen-slider">
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">さ</div>
+                            <img src="./images/sa.PNG" alt="「さ」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">し</div>
+                            <img src="./images/si.PNG" alt="「し」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">す</div>
+                            <img src="./images/su.PNG" alt="「す」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">せ</div>
+                            <img src="./images/se.PNG" alt="「せ」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">そ</div>
+                            <img src="./images/so.PNG" alt="「そ」の指文字">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="ta-to">
-
+            <div id="ta-to" class="yubimojiExample">
+                <div id="my-keen-slider" class="keen-slider">
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">た</div>
+                            <img src="./images/ta.PNG" alt="「た」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">ち</div>
+                            <img src="./images/ti.PNG" alt="「ち」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">つ</div>
+                            <img src="./images/tu.PNG" alt="「つ」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">て</div>
+                            <img src="./images/te.PNG" alt="「て」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">と</div>
+                            <img src="./images/to.PNG" alt="「と」の指文字">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="na-no">
-
+            <div id="na-no" class="yubimojiExample">
+                <div id="my-keen-slider" class="keen-slider">
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">な</div>
+                            <img src="./images/na.PNG" alt="「な」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">に</div>
+                            <img src="./images/ni.PNG" alt="「に」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">ぬ</div>
+                            <img src="./images/nu.PNG" alt="「ぬ」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">ね</div>
+                            <img src="./images/ne.PNG" alt="「ね」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">の</div>
+                            <!-- <img src="./images/no.PNG" alt="「の」の指文字"> -->
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="ha-ho">
-
+            <div id="ha-ho" class="yubimojiExample">
+                <div id="my-keen-slider" class="keen-slider">
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">は</div>
+                            <img src="./images/ha.PNG" alt="「は」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">ひ</div>
+                            <img src="./images/hi.PNG" alt="「ひ」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">ふ</div>
+                            <img src="./images/hu.PNG" alt="「ふ」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">へ</div>
+                            <img src="./images/he.PNG" alt="「へ」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">ほ</div>
+                            <img src="./images/ho.PNG" alt="「ほ」の指文字">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="ma-mo">
-
+            <div id="ma-mo" class="yubimojiExample">
+                <div id="my-keen-slider" class="keen-slider">
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">ま</div>
+                            <img src="./images/ma.PNG" alt="「ま」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">み</div>
+                            <img src="./images/mi.PNG" alt="「み」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">む</div>
+                            <img src="./images/mu.PNG" alt="「む」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">め</div>
+                            <img src="./images/me.PNG" alt="「め」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">も</div>
+                            <!-- <img src="./images/mo.PNG" alt="「も」の指文字"> -->
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="ya-yo">
-
+            <div id="ya-yo" class="yubimojiExample">
+                <div id="my-keen-slider" class="keen-slider">
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">や</div>
+                            <img src="./images/ya.PNG" alt="「や」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">ゆ</div>
+                            <img src="./images/yu.PNG" alt="「ゆ」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">よ</div>
+                            <img src="./images/yo.PNG" alt="「よ」の指文字">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="ra-ro">
-
+            <div id="ra-ro" class="yubimojiExample">
+                <div id="my-keen-slider" class="keen-slider">
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">ら</div>
+                            <img src="./images/ra.PNG" alt="「ら」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">り</div>
+                           <!-- <img src="./images/ri.PNG" alt="「り」の指文字"> -->
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">る</div>
+                            <img src="./images/ru.PNG" alt="「る」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">れ</div>
+                            <img src="./images/re.PNG" alt="「れ」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">ろ</div>
+                            <img src="./images/ro.PNG" alt="「ろ」の指文字">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="wa-wo">
-
+            <div id="wa-wo" class="yubimojiExample">
+                <div id="my-keen-slider" class="keen-slider">
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">わ</div>
+                            <img src="./images/wa.PNG" alt="「わ」の指文字">
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">を</div>
+                            <!-- <img src="./images/wo.PNG" alt="「を」の指文字"> -->
+                        </div>
+                    </div>
+                    <div class="keen-slider__slide">
+                        <div class="letterAndImage">
+                            <div class="letter">ん</div>
+                            <!-- <img src="./images/n.PNG" alt="「ん」の指文字"> -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         
