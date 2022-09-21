@@ -1,5 +1,5 @@
-const videoElement = document.getElementsByClassName("input_video")[0];
-const canvasElement = document.getElementsByClassName('output_canvas')[0];
+// const videoElement = document.getElementsByClassName("input_video")[0];
+// const canvasElement = document.getElementsByClassName('output_canvas')[0];
 // const canvasCtx = canvasElement.getContext('2d');
 
 let video;
@@ -37,6 +37,8 @@ let tutorial_mode = false;
 let game_mode = false;
 let letter_num = 0; // 文字数
 
+var hands;
+
 
 function preload() {
   data = loadJSON("./js/lib/static_yubimoji.json");
@@ -49,13 +51,16 @@ function onResults(results) {
     }
     //追記必要
 
+    // console.log(g_landmarks);
 
     // Tutorial Mode
     if (tutorial_mode) {
+      
       const current_letter = document.querySelector('.current_letter').innerText;
       for (let i = 0; i < data.length; i++) {
         if (data[i].word == current_letter) {
           data_angles = data[i].angles;
+          
         }
       }
 
@@ -92,6 +97,7 @@ function onResults(results) {
 function calcAngleZero() {
   //calculate angle of landmarks[0]
   if (g_landmarks.length > 0) {
+    console.log('calc angle zero');
     let x_zero = g_landmarks[0].x;
     let y_zero = g_landmarks[0].y;
     let z_zero = g_landmarks[0].z;
@@ -180,32 +186,36 @@ function calcDistance() {
   }
 }
 
-const hands = new Hands({
-  locateFile: (file) => {
-    return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
-  }
-});
-hands.setOptions({
-  maxNumHands: 1,
-  modelComplexity: 1,
-  minDetextionConfidence: 0.5,
-  minTrackingConfidence: 0.5
-});
-hands.onResults(onResults);
+// const hands = new Hands({
+//   locateFile: (file) => {
+//     return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+//   }
+// });
+// hands.setOptions({
+//   maxNumHands: 1,
+//   modelComplexity: 1,
+//   minDetextionConfidence: 0.5,
+//   minTrackingConfidence: 0.5
+// });
+// hands.onResults(onResults);
 
-const camera = new Camera(videoElement, {
-  onFrame: async () => {
-    await hands.send({ image: videoElement });
-  },
-  width: 1280,
-  height: 720
-});
-camera.start();
+// const camera = new Camera(videoElement, {
+//   onFrame: async () => {
+//     await hands.send({ image: videoElement });
+//   },
+//   width: 1280,
+//   height: 720
+// });
+// camera.start();
 
+// function startCamera() {
+//   console.log("start camera");
+//   startMediaPipeHands('8ce8e876fe1196ef2fdff50084325a364d50628dc4f98bd938e163efed58a6cf');
+// }
 
 function setup() {
   let mycanvas = createCanvas(640, 360);
-  mycanvas.parent("#gameCanvas");
+  mycanvas.parent("#tutorialCanvas");
   video = createCapture(VIDEO);
   video.size(640, 360);
   video.hide();
@@ -321,6 +331,7 @@ function getTutorialLetter() {
   }
   document.querySelector('#tutorialMode .showImageArea').innerHTML = data_image;
   tutorial_mode = true;
+  startMediaPipeHands();
 }
 
 function changeLetterClass() {
@@ -332,6 +343,7 @@ function changeLetterClass() {
     current_page.remove();
     view_area.appendChild(frames[5]);
     tutorial_mode = false;
+    stopMediaPipeHands();
   } else {
     tutorial_words[letter_num].classList.remove('current_letter');
     tutorial_words[letter_num + 1].classList.add('current_letter');
@@ -363,6 +375,52 @@ function remakeCanvas() {
 function getRandomWord() {
   console.log('get word');
   game_mode = true;
+  startCamera();
+}
+
+
+function startMediaPipeHands() {
+  console.log('start Mediapipe Hands');
+  videoElement = document.createElement('video');// document.getElementsByClassName('input_video')[0];
+  document.querySelector('body').appendChild(videoElement);
+  videoElement.hidden = true;
+  hands = new Hands({
+      locateFile: (file) => {
+          return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+      }
+  });
+  hands.setOptions({
+      maxNumHands: 1,
+      modelComplexity: 1,
+      minDetextionConfidence: 0.5,
+      minTrackingConfidence: 0.5
+  });
+  hands.onResults(onResults);
+
+  camera = new Camera(videoElement, {
+      onFrame: async () => {
+          await hands.send({ image: videoElement });
+      },
+      audio: false,
+      width: 1280,
+      height: 720,
+      // deviceId: _deviceId
+  });
+  stream = camera.start();
+
+}
+
+function stopMediaPipeHands() {
+  if (document.querySelector('video')) {
+      let stream = videoElement.srcObject;
+      window.cancelAnimationFrame(id_callback_camera_utils);
+      stream.getTracks().forEach(track => track.stop())
+      hands.close();
+      videoElement.remove();
+  }
+  g_landmarks = [];
+  draw();
+
 }
 
 function showExplanation(e) {

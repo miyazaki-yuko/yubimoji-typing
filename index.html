@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/keen-slider@6.7.0/keen-slider.min.css" />
     <link rel="stylesheet" href="./css/style.css">
     <!-- js読み込み -->
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js"
+    <script src="./js/lib/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="./js/lib/control_utils.js"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"
         crossorigin="anonymous"></script>
@@ -98,9 +98,7 @@
                     </div>
 
                 </div>
-                <video class="input_video" hidden=""></video>
-                <canvas id="output_canvas" width="1280px" height="720px" hidden=""></canvas>
-                <div id="gameCanvas"></div>
+                <div id="tutorialCanvas"></div>
             </div>
             <div class="skipTutorialButton" data-index="6" onclick="turnNextPage(this)">
                 <div class="skipTriangle"></div>
@@ -576,6 +574,8 @@
     <!-- keen-slider.js -->
     <script src="https://cdn.jsdelivr.net/npm/keen-slider@6.7.0/keen-slider.min.js"></script>
     <script src="./js/index.js"></script>
+    <!-- <script src="./js/main.js"></script>
+    <script src="./js/sketch.js"></script> -->
 </body>
 
 </html>
