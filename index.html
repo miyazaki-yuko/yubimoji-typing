@@ -56,16 +56,7 @@
 
             </div>
         </div>
-        <div id="arrowUseCamera" class="frame">
-            <div class="instructionText">このゲームで遊ぶにはカメラが必要です</div>
-            <div class="iconContainer">
-                <i class="fa-solid fa-camera"></i>
-            </div>
-            <div class="cameraButton button" data-index="3" onclick="turnNextPage(this)">
-                <div class="innerText">カメラをオンにする</div>
-            </div>
-        </div>
-
+        
         <div id="tutorialNameInput" class="frame">
             <div class="instructionText">なまえを入力してください</div>
             <div class="inputArea">
@@ -75,12 +66,21 @@
                     チュートリアルのみに使用します
                 </div>
             </div>
-            <div class="nextButton button" data-index="4" onclick="turnNextPage(this)">
+            <div class="nextButton button" data-index="3" onclick="turnNextPage(this)">
                 <div class="innerText">次へ</div>
             </div>
             <div class="skipTutorialButton" data-index="6" onclick="turnNextPage(this)">
                 <div class="skipTriangle"></div>
                 <div class="innerText">スキップ</div>
+            </div>
+        </div>
+        <div id="arrowUseCamera" class="frame">
+            <div class="instructionText">このゲームで遊ぶにはカメラが必要です</div>
+            <div class="iconContainer">
+                <i class="fa-solid fa-camera"></i>
+            </div>
+            <div class="cameraButton button" data-index="4" onclick="turnNextPage(this)">
+                <div class="innerText">カメラをオンにする</div>
             </div>
         </div>
         <div id="tutorialMode" class="frame">
@@ -98,7 +98,11 @@
                     </div>
 
                 </div>
-                <div id="tutorialCanvas"></div>
+                <div class="cameraContainer">
+                    <video class="input_video"></video>
+                    <div id="tutorialCanvas"></div>                   
+                </div>
+                
             </div>
             <div class="skipTutorialButton" data-index="6" onclick="turnNextPage(this)">
                 <div class="skipTriangle"></div>
@@ -143,21 +147,22 @@
 
         <div id="gameMode" class="frame">
             <div class="gameInstructionText">
-                <div class="word">
-                    あいうえお
+                <div class="keywordArea">
+                    
                 </div>
                 <div class="subText">をつづってみよう</div>
             </div>
             <div class="yubimojiInputArea">
                 <div class="showExampleArea">
-                    <div class="letterArea">あ</div>
+                    <div class="letterArea"></div>
                     <div class="showImageArea">
-                        <img src="./images/a.PNG" alt="指文字の画像">
+                        <!-- <img src="./images/a.PNG" alt="指文字の画像"> -->
                     </div>
                 </div>
-                <video class="input_video" hidden=""></video>
-                <canvas class="output_canvas" hidden=""></canvas>
-                <div id="gameCanvas"></div>
+                <div class="cameraContainer">
+                    <video class="input_video"></video>
+                    <div id="gameCanvas"></div>
+                </div>
             </div>
             <div id="scoreAndTime">
                 <div class="scoreBoard">

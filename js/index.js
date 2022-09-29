@@ -21,8 +21,7 @@ let data_image;
 const max_distance = 30;
 
 let data;
-let keyWord;
-let label;
+let word_data;
 
 let view_area = document.querySelector('#viewArea');
 let current_page;
@@ -34,6 +33,7 @@ let yubimoji_example = [];
 let tutorial_word;
 let tutorial_letters = [];
 let tutorial_mode = false;
+let game_letters = [];
 let game_mode = false;
 let letter_num = 0; // 文字数
 
@@ -42,6 +42,7 @@ var hands;
 
 function preload() {
   data = loadJSON("./js/lib/static_yubimoji.json");
+  word_data = loadJSON("./js/lib/meishi.json");
 }
 
 function onResults(results) {
@@ -97,7 +98,6 @@ function onResults(results) {
 function calcAngleZero() {
   //calculate angle of landmarks[0]
   if (g_landmarks.length > 0) {
-    console.log('calc angle zero');
     let x_zero = g_landmarks[0].x;
     let y_zero = g_landmarks[0].y;
     let z_zero = g_landmarks[0].z;
@@ -216,10 +216,6 @@ function calcDistance() {
 function setup() {
   let mycanvas = createCanvas(640, 360);
   mycanvas.parent("#tutorialCanvas");
-  video = createCapture(VIDEO);
-  video.size(640, 360);
-  video.hide();
-
 
   frames = document.querySelectorAll('body .frame');
   console.log(frames);
@@ -230,11 +226,11 @@ function setup() {
 }
 
 function draw() {
-  background(127);
+  clear(255);
 
   scale(-1.0, 1.0);
   translate(-width, 0);
-  image(video, 0, 0);
+  // image(video, 0, 0);
 
   if (g_landmarks.length > 0) {
     for (let i = 0; i < g_landmarks.length; i++) {
@@ -280,7 +276,7 @@ function turnNextPage(e) {
   current_page = view_area.firstElementChild;
   const data_index = e.getAttribute('data-index');
 
-  if (data_index == 4) {
+  if (data_index == 3) {
     let user_name = document.querySelector('#typeYourName');
     if (user_name.value) {
       tutorial_word = user_name.value;
@@ -291,6 +287,10 @@ function turnNextPage(e) {
       document.querySelector('.cautionText').innerHTML = "名前を入力してください";
       // alert('名前を入力してください');
     }
+  } else if (data_index == 4) {
+    startMediaPipeHands();
+    current_page.remove();
+    view_area.append(frames[data_index]);
   } else if (data_index == 7) {
     current_page.remove();
     view_area.append(frames[data_index]);
@@ -331,7 +331,7 @@ function getTutorialLetter() {
   }
   document.querySelector('#tutorialMode .showImageArea').innerHTML = data_image;
   tutorial_mode = true;
-  startMediaPipeHands();
+  // startMediaPipeHands();
 }
 
 function changeLetterClass() {
@@ -365,25 +365,54 @@ function remakeCanvas() {
   console.log('remake canvas');
   let mycanvas = createCanvas(640, 360);
   mycanvas.parent("#gameCanvas");
-  video = createCapture(VIDEO);
-  video.size(640, 360);
-  video.hide();
 
   getRandomWord();
 }
 
 function getRandomWord() {
-  console.log('get word');
+  // console.log(word_data);
+  let length = Object.keys(word_data).length;
+  let r = int(random(0, length));
+  let keyword = word_data[r].kana;
+  console.log(word_data[r].kana);
+
+  // add html
+  game_letters = keyword.split('');
+  const keyword_area = document.querySelector('#gameMode .keywordArea');
+  const game_letters_area = document.querySelector('#gameMode .letterArea');
+  game_letters_area.innerText = game_letters[0];
+
+  for (let i = 0; i < game_letters.length; i++) {
+    // spanタグを追加
+    let span_game_letters = document.createElement("span");
+    span_game_letters.innerText = game_letters[i];
+    // 1文字目を太く黒くする
+    if (i == 0) {
+      span_game_letters.classList.add("current_letter");
+    }
+    // htmlにチュートリアルの文字全部を追加
+    keyword_area.appendChild(span_game_letters);
+  }
+
+  // 1文字目の画像を取得・表示
+  const current_letter = document.querySelector('.current_letter').innerText;
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].word == current_letter) {
+      data_image = data[i].html;
+    }
+  }
+  document.querySelector('#gameMode .showImageArea').innerHTML = data_image;
+  startMediaPipeHands();
   game_mode = true;
-  startCamera();
 }
 
 
 function startMediaPipeHands() {
   console.log('start Mediapipe Hands');
-  videoElement = document.createElement('video');// document.getElementsByClassName('input_video')[0];
-  document.querySelector('body').appendChild(videoElement);
-  videoElement.hidden = true;
+  // videoElement = document.createElement('video');
+  videoElement = document.getElementsByClassName('input_video')[0];
+  // document.querySelector('body').appendChild(videoElement);
+  // videoElement.hidden = true;
   hands = new Hands({
       locateFile: (file) => {
           return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;

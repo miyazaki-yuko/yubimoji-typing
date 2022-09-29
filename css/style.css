@@ -211,6 +211,20 @@ body {
 .showImageArea img{
     width: 60%;
 }
+.cameraContainer {
+    position: relative;
+}
+.input_video {
+    position: relative;
+    width: 640px;
+    height: 360px;
+    transform: scale(-1, 1);
+}
+#tutorialCanvas {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
 
 #tutorialEnd {
     background-color: #ffeead;
@@ -287,7 +301,12 @@ body {
 }
 
 /* gameMode */
-.word {
+#gameCanvas {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+.keywordArea {
     width: 20vw;
     height: 6vh;
     font-size: 2.1rem;
@@ -295,7 +314,7 @@ body {
     border: solid 8px #ffb344;
     border-radius: 22px;
     background-color: #fff;
-    color: #444444;
+    color: #c5c5c5;
     vertical-align: middle;
 }
 

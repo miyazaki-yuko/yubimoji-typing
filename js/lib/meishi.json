@@ -1,0 +1,951 @@
+[
+  {
+    "tango": "あいつ",
+    "kana": "あいつ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "アクセル",
+    "kana": "あくせる",
+    "hinshi": "名詞（カタ）"
+  },
+  {
+    "tango": "脚",
+    "kana": "あし",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "明日",
+    "kana": "あす",
+    "hinshi": "名詞／副詞"
+  },
+  {
+    "tango": "扱い",
+    "kana": "あつかい",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "厚み",
+    "kana": "あつみ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "穴",
+    "kana": "あな",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "甘み",
+    "kana": "あまみ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "意識",
+    "kana": "いしき",
+    "hinshi": "動詞／名詞"
+  },
+  {
+    "tango": "板",
+    "kana": "いた",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "痛み",
+    "kana": "いたみ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "いとこ",
+    "kana": "いとこ",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "居間",
+    "kana": "いま",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "ウイルス",
+    "kana": "ういるす",
+    "hinshi": "名詞（カタ）"
+  },
+  {
+    "tango": "牛",
+    "kana": "うし",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "うち",
+    "kana": "うち",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "うまみ",
+    "kana": "うまみ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "占い",
+    "kana": "うらない",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "占い師",
+    "kana": "うらないし",
+    "hinshi": "名詞"
+  },
+  {
+    "kana": "えいせいほうそう",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "栄養",
+    "kana": "えいよう",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "大雨",
+    "kana": "おおあめ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "大方",
+    "kana": "おおかた",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "大昔",
+    "kana": "おおむかし",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "大雪　",
+    "kana": "おおゆき",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "大人",
+    "kana": "おとな",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "鬼",
+    "kana": "おに",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "お似合い",
+    "kana": "おにあい",
+    "hinshi": "名詞"
+  },
+   {
+   "tango": "親子",
+    "kana": "おやこ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "おやつ",
+    "kana": "おやつ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "お礼",
+    "kana": "おれい",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "解決",
+    "kana": "かいけつ",
+    "hinshi": "動詞／名詞"
+  },
+  {
+    "tango": "海水",
+    "kana": "かいすい",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "快速（電車）",
+    "kana": "かいそく",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "飼い主",
+    "kana": "かいぬし",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "会費",
+    "kana": "かいひ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "かかと",
+    "kana": "かかと",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "各地",
+    "kana": "かくち",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "過去",
+    "kana": "かこ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "火災",
+    "kana": "かさい",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "肩",
+    "kana": "かた",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "活躍",
+    "kana": "かつやく",
+    "hinshi": "動詞／名詞"
+  },
+  {
+    "tango": "家庭",
+    "kana": "かてい",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "悲しみ",
+    "kana": "かなしみ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "神様",
+    "kana": "かみさま",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "カラス",
+    "kana": "からす",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "空手",
+    "kana": "からて",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "辛み",
+    "kana": "からみ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "彼ら",
+    "kana": "かれら",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "気候",
+    "kana": "きこう",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "帰国",
+    "kana": "きこく",
+    "hinshi": "動詞／名詞"
+  },
+  {
+    "tango": "帰省",
+    "kana": "きせい",
+    "hinshi": "動詞／名詞"
+  },
+  {
+    "tango": "期待",
+    "kana": "きたい",
+    "hinshi": "動詞／名詞"
+  },
+  {
+    "tango": "帰宅",
+    "kana": "きたく",
+    "hinshi": "動詞／名詞"
+  },
+   {
+    "tango": "きつね",
+    "kana": "きつね",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "記録",
+    "kana": "きろく",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "空室",
+    "kana": "くうしつ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "工夫",
+    "kana": "くふう",
+    "hinshi": "動詞／名詞"
+  },
+  {
+    "tango": "車いす",
+    "kana": "くるまいす",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "経営",
+    "kana": "けいえい",
+    "hinshi": "動詞／名詞"
+  },
+  {
+    "tango": "計画",
+    "kana": "けいかく",
+    "hinshi": "動詞／名詞"
+  },
+  {
+    "tango": "景気",
+    "kana": "けいき",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "形式",
+    "kana": "けいしき",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "決意",
+    "kana": "けつい",
+    "hinshi": "動詞／名詞"
+  },
+  {
+    "tango": "血液",
+    "kana": "けつえき",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "子",
+    "kana": "こ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "恋",
+    "kana": "こい",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "効果",
+    "kana": "こうか",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "航海",
+    "kana": "こうかい",
+    "hinshi": "動詞／名詞"
+  },
+  {
+    "tango": "後悔",
+    "kana": "こうかい",
+    "hinshi": "動詞／名詞"
+  },
+  {
+    "tango": "高校生",
+    "kana": "こうこうせい",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "交通費",
+    "kana": "こうつうひ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "校内",
+    "kana": "こうない",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "光熱費",
+    "kana": "こうねつひ",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "後輩",
+    "kana": "こうはい",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "国籍",
+    "kana": "こくせき",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "心",
+    "kana": "こころ",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "腰",
+    "kana": "こし",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "最高",
+    "kana": "さいこう",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "坂",
+    "kana": "さか",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "逆さま",
+    "kana": "さかさま",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "先",
+    "kana": "さき",
+    "hinshi": "名詞"
+  },
+  {
+   "tango": "作詞家",
+    "kana": "さくしか",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "寒気",
+    "kana": "さむけ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "四角（形）",
+    "kana": "しかく（けい）",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "施設",
+    "kana": "しせつ",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "質",
+    "kana": "しつ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "しつけ",
+    "kana": "しつけ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "室内",
+    "kana": "しつない",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "ストライキ",
+    "kana": "すとらいき",
+    "hinshi": "名詞（カタ）"
+  },
+  {
+    "tango": "性格",
+    "kana": "せいかく",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "生活費",
+    "kana": "せいかつひ",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "世紀",
+    "kana": "せいき",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "生徒",
+    "kana": "せいと",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "政府",
+    "kana": "せいふ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "西洋",
+    "kana": "せいよう",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "世界一",
+    "kana": "せかいいち",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "節約",
+    "kana": "せつやく",
+    "hinshi": "動詞／名詞"
+  },
+   {
+    "tango": "背中",
+    "kana": "せなか",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "セネカ",
+    "kana": "せねか",
+    "hinshi": "名詞（固有）（カタ）"
+  },
+   {
+    "tango": "たいしたこと",
+    "kana": "たいしたこと",
+    "hinshi": "名詞（複合）"
+  },
+  {
+    "tango": "大西洋",
+    "kana": "たいせいよう",
+    "hinshi": "名詞（固有）"
+  },
+   {
+    "tango": "タイトル",
+    "kana": "たいとる",
+    "hinshi": "名詞（カタ）"
+  },
+   {
+    "tango": "タイプ",
+    "kana": "たいぷ",
+    "hinshi": "名詞（カタ）"
+  },
+  {
+    "tango": "太平洋",
+    "kana": "たいへいよう",
+    "hinshi": "名詞（固有）"
+  },
+   {
+    "tango": "タイムカプセル",
+    "kana": "たいむかぷせる",
+    "hinshi": "名詞（カタ）"
+  },
+   {
+    "tango": "タイヤ",
+    "kana": "たいや",
+    "hinshi": "名詞（カタ）"
+  },
+  {
+    "tango": "滝",
+    "kana": "たき",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "縦",
+    "kana": "たて",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "たとえ",
+    "kana": "たとえ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "知恵",
+    "kana": "ちえ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "地方",
+    "kana": "ちほう",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "通訳",
+    "kana": "つうやく",
+    "hinshi": "動詞／名詞"
+  },
+  {
+    "tango": "津波",
+    "kana": "つなみ",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "つま先",
+    "kana": "つまさき",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "つめ",
+    "kana": "つめ",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "梅雨",
+    "kana": "つゆ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "梅雨明け",
+    "kana": "つゆあけ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "強み",
+    "kana": "つよみ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "適性",
+    "kana": "てきせい",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "徹夜",
+    "kana": "てつや",
+    "hinshi": "動詞／名詞"
+  },
+  {
+    "tango": "東海（地方）",
+    "kana": "とうかい",
+    "hinshi": "名詞（固有）"
+  },
+  {
+    "tango": "東洋",
+    "kana": "とうよう",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "遠く",
+    "kana": "とおく",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "都会",
+    "kana": "とかい",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "ところ",
+    "kana": "ところ",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "年",
+    "kana": "とし",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "都市",
+    "kana": "とし",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "トラ",
+    "kana": "とら",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "内容",
+    "kana": "ないよう",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "中身",
+    "kana": "なかみ",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "夏休み",
+    "kana": "なつやすみ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "斜め",
+    "kana": "ななめ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "生",
+    "kana": "なま",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "悩み",
+    "kana": "なやみ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "灰色",
+    "kana": "はいいろ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "俳優",
+    "kana": "はいゆう",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "墓",
+    "kana": "はか",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "博士課程",
+    "kana": "はくしかてい",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "畑",
+    "kana": "はたけ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "働き",
+    "kana": "はたらき",
+    "hinshi": "名詞"
+  },
+   {
+    "tango": "はと",
+    "kana": "はと",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "鼻",
+    "kana": "はな",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "羽",
+    "kana": "はね",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "腹",
+    "kana": "はら",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "額",
+    "kana": "ひたい",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "風景",
+    "kana": "ふうけい",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "夫婦",
+    "kana": "ふうふ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "深み",
+    "kana": "ふかみ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "福",
+    "kana": "ふく",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "舟",
+    "kana": "ふね",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "ふるさと",
+    "kana": "ふるさと",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "ヘアスタイル",
+    "kana": "へあすたいる",
+    "hinshi": "名詞（カタ）"
+  },
+  {
+    "tango": "方",
+    "kana": "ほう",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "方",
+    "kana": "ほう",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "ほお／ほほ",
+    "kana": "ほお",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "ホワイト",
+    "kana": "ほわいと",
+    "hinshi": "名詞（カタ）"
+  },
+  {
+    "tango": "マイナス",
+    "kana": "まいなす",
+    "hinshi": "名詞（カタ）"
+  },
+  {
+    "tango": "街",
+    "kana": "まち",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "待ち合わせ",
+    "kana": "まちあわせ",
+    "hinshi": "動詞／名詞"
+  },
+  {
+    "tango": "真夏",
+    "kana": "まなつ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "丸み",
+    "kana": "まるみ",
+    "hinshi": "名詞"
+  },
+  {
+   "tango": "ミス",
+    "kana": "みす",
+    "hinshi": "名詞（カタ）"
+  },
+  {
+    "tango": "みそ汁",
+    "kana": "みそしる",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "虫",
+    "kana": "むし",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "無名",
+    "kana": "むめい",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "迷惑",
+    "kana": "めいわく",
+    "hinshi": "な形容詞／名詞"
+  },
+  {
+    "tango": "焼き肉",
+    "kana": "やきにく",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "屋台",
+    "kana": "やたい",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "野党",
+    "kana": "やとう",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "病",
+    "kana": "やまい",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "やる気",
+    "kana": "やるき",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "勇気",
+    "kana": "ゆうき",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "夜明け",
+    "kana": "よあけ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "用紙",
+    "kana": "ようし",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "要素",
+    "kana": "ようそ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "用例",
+    "kana": "ようれい",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "予告",
+    "kana": "よこく",
+    "hinshi": "動詞／名詞"
+  },
+  {
+    "tango": "予想",
+    "kana": "よそう",
+    "hinshi": "動詞／名詞"
+  },
+  {
+    "tango": "予測",
+    "kana": "よそく",
+    "hinshi": "動詞／名詞"
+  },
+  {
+    "tango": "予知",
+    "kana": "よち",
+    "hinshi": "動詞／名詞"
+  },
+  {
+    "tango": "与党",
+    "kana": "よとう",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "夜中",
+    "kana": "よなか",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "弱み",
+    "kana": "よわみ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "落石",
+    "kana": "らくせき",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "礼",
+    "kana": "れい",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "冷凍",
+    "kana": "れいとう",
+    "hinshi": "動詞／名詞"
+  },
+  {
+    "tango": "列",
+    "kana": "れつ",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "ろうそく",
+    "kana": "ろうそく",
+    "hinshi": "名詞"
+  },
+  {
+    "tango": "笑い",
+    "kana": "わらい",
+    "hinshi": "名詞"
+  }
+]
