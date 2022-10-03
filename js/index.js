@@ -39,6 +39,16 @@ let letter_num = 0; // 文字数
 
 var hands;
 
+//timer
+let startTime;
+let game_start = false;
+const oneSec = 1000;
+let elapsedTime = 0;
+let time_count = 0;
+
+let score_count = 0;
+let result_letter_count = 0;
+
 
 function preload() {
   data = loadJSON("./js/lib/static_yubimoji.json");
@@ -81,11 +91,27 @@ function onResults(results) {
     // gameMode
     if (game_mode) {
 
+      // count time
+      if(g_landmarks.length > 0 && game_start == false) {
+        startTime = millis();
+        game_start = true;
+      }
+      const now = millis();
+      elapsedTime = now - startTime;
+      // console.log(elapsedTime);
+      if(elapsedTime >= oneSec) {
+        time_count++;
+        startTime = millis();
+      }
+      
+      let time = document.querySelector('#time');
+      // console.log(time);
+      time.innerText = `${time_count}`;
+
       const current_letter = document.querySelector('.current_letter').innerText;
       for (let i = 0; i < data.length; i++) {
         if (data[i].word == current_letter) {
           data_angles = data[i].angles;
-
         }
       }
 
@@ -100,6 +126,10 @@ function onResults(results) {
           // console.log(distances);
           changeLetterClass();
         }
+      }
+
+      if(time_count >= 10) {
+        showResult();
       }
     }
 
@@ -286,10 +316,6 @@ function draw() {
   }
 }
 
-window.onload = function () {
-
-}
-
 function turnNextPage(e) {
   current_page = view_area.firstElementChild;
   const data_index = e.getAttribute('data-index');
@@ -365,6 +391,10 @@ function changeLetterClass() {
       tutorial_mode = false;
       stopMediaPipeHands();
     } else if (game_mode) {
+      score_count += 5;
+      result_letter_count++;
+      let score = document.querySelector('#score');
+      score.innerText = `${score_count}`;
       while(word_area.firstChild) {
         word_area.removeChild(word_area.firstChild);
       }
@@ -385,6 +415,14 @@ function changeLetterClass() {
     }
     document.querySelector('.showImageArea').innerHTML = data_image;
     letter_num++;
+
+    if(game_mode) {
+      score_count += 5;
+      result_letter_count++;
+      console.log(score_count);
+      let score = document.querySelector('#score');
+      score.innerText = `${score_count}`;
+    }
   }
 
 }
@@ -433,6 +471,19 @@ function getRandomWord() {
   document.querySelector('#gameMode .showImageArea').innerHTML = data_image;
   letter_num = 0;
   game_mode = true;
+}
+
+function showResult() {
+  stopMediaPipeHands();
+  current_page = view_area.firstElementChild;
+  current_page.remove();
+  view_area.appendChild(frames[8]);
+
+  let result_score = document.querySelector('.resultScore');
+  result_score.innerText = `${score_count}`;
+  
+  let result_letter_num = document.querySelector('.resultLetterNum');
+  result_letter_num.innerText = `${result_letter_count}`;
 }
 
 

@@ -57,11 +57,6 @@ body {
     cursor: pointer;
     border: 0;
 }
-.instructionText {
-    font-size: 2.4rem;
-    font-weight: bold;
-    margin: 2vw;
-}
 
 #divContainer {
     display: none;
@@ -306,17 +301,6 @@ body {
     left: 0px;
     top: 0px;
 }
-/* .wordArea {
-    width: 20vw;
-    height: 6vh;
-    font-size: 2.1rem;
-    font-weight: bold;
-    border: solid 8px #ffb344;
-    border-radius: 22px;
-    background-color: #fff;
-    color: #c5c5c5;
-    vertical-align: middle;
-} */
 
 /* result */
 #scoreAndTime {
@@ -345,12 +329,8 @@ body {
 }
 
 #result {
-    display: none;
     background-color: #fff8e5;
     padding: 10vh 15vw;
-}
-#result.show {
-    display: block;
 }
 
 .instructionText {
@@ -360,14 +340,14 @@ body {
     color: #e05d5d;
 }
 .evaluations {
-    margin: 10vh 20vw;
+    margin: 6vh 20vw;
 }
 .evaluation {
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: #00a19d;
-    margin: 10vh;
+    margin: 8vh;
     border-bottom: #00a19d 3px solid;
 }
 .resultTitle {
@@ -376,6 +356,14 @@ body {
 .point {
     font-size: 1.8rem;
     font-weight: bold;
+}
+.comment {
+    font-size: 1.2rem;
+    padding: 2vh;
+    border: solid 4px #ffb344;
+    border-radius: 22px;
+    background-color: #fff;
+    color: #e05d5d;
 }
 
 /* yubimojiList */
