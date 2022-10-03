@@ -167,7 +167,7 @@ body {
 .gameInstructionText div{
     display: inline-block;
 }
-.tutorialWordArea {
+.wordArea {
     width: 20vw;
     height: 6vh;
     font-size: 2.1rem;
@@ -306,7 +306,7 @@ body {
     left: 0px;
     top: 0px;
 }
-.keywordArea {
+/* .wordArea {
     width: 20vw;
     height: 6vh;
     font-size: 2.1rem;
@@ -316,7 +316,7 @@ body {
     background-color: #fff;
     color: #c5c5c5;
     vertical-align: middle;
-}
+} */
 
 /* result */
 #scoreAndTime {

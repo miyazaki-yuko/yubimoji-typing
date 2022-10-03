@@ -56,12 +56,12 @@ function onResults(results) {
 
     // Tutorial Mode
     if (tutorial_mode) {
-      
+
       const current_letter = document.querySelector('.current_letter').innerText;
       for (let i = 0; i < data.length; i++) {
         if (data[i].word == current_letter) {
           data_angles = data[i].angles;
-          
+
         }
       }
 
@@ -72,7 +72,7 @@ function onResults(results) {
 
       if (distances.length > 0) {
         if (max(distances) < max_distance) {
-          console.log(distances);
+          // console.log(distances);
           changeLetterClass();
         }
       }
@@ -81,11 +81,26 @@ function onResults(results) {
     // gameMode
     if (game_mode) {
 
+      const current_letter = document.querySelector('.current_letter').innerText;
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].word == current_letter) {
+          data_angles = data[i].angles;
+
+        }
+      }
+
 
       calcAngleZero();
       calcAngle();
       calcDistance();
       inputs = [];
+
+      if (distances.length > 0) {
+        if (max(distances) < max_distance) {
+          // console.log(distances);
+          changeLetterClass();
+        }
+      }
     }
 
     // calcAngleZero();
@@ -221,8 +236,13 @@ function setup() {
   console.log(frames);
   explanations = document.querySelectorAll('.explanation');
   yubimoji_example = document.querySelectorAll('body .yubimojiExample');
-  
+
   data = data.data;
+
+  // for (let i = 1; i < frames.length; i++) {
+  //   frames[i].remove();
+
+  // }
 }
 
 function draw() {
@@ -249,7 +269,7 @@ function draw() {
       rect(x - 2, y - 2, 4, 4);
 
       // text(data_angles[i], x, y);
-      text(draw_distances[i], x, y);
+      // text(draw_distances[i], x, y);
 
       // draw the skeleton
       isPalm = palms.indexOf(i); // is it a palm landmark or finger landmark?
@@ -267,9 +287,7 @@ function draw() {
 }
 
 window.onload = function () {
-  for (let i = 1; i < frames.length; i++) {
-    frames[i].remove();
-  }
+
 }
 
 function turnNextPage(e) {
@@ -295,6 +313,7 @@ function turnNextPage(e) {
     current_page.remove();
     view_area.append(frames[data_index]);
     remakeCanvas();
+    startMediaPipeHands();
   } else {
     current_page.remove();
     view_area.appendChild(frames[data_index]);
@@ -305,7 +324,7 @@ function getTutorialLetter() {
   // 1文字ずつに分割
   tutorial_letters = tutorial_word.split('');
   // document.querySelector('.tutorialWord').textContent = tutorial_letter[0];
-  const tutorial_word_area = document.querySelector('#tutorialMode .tutorialWordArea');
+  const tutorial_word_area = document.querySelector('#tutorialMode .wordArea');
   const tutorial_letter_area = document.querySelector('#tutorialMode .letterArea');
   // 1文字目をhtmlに追加
   tutorial_letter_area.innerText = tutorial_letters[0];
@@ -335,27 +354,36 @@ function getTutorialLetter() {
 }
 
 function changeLetterClass() {
-  const tutorial_word_area = document.querySelector('.tutorialWordArea');
-  const tutorial_words = tutorial_word_area.children;
+  const word_area = document.querySelector('.wordArea');
+  const letters = word_area.children;
   current_page = view_area.firstElementChild;
 
-  if (letter_num == tutorial_letters.length - 1) {
-    current_page.remove();
-    view_area.appendChild(frames[5]);
-    tutorial_mode = false;
-    stopMediaPipeHands();
+  if (letter_num == letters.length - 1) {
+    if (tutorial_mode) {
+      current_page.remove();
+      view_area.appendChild(frames[5]);
+      tutorial_mode = false;
+      stopMediaPipeHands();
+    } else if (game_mode) {
+      while(word_area.firstChild) {
+        word_area.removeChild(word_area.firstChild);
+      }
+      getRandomWord();
+    }
+
+    
   } else {
-    tutorial_words[letter_num].classList.remove('current_letter');
-    tutorial_words[letter_num + 1].classList.add('current_letter');
-    document.querySelector('#tutorialMode .letterArea').textContent = tutorial_letters[letter_num + 1];
+    letters[letter_num].classList.remove('current_letter');
+    letters[letter_num + 1].classList.add('current_letter');
+    document.querySelector('.letterArea').textContent = letters[letter_num + 1].innerText;
 
     // 参考画像取得・表示
-    for(let i = 0; i < data.length; i++) {
-      if(data[i].word == tutorial_letters[letter_num + 1]) {
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].word == letters[letter_num + 1].innerText) {
         data_image = data[i].html;
       }
     }
-    document.querySelector('#tutorialMode .showImageArea').innerHTML = data_image;
+    document.querySelector('.showImageArea').innerHTML = data_image;
     letter_num++;
   }
 
@@ -374,11 +402,12 @@ function getRandomWord() {
   let length = Object.keys(word_data).length;
   let r = int(random(0, length));
   let keyword = word_data[r].kana;
-  console.log(word_data[r].kana);
+  // console.log(word_data[r].kana);
 
   // add html
   game_letters = keyword.split('');
-  const keyword_area = document.querySelector('#gameMode .keywordArea');
+  console.log(game_letters);
+  const word_area = document.querySelector('#gameMode .wordArea');
   const game_letters_area = document.querySelector('#gameMode .letterArea');
   game_letters_area.innerText = game_letters[0];
 
@@ -391,7 +420,7 @@ function getRandomWord() {
       span_game_letters.classList.add("current_letter");
     }
     // htmlにチュートリアルの文字全部を追加
-    keyword_area.appendChild(span_game_letters);
+    word_area.appendChild(span_game_letters);
   }
 
   // 1文字目の画像を取得・表示
@@ -402,7 +431,7 @@ function getRandomWord() {
     }
   }
   document.querySelector('#gameMode .showImageArea').innerHTML = data_image;
-  startMediaPipeHands();
+  letter_num = 0;
   game_mode = true;
 }
 
@@ -414,26 +443,26 @@ function startMediaPipeHands() {
   // document.querySelector('body').appendChild(videoElement);
   // videoElement.hidden = true;
   hands = new Hands({
-      locateFile: (file) => {
-          return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
-      }
+    locateFile: (file) => {
+      return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+    }
   });
   hands.setOptions({
-      maxNumHands: 1,
-      modelComplexity: 1,
-      minDetextionConfidence: 0.5,
-      minTrackingConfidence: 0.5
+    maxNumHands: 1,
+    modelComplexity: 1,
+    minDetextionConfidence: 0.5,
+    minTrackingConfidence: 0.5
   });
   hands.onResults(onResults);
 
   camera = new Camera(videoElement, {
-      onFrame: async () => {
-          await hands.send({ image: videoElement });
-      },
-      audio: false,
-      width: 1280,
-      height: 720,
-      // deviceId: _deviceId
+    onFrame: async () => {
+      await hands.send({ image: videoElement });
+    },
+    audio: false,
+    width: 1280,
+    height: 720,
+    // deviceId: _deviceId
   });
   stream = camera.start();
 
@@ -441,11 +470,11 @@ function startMediaPipeHands() {
 
 function stopMediaPipeHands() {
   if (document.querySelector('video')) {
-      let stream = videoElement.srcObject;
-      window.cancelAnimationFrame(id_callback_camera_utils);
-      stream.getTracks().forEach(track => track.stop())
-      hands.close();
-      videoElement.remove();
+    let stream = videoElement.srcObject;
+    window.cancelAnimationFrame(id_callback_camera_utils);
+    stream.getTracks().forEach(track => track.stop())
+    hands.close();
+    videoElement.remove();
   }
   g_landmarks = [];
   draw();
