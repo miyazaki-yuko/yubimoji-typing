@@ -358,12 +358,42 @@ body {
     font-weight: bold;
 }
 .comment {
+    position: relative;
+    display: inline-block;
+    margin: 1em 0 2.1em;
+    /* min-width: 120px; */
+    /* max-width: 100%; */
     font-size: 1.2rem;
-    padding: 2vh;
+    padding: 2vh 5vh;
     border: solid 4px #ffb344;
-    border-radius: 22px;
     background-color: #fff;
-    color: #e05d5d;
+    color: #444444;
+    box-sizing: border-box;
+}
+.comment:before {
+    content: "";
+    position: absolute;
+    top: -24px;
+    left: 50%;
+    margin-left: -15px;
+    border: 12px solid transparent;
+    border-bottom: 12px solid #fff;
+    z-index: 2;
+}
+.comment:after {
+    content: "";
+    position: absolute;
+    top: -34px;
+    left: 50%;
+    margin-left: -19px;
+    border: 16px solid transparent;
+    border-bottom: 16px solid #ffb344;
+    z-index: 1;
+}
+
+.backButton {   
+    display: block;
+    margin-left: auto;
 }
 
 /* yubimojiList */

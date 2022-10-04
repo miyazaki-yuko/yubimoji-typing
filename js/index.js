@@ -128,7 +128,7 @@ function onResults(results) {
         }
       }
 
-      if(time_count >= 10) {
+      if(time_count >= 15) {
         showResult();
       }
     }
@@ -335,11 +335,16 @@ function turnNextPage(e) {
     startMediaPipeHands();
     current_page.remove();
     view_area.append(frames[data_index]);
+  } else if (data_index == 6) {
+    if(document.querySelector('#tutorialMode')) {
+      document.querySelector('#tutorialMode').remove();
+    }
+    current_page.remove();
+    view_area.append(frames[data_index]);
   } else if (data_index == 7) {
     current_page.remove();
     view_area.append(frames[data_index]);
     remakeCanvas();
-    startMediaPipeHands();
   } else {
     current_page.remove();
     view_area.appendChild(frames[data_index]);
@@ -428,6 +433,24 @@ function changeLetterClass() {
 }
 
 function remakeCanvas() {
+  score_count = 0;
+  time_count = 0;
+  game_start = false;
+  g_landmarks = [];
+  let score = document.querySelector('#score');
+  score.innerText = `${score_count}`;
+  let time = document.querySelector('#time');
+  time.innerText = `${time_count}`;
+
+  let camera_container = document.querySelector('.cameraContainer');
+  console.log(document.querySelector('.cameraContainer .input_video'));
+  if(document.querySelector('.input_video')  == null) {
+    console.log('no video');
+    let new_video = document.createElement('video');
+    new_video.classList.add('input_video');
+    camera_container.prepend(new_video);
+  }
+  startMediaPipeHands();
   console.log('remake canvas');
   let mycanvas = createCanvas(640, 360);
   mycanvas.parent("#gameCanvas");
@@ -447,6 +470,11 @@ function getRandomWord() {
   console.log(game_letters);
   const word_area = document.querySelector('#gameMode .wordArea');
   const game_letters_area = document.querySelector('#gameMode .letterArea');
+
+  while(word_area.firstChild) {
+    word_area.removeChild(word_area.firstChild);
+  }
+
   game_letters_area.innerText = game_letters[0];
 
   for (let i = 0; i < game_letters.length; i++) {
@@ -475,15 +503,32 @@ function getRandomWord() {
 
 function showResult() {
   stopMediaPipeHands();
+  game_mode = false;
   current_page = view_area.firstElementChild;
   current_page.remove();
   view_area.appendChild(frames[8]);
 
+  // show score
   let result_score = document.querySelector('.resultScore');
   result_score.innerText = `${score_count}`;
-  
+  // show letter num
   let result_letter_num = document.querySelector('.resultLetterNum');
   result_letter_num.innerText = `${result_letter_count}`;
+  // change rank
+  let rank = "初級者";
+  let comment = "慣れていきましょう";
+  let result_rank = document.querySelector('.resultRank');
+  let result_comment = document.querySelector('.comment .innerText');
+  if(score_count >= 15 && score_count < 25) {
+    comment = "いいスピードですね";
+    rank = "中級者";
+  } else if (score_count >= 25) {
+    comment = "すごい！達人級です";
+    rank = "上級者";
+  }
+  result_rank.innerText = rank;
+  result_comment.innerText = comment;
+
 }
 
 
@@ -548,6 +593,7 @@ function backPage(e) {
   let data_index = e.getAttribute('data-index');
   current_page.remove();
   view_area.appendChild(frames[data_index]);
+  console.log(frames[7]);
 
 }
 
