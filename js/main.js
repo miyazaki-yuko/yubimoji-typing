@@ -13,107 +13,204 @@ let letter_num = 0; // 文字数
 
 let data_image;
 
+let score_count = 0;
+let result_letter_count = 0;
+
 window.onload = function () {
     frames = document.querySelectorAll('body .frame');
     console.log(frames);
     explanations = document.querySelectorAll('.explanation');
     yubimoji_example = document.querySelectorAll('body .yubimojiExample');
-    for (let i = 1; i < frames.length; i++) {
-        frames[i].remove();
-    }
+    // for (let i = 1; i < frames.length; i++) {
+    //     frames[i].remove();
+    // }
 }
 
 function turnNextPage(e) {
     current_page = view_area.firstElementChild;
     const data_index = e.getAttribute('data-index');
-
-    if (data_index == 4) {
-        let user_name = document.querySelector('#typeYourName');
-        if (user_name.value) {
-            tutorial_word = user_name.value;
-            current_page.remove();
-            view_area.appendChild(frames[data_index]);
-            getTutorialLetter();
-        } else {
-            document.querySelector('.cautionText').innerHTML = "名前を入力してください";
-            // alert('名前を入力してください');
-        }
-    } else if (data_index == 7) {
-        current_page.remove();
-        view_area.append(frames[data_index]);
-        remakeCanvas();
-    } else {
+  
+    if (data_index == 3) {
+      let user_name = document.querySelector('#typeYourName');
+      if (user_name.value) {
+        tutorial_word = user_name.value;
         current_page.remove();
         view_area.appendChild(frames[data_index]);
+        getTutorialLetter();
+      } else {
+        document.querySelector('.cautionText').innerHTML = "名前を入力してください";
+        // alert('名前を入力してください');
+      }
+    } else if (data_index == 4) {
+        
+      startMediaPipeHands();
+      current_page.remove();
+      view_area.append(frames[data_index]);
+    } else if (data_index == 6) {
+      if(document.querySelector('#tutorialMode')) {
+        document.querySelector('#tutorialMode').remove();
+        tutorial_mode = false;
+      }
+      current_page.remove();
+      view_area.append(frames[data_index]);
+    } else if (data_index == 7) {
+      current_page.remove();
+      view_area.append(frames[data_index]);
+      remakeCanvas();
+    } else {
+      current_page.remove();
+      view_area.appendChild(frames[data_index]);
     }
-}
+  }
 
-function getTutorialLetter() {
-
-    let mycanvas = createCanvas(640, 320);
-    mycanvas.parent("#tutorialCanvas");
-    mycanvas.style("visibility", "visible");
-
+  function getTutorialLetter() {
     // 1文字ずつに分割
     tutorial_letters = tutorial_word.split('');
     // document.querySelector('.tutorialWord').textContent = tutorial_letter[0];
-    const tutorial_word_area = document.querySelector('#tutorialMode .tutorialWordArea');
+    const tutorial_word_area = document.querySelector('#tutorialMode .wordArea');
     const tutorial_letter_area = document.querySelector('#tutorialMode .letterArea');
     // 1文字目をhtmlに追加
     tutorial_letter_area.innerText = tutorial_letters[0];
-
+  
     for (let i = 0; i < tutorial_letters.length; i++) {
-        // spanタグを追加
-        let span_tutorial_letter = document.createElement("span");
-        span_tutorial_letter.innerText = tutorial_letters[i];
-        // 1文字目を太く黒くする
-        if (i == 0) {
-            span_tutorial_letter.classList.add("current_letter");
-        }
-        // htmlにチュートリアルの文字全部を追加
-        tutorial_word_area.appendChild(span_tutorial_letter);
+      // spanタグを追加
+      let span_tutorial_letter = document.createElement("span");
+      span_tutorial_letter.innerText = tutorial_letters[i];
+      // 1文字目を太く黒くする
+      if (i == 0) {
+        span_tutorial_letter.classList.add("current_letter");
+      }
+      // htmlにチュートリアルの文字全部を追加
+      tutorial_word_area.appendChild(span_tutorial_letter);
     }
-
+  
     // 1文字目の画像を取得・表示
     const current_letter = document.querySelector('.current_letter').innerText;
-    console.log(data);
     for (let i = 0; i < data.length; i++) {
-        
-        if (data[i].word == current_letter) {
-            data_image = data[i].html;
-        }
+      if (data[i].word == current_letter) {
+        data_image = data[i].html;
+      }
     }
     document.querySelector('#tutorialMode .showImageArea').innerHTML = data_image;
     tutorial_mode = true;
-    startCamera();
-}
+    // startMediaPipeHands();
+  }
 
 function changeLetterClass() {
-    const tutorial_word_area = document.querySelector('.tutorialWordArea');
-    const tutorial_words = tutorial_word_area.children;
+    const word_area = document.querySelector('.wordArea');
+    const letters = word_area.children;
     current_page = view_area.firstElementChild;
-
-    if (letter_num == tutorial_letters.length - 1) {
+  
+    if (letter_num == letters.length - 1) {
+      if (tutorial_mode) {
         current_page.remove();
         view_area.appendChild(frames[5]);
         tutorial_mode = false;
         stopMediaPipeHands();
-    } else {
-        tutorial_words[letter_num].classList.remove('current_letter');
-        tutorial_words[letter_num + 1].classList.add('current_letter');
-        document.querySelector('#tutorialMode .letterArea').textContent = tutorial_letters[letter_num + 1];
-
-        // 参考画像取得・表示
-        for (let i = 0; i < data.length; i++) {
-            if (data[i].word == tutorial_letters[letter_num + 1]) {
-                data_image = data[i].html;
-            }
+      } else if (game_mode) {
+        score_count += 5;
+        result_letter_count++;
+        let score = document.querySelector('#score');
+        score.innerText = `${score_count}`;
+        while(word_area.firstChild) {
+          word_area.removeChild(word_area.firstChild);
         }
-        document.querySelector('#tutorialMode .showImageArea').innerHTML = data_image;
-        letter_num++;
+        getRandomWord();
+      }
+  
+      
+    } else {
+      letters[letter_num].classList.remove('current_letter');
+      letters[letter_num + 1].classList.add('current_letter');
+      document.querySelector('.letterArea').textContent = letters[letter_num + 1].innerText;
+  
+      // 参考画像取得・表示
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].word == letters[letter_num + 1].innerText) {
+          data_image = data[i].html;
+        }
+      }
+      document.querySelector('.showImageArea').innerHTML = data_image;
+      letter_num++;
+  
+      if(game_mode) {
+        score_count += 5;
+        result_letter_count++;
+        console.log(score_count);
+        let score = document.querySelector('#score');
+        score.innerText = `${score_count}`;
+      }
     }
-
 }
+
+function remakeCanvas() {
+    score_count = 0;
+    time_count = 0;
+    game_start = false;
+    g_landmarks = [];
+    let score = document.querySelector('#score');
+    score.innerText = `${score_count}`;
+    let time = document.querySelector('#time');
+    time.innerText = `${time_count}`;
+  
+    let camera_container = document.querySelector('.cameraContainer');
+    console.log(document.querySelector('.cameraContainer .input_video'));
+    if(document.querySelector('.input_video')  == null) {
+      console.log('no video');
+      let new_video = document.createElement('video');
+      new_video.classList.add('input_video');
+      camera_container.prepend(new_video);
+    }
+    startMediaPipeHands();
+    console.log('remake canvas');
+    let mycanvas = createCanvas(640, 360);
+    mycanvas.parent("#gameCanvas");
+  
+    getRandomWord();
+  }
+
+function getRandomWord() {
+    // console.log(word_data);
+    let length = Object.keys(word_data).length;
+    let r = int(random(0, length));
+    let keyword = word_data[r].kana;
+    // console.log(word_data[r].kana);
+  
+    // add html
+    game_letters = keyword.split('');
+    console.log(game_letters);
+    const word_area = document.querySelector('#gameMode .wordArea');
+    const game_letters_area = document.querySelector('#gameMode .letterArea');
+  
+    while(word_area.firstChild) {
+      word_area.removeChild(word_area.firstChild);
+    }
+  
+    game_letters_area.innerText = game_letters[0];
+  
+    for (let i = 0; i < game_letters.length; i++) {
+      // spanタグを追加
+      let span_game_letters = document.createElement("span");
+      span_game_letters.innerText = game_letters[i];
+      // 1文字目を太く黒くする
+      if (i == 0) {
+        span_game_letters.classList.add("current_letter");
+      }
+      // htmlにチュートリアルの文字全部を追加
+      word_area.appendChild(span_game_letters);
+    }
+  
+    // 1文字目の画像を取得・表示
+    const current_letter = document.querySelector('.current_letter').innerText;
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].word == current_letter) {
+        data_image = data[i].html;
+      }
+    }
+    document.querySelector('#gameMode .showImageArea').innerHTML = data_image;
+    letter_num = 0;
+    game_mode = true;
+  }
 
 function showExplanation(e) {
     const data_level = e.getAttribute('data-level');
@@ -131,8 +228,8 @@ function backPage(e) {
     let data_index = e.getAttribute('data-index');
     current_page.remove();
     view_area.appendChild(frames[data_index]);
-
-}
+  
+  }
 
 function showYubimojiImages(e) {
     const id = e.getAttribute('id');
@@ -295,3 +392,33 @@ function navigation(slider) {
         markup(true)
     })
 }
+
+function showResult() {
+    stopMediaPipeHands();
+    game_mode = false;
+    current_page = view_area.firstElementChild;
+    current_page.remove();
+    view_area.appendChild(frames[8]);
+  
+    // show score
+    let result_score = document.querySelector('.resultScore');
+    result_score.innerText = `${score_count}`;
+    // show letter num
+    let result_letter_num = document.querySelector('.resultLetterNum');
+    result_letter_num.innerText = `${result_letter_count}`;
+    // change rank
+    let rank = "初級者";
+    let comment = "慣れていきましょう";
+    let result_rank = document.querySelector('.resultRank');
+    let result_comment = document.querySelector('.comment .innerText');
+    if(score_count >= 15 && score_count < 25) {
+      comment = "いいスピードですね";
+      rank = "中級者";
+    } else if (score_count >= 25) {
+      comment = "すごい！達人級です";
+      rank = "上級者";
+    }
+    result_rank.innerText = rank;
+    result_comment.innerText = comment;
+  
+  }

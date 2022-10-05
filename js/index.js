@@ -593,8 +593,6 @@ function backPage(e) {
   let data_index = e.getAttribute('data-index');
   current_page.remove();
   view_area.appendChild(frames[data_index]);
-  console.log(frames[7]);
-
 }
 
 function showYubimojiImages(e) {

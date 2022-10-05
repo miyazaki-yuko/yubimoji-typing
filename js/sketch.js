@@ -20,13 +20,19 @@ let draw_angles = [];
 const max_distance = 30;
 
 let data;
-let keyWord;
-let label;
+let word_data;
+
+let startTime;
+let game_start = false;
+const oneSec = 1000;
+let elapsedTime = 0;
+let time_count = 0;
 
 var hands;
 
 function preload() {
     data = loadJSON("./js/lib/static_yubimoji.json");
+    word_data = loadJSON("./js/lib/meishi.json");
 }
 
 function onResults(results) {
@@ -62,11 +68,46 @@ function onResults(results) {
         // gameMode
         if (game_mode) {
 
+            // count time
+            if (g_landmarks.length > 0 && game_start == false) {
+                startTime = millis();
+                game_start = true;
+            }
+            const now = millis();
+            elapsedTime = now - startTime;
+            // console.log(elapsedTime);
+            if (elapsedTime >= oneSec) {
+                time_count++;
+                startTime = millis();
+            }
+
+            let time = document.querySelector('#time');
+            // console.log(time);
+            time.innerText = `${time_count}`;
+
+            const current_letter = document.querySelector('.current_letter').innerText;
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].word == current_letter) {
+                    data_angles = data[i].angles;
+                }
+            }
+
 
             calcAngleZero();
             calcAngle();
             calcDistance();
             inputs = [];
+
+            if (distances.length > 0) {
+                if (max(distances) < max_distance) {
+                    // console.log(distances);
+                    changeLetterClass();
+                }
+            }
+
+            if (time_count >= 15) {
+                showResult();
+            }
         }
 
         // calcAngleZero();
@@ -167,58 +208,20 @@ function calcDistance() {
     }
 }
 
-// const hands = new Hands({
-//     locateFile: (file) => {
-//         return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
-//     }
-// });
-// hands.setOptions({
-//     maxNumHands: 1,
-//     modelComplexity: 1,
-//     minDetextionConfidence: 0.5,
-//     minTrackingConfidence: 0.5
-// });
-// hands.onResults(onResults);
-
-// const camera = new Camera(videoElement, {
-//     onFrame: async () => {
-//         await hands.send({ image: videoElement });
-//     },
-//     width: 1280,
-//     height: 720
-// });
-// camera.start();
-
-
-function startCamera() {
-    console.log("start camera");
-    startMediaPipeHands('8ce8e876fe1196ef2fdff50084325a364d50628dc4f98bd938e163efed58a6cf');
-}
-
-
 function setup() {
-    noCanvas();
-    console.log('load setup');
+    let mycanvas = createCanvas(640, 360);
+    mycanvas.parent("#tutorialCanvas");
 
     data = data.data;
-    console.log('get data');
-
-
-    // mycanvas.parent("#gameCanvas");
-    video = createCapture(VIDEO);
-    video.size(640, 360);
-    video.hide();
-
 }
 
 function draw() {
     // console.log('draw');
-    // clear();
-    background(127);
+    clear(255);
 
     scale(-1.0, 1.0);
     translate(-width, 0);
-    image(video, 0, 0);
+    // image(video, 0, 0);
 
     if (g_landmarks.length > 0) {
         for (let i = 0; i < g_landmarks.length; i++) {
@@ -254,26 +257,12 @@ function draw() {
     }
 }
 
-function remakeCanvas() {
-    startCamera();
-    console.log('remake canvas');
-    let mycanvas = createCanvas(640, 360);
-    mycanvas.parent("#gameCanvas");
-    mycanvas.style("visibility", "visible");
-
-    getRandomWord();
-}
-
-function getRandomWord() {
-    console.log('get word');
-    game_mode = true;
-}
-
-function startMediaPipeHands(_deviceId) {
+function startMediaPipeHands() {
     console.log('start Mediapipe Hands');
-    videoElement = document.createElement('video');// document.getElementsByClassName('input_video')[0];
-    document.querySelector('body').appendChild(videoElement);
-    videoElement.hidden = true;
+    // videoElement = document.createElement('video');
+    videoElement = document.getElementsByClassName('input_video')[0];
+    // document.querySelector('body').appendChild(videoElement);
+    // videoElement.hidden = true;
     hands = new Hands({
         locateFile: (file) => {
             return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
@@ -294,7 +283,7 @@ function startMediaPipeHands(_deviceId) {
         audio: false,
         width: 1280,
         height: 720,
-        deviceId: _deviceId
+        // deviceId: _deviceId
     });
     stream = camera.start();
 
@@ -309,6 +298,6 @@ function stopMediaPipeHands() {
         videoElement.remove();
     }
     g_landmarks = [];
-    draw();
+    // draw();
 
 }
