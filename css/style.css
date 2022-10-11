@@ -33,7 +33,7 @@ body {
     /* margin-top: 10vh; */
     padding: 12vh 5vh;
 }
-#gameMode {
+#gameModeGuide, #gameMode {
     background-color: #96ceb4;
     color: #fff8e5;
     padding: 10vw;
@@ -248,6 +248,7 @@ body {
     width: 30%;
 }
 .yubimojiListLink{
+    margin-top: 5vh;
     font-size: 1.2rem;
     /* font-weight: bold; */
     color: #00a19d;

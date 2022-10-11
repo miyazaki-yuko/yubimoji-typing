@@ -26,7 +26,7 @@ let startTime;
 let game_start = false;
 const oneSec = 1000;
 let elapsedTime = 0;
-let time_count = 0;
+let time_count = 30;
 
 var hands;
 
@@ -67,6 +67,9 @@ function onResults(results) {
 
         // gameMode
         if (game_mode) {
+            let time = document.querySelector('#time');
+            // console.log(time);
+            time.innerText = `${time_count}`;
 
             // count time
             if (g_landmarks.length > 0 && game_start == false) {
@@ -77,13 +80,9 @@ function onResults(results) {
             elapsedTime = now - startTime;
             // console.log(elapsedTime);
             if (elapsedTime >= oneSec) {
-                time_count++;
+                time_count--;
                 startTime = millis();
             }
-
-            let time = document.querySelector('#time');
-            // console.log(time);
-            time.innerText = `${time_count}`;
 
             const current_letter = document.querySelector('.current_letter').innerText;
             for (let i = 0; i < data.length; i++) {
@@ -105,7 +104,7 @@ function onResults(results) {
                 }
             }
 
-            if (time_count >= 15) {
+            if (time_count <= 0) {
                 showResult();
             }
         }
@@ -216,7 +215,7 @@ function setup() {
 }
 
 function draw() {
-    // console.log('draw');
+    // console.log(time_count);
     clear(255);
 
     scale(-1.0, 1.0);

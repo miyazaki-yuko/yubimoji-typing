@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <!-- js読み込み -->
     <script src="./js/lib/camera_utils.js" crossorigin="anonymous"></script>
-    <script src="./js/lib/control_utils.js"
-        crossorigin="anonymous"></script>
+    <script src="./js/lib/control_utils.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
@@ -56,7 +55,7 @@
 
             </div>
         </div>
-        
+
         <div id="tutorialNameInput" class="frame">
             <div class="instructionText">なまえを入力してください</div>
             <div class="inputArea">
@@ -86,7 +85,7 @@
         <div id="tutorialMode" class="frame">
             <div class="gameInstructionText">
                 <div class="wordArea">
-                    
+
                 </div>
                 <div class="subText">をつづってみよう</div>
             </div>
@@ -100,9 +99,9 @@
                 </div>
                 <div class="cameraContainer">
                     <video class="input_video"></video>
-                    <div id="tutorialCanvas"></div>                   
+                    <div id="tutorialCanvas"></div>
                 </div>
-                
+
             </div>
             <div class="skipTutorialButton" data-index="6" onclick="turnNextPage(this)">
                 <div class="skipTriangle"></div>
@@ -119,36 +118,33 @@
             <div class="instructionText">モードを選んでください</div>
             <div class="modeList">
                 <div class="item empty"></div>
-                <div class="item modeButton" data-index="7" onclick="turnNextPage(this)">
-                    <div class="button" data-level="0" onmouseover="showExplanation(this)" onmouseleave="hiddenExplanation(this)">
-                        <div class="innerText">初級</div>
+                <div class="item modeButton"  data-index="7" onclick="turnNextPage(this)">
+                    <div class="button" data-level="0" onmouseover="showExplanation(this)"
+                        onmouseleave="hiddenExplanation(this)">
+                        <div class="innerText">入門</div>
                     </div>
                 </div>
-                <div class="item explanation">「あいうえお」の5文字を使うよ</div>
+                <div class="item explanation">ガイドが付きます</div>
                 <div class="item empty"></div>
-                <div class="item modeButton">
-                    <div class="button" data-level="1" onmouseover="showExplanation(this)" onmouseleave="hiddenExplanation(this)">
-                        <div class="innerText">中級</div>
+                <div class="item modeButton" data-index="8" onclick="turnNextPage(this)">
+                    <div class="button" data-level="1" onmouseover="showExplanation(this)"
+                        onmouseleave="hiddenExplanation(this)">
+                        <div class="innerText">通常</div>
                     </div>
                 </div>
-                <div class="item explanation">coming soon</div>
+                <div class="item explanation">ガイドなしで挑戦してみよう</div>
                 <div class="item empty"></div>
-                <div class="item modeButton">
-                    <div class="button" data-level="2" onmouseover="showExplanation(this)" onmouseleave="hiddenExplanation(this)">
-                        <div class="innerText">上級</div>
-                    </div>
+                <div class="yubimojiListLink" data-index="10" onclick="turnNextPage(this)">
+                    <a>指文字一覧</a>
                 </div>
-                <div class="item explanation">coming soon</div>
-            </div>
-            <div class="yubimojiListLink" data-index="9" onclick="turnNextPage(this)">
-                <a href="#">指文字一覧</a>
+                <div class="item empty"></div>
             </div>
         </div>
 
-        <div id="gameMode" class="frame">
+        <div id="gameModeGuide" class="frame">
             <div class="gameInstructionText">
                 <div class="wordArea">
-                    
+
                 </div>
                 <div class="subText">をつづってみよう</div>
             </div>
@@ -172,11 +168,38 @@
                 </div>
                 <div class="timeBoard">
                     <div class="label">タイム: </div>
-                    <div id="time">0</div>
+                    <div id="time">30</div>
                     <div class="unit">sec</div>
                 </div>
             </div>
-            
+
+        </div>
+        <div id="gameMode" class="frame">
+            <div class="gameInstructionText">
+                <div class="wordArea">
+
+                </div>
+                <div class="subText">をつづってみよう</div>
+            </div>
+            <div class="yubimojiInputArea">
+                <div class="cameraContainer">
+                    <video class="input_video"></video>
+                    <div id="gameCanvas"></div>
+                </div>
+            </div>
+            <div id="scoreAndTime">
+                <div class="scoreBoard">
+                    <div class="label">スコア: </div>
+                    <div id="score">0</div>
+                    <div class="unit">pt</div>
+                </div>
+                <div class="timeBoard">
+                    <div class="label">タイム: </div>
+                    <div id="time">30</div>
+                    <div class="unit">sec</div>
+                </div>
+            </div>
+
         </div>
         <div id="result" class="frame">
             <div class="instructionText">結果</div>
@@ -209,7 +232,8 @@
             </div>
         </div>
         <div id="yubimojiList" class="frame">
-            <div class="backPageArrow"  data-index="6" onclick="backPage(this)"><i class="fa-solid fa-arrow-left"></i></div>
+            <div class="backPageArrow" data-index="6" onclick="backPage(this)"><i class="fa-solid fa-arrow-left"></i>
+            </div>
             <ul class="hiraganaList">
                 <li id="aGyou" onclick="showYubimojiImages(this)">
                     <span class="listTriangle"><i class="fa-solid fa-play"></i></span>
@@ -525,7 +549,7 @@
                     <div class="keen-slider__slide">
                         <div class="letterAndImage">
                             <div class="letter">り</div>
-                           <!-- <img src="./images/ri.PNG" alt="「り」の指文字"> -->
+                            <!-- <img src="./images/ri.PNG" alt="「り」の指文字"> -->
                         </div>
                     </div>
                     <div class="keen-slider__slide">
@@ -571,7 +595,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- endinject -->
     </div>
 
