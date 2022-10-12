@@ -18,7 +18,7 @@ let result_letter_count = 0;
 
 window.onload = function () {
   frames = document.querySelectorAll('body .frame');
-  console.log(frames);
+  // console.log(frames);
   explanations = document.querySelectorAll('.explanation');
   yubimoji_example = document.querySelectorAll('body .yubimojiExample');
   // for (let i = 1; i < frames.length; i++) {
@@ -31,6 +31,8 @@ function turnNextPage(e) {
   const data_index = e.getAttribute('data-index');
   const data_level = e.getAttribute('data-level');
 
+  // Tutorial Name Input 
+  // 入力されてなければ注意を出す(要：文字列のみ受け付け・ひらがなのみ受け付け)
   if (data_index == 3) {
     let user_name = document.querySelector('#typeYourName');
     if (user_name.value) {
@@ -42,23 +44,23 @@ function turnNextPage(e) {
       document.querySelector('.cautionText').innerHTML = "名前を入力してください";
       // alert('名前を入力してください');
     }
-  } else if (data_index == 4) {
-
+  } else if (data_index == 4) { // Tutorial Mode
     startMediaPipeHands();
     current_page.remove();
     view_area.append(frames[data_index]);
-  } else if (data_index == 6) {
+  } else if (data_index == 6) { // Skip Tutorial Button
     if (document.querySelector('#tutorialMode')) {
+      // Tutorial Modeがdocument内にあったら消去する
       document.querySelector('#tutorialMode').remove();
       tutorial_mode = false;
     }
     current_page.remove();
     view_area.append(frames[data_index]);
-  } else if (data_index == 7 || data_index == 8) {
+  } else if (data_index == 7 || data_index == 8) { // Game Mode
     current_page.remove();
     view_area.append(frames[data_index]);
-    remakeCanvas(data_level);
-  } else {
+    remakeCanvas();
+  } else { // その他ページ遷移
     current_page.remove();
     view_area.appendChild(frames[data_index]);
   }
@@ -102,29 +104,33 @@ function changeLetterClass() {
   const letters = word_area.children;
   current_page = view_area.firstElementChild;
 
-  if (letter_num == letters.length - 1) {
+  if (letter_num == letters.length - 1) { // キーワードの最後の文字が認識されたら
     if (tutorial_mode) {
+      // Tutorial Mode終了
       current_page.remove();
       view_area.appendChild(frames[5]);
       tutorial_mode = false;
       stopMediaPipeHands();
     } else if (game_mode) {
-      score_count += 5;
+      // 点数加算
+      // score_count += 5;
       result_letter_count++;
       let score = document.querySelector('#score');
       score.innerText = `${score_count}`;
+      // 前に取ったキーワードを削除
       while (word_area.firstChild) {
         word_area.removeChild(word_area.firstChild);
       }
+      // 新しくキーワードを追加
       getRandomWord();
     }
-
-
-  } else {
+  } else { // キーワードの途中の文字が認識されたら
+    // classの変更
     letters[letter_num].classList.remove('current_letter');
     letters[letter_num + 1].classList.add('current_letter');
-    let example_area = document.querySelector('#gameModeGuide .showExampleArea');
-    if (example_area) {
+    current_page = view_area.firstElementChild;
+    if (current_page.id == "gameModeGuide") {
+      // example areaの文字追加
       document.querySelector('.letterArea').textContent = letters[letter_num + 1].innerText;
 
       // 参考画像取得・表示
@@ -139,9 +145,9 @@ function changeLetterClass() {
     letter_num++;
 
     if (game_mode) {
-      score_count += 5;
+      // スコア追加
+      // score_count += 5;
       result_letter_count++;
-      console.log(score_count);
       let score = document.querySelector('#score');
       score.innerText = `${score_count}`;
     }
@@ -149,50 +155,49 @@ function changeLetterClass() {
 }
 
 function remakeCanvas() {
+  // スコア・タイム・カウント開始フラグのリセット
   score_count = 0;
   time_count = 30;
   game_start = false;
   g_landmarks = [];
+  // console.log(g_landmarks);
   let score = document.querySelector('#score');
   score.innerText = `${score_count}`;
   let time = document.querySelector('#time');
   time.innerText = `${time_count}`;
 
+  // videoがなければ作成する
   let camera_container = document.querySelector('.cameraContainer');
-  // console.log(document.querySelector('.cameraContainer .input_video'));
-  if (document.querySelector('.input_video') == null) {
+  if (document.querySelector('#gameModeGuide .input_video') == null || document.querySelector('#gameMode .input_video' == null)) {
     console.log('no video');
     let new_video = document.createElement('video');
     new_video.classList.add('input_video');
     camera_container.prepend(new_video);
   }
-  startMediaPipeHands();
-  // console.log('remake canvas');
+  
+  // Mediapipe Hands用のキャンバスを作成する
   let mycanvas = createCanvas(640, 360);
   mycanvas.parent("#gameCanvas");
+
+  startMediaPipeHands();
 
   getRandomWord();
 }
 
 function getRandomWord() {
-  // console.log(word_data);
+  current_page = view_area.firstElementChild;
   let length = Object.keys(word_data).length;
   let r = int(random(0, length));
   let keyword = word_data[r].kana;
-  console.log(word_data[r].kana);
 
   // add html
   game_letters = keyword.split('');
-  console.log(game_letters);
   const word_area = document.querySelector('.wordArea');
-  const game_letters_area = document.querySelector('.letterArea');
 
+  // 前のゲームで取得したキーワードがあれば消しとく
   while (word_area.firstChild) {
     word_area.removeChild(word_area.firstChild);
   }
-
-  game_letters_area.innerText = game_letters[0];
-
   for (let i = 0; i < game_letters.length; i++) {
     // spanタグを追加
     let span_game_letters = document.createElement("span");
@@ -205,14 +210,22 @@ function getRandomWord() {
     word_area.appendChild(span_game_letters);
   }
 
-  // 1文字目の画像を取得・表示
-  const current_letter = document.querySelector('.current_letter').innerText;
-  for (let i = 0; i < data.length; i++) {
-    if (data[i].word == current_letter) {
-      data_image = data[i].html;
+  // 入門の時だけ参考画像と文字を追加
+  if (current_page.id == "gameModeGuide") {
+    const game_letters_area = document.querySelector('.letterArea');
+    game_letters_area.innerText = game_letters[0];
+
+    // 1文字目の画像を取得・表示
+    const current_letter = document.querySelector('.current_letter').innerText;
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].word == current_letter) {
+        data_image = data[i].html;
+      }
     }
+    document.querySelector('#gameModeGuide .showImageArea').innerHTML = data_image;
   }
-  document.querySelector('#gameModeGuide .showImageArea').innerHTML = data_image;
+
+  // 文字数カウントリセット
   letter_num = 0;
   game_mode = true;
 }
@@ -228,12 +241,10 @@ function hiddenExplanation(e) {
 }
 
 function backPage(e) {
-  // const current_page_id = view_area.firstChild.nextElementSibling.id;
   current_page = view_area.firstElementChild;
   let data_index = e.getAttribute('data-index');
   current_page.remove();
   view_area.appendChild(frames[data_index]);
-
 }
 
 function showYubimojiImages(e) {
@@ -358,7 +369,7 @@ function navigation(slider) {
       markup(true);
       current_page = view_area.firstElementChild;
       current_page.remove();
-      view_area.appendChild(frames[9]);
+      view_area.appendChild(frames[10]);
       // backPage();
     });
 
@@ -416,10 +427,10 @@ function showResult() {
   let comment = "慣れていきましょう";
   let result_rank = document.querySelector('.resultRank');
   let result_comment = document.querySelector('.comment .innerText');
-  if (score_count >= 15 && score_count < 25) {
+  if (score_count >= 50 && score_count < 80) {
     comment = "いいスピードですね";
     rank = "中級者";
-  } else if (score_count >= 25) {
+  } else if (score_count >= 80) {
     comment = "すごい！達人級です";
     rank = "上級者";
   }

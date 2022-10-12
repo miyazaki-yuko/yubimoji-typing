@@ -25,8 +25,11 @@ let word_data;
 let startTime;
 let game_start = false;
 const oneSec = 1000;
+const veriSec = 5000;
 let elapsedTime = 0;
 let time_count = 30;
+let verificationStartTime;
+let verificationTime;
 
 var hands;
 
@@ -74,11 +77,15 @@ function onResults(results) {
             // count time
             if (g_landmarks.length > 0 && game_start == false) {
                 startTime = millis();
+                verificationStartTime = millis();
+                g_landmarks = [];
                 game_start = true;
             }
             const now = millis();
             elapsedTime = now - startTime;
+            
             // console.log(elapsedTime);
+            // 1秒経ったら
             if (elapsedTime >= oneSec) {
                 time_count--;
                 startTime = millis();
@@ -97,11 +104,21 @@ function onResults(results) {
             calcDistance();
             inputs = [];
 
+            verificationTime = now - verificationStartTime;
             if (distances.length > 0) {
                 if (max(distances) < max_distance) {
                     // console.log(distances);
+                    // 認識成功したらscore +5
+                    score_count += 5;
                     changeLetterClass();
+                    verificationStartTime = millis();
+                } else if (verificationTime >= veriSec) {
+                    // 5秒以上認識できなかったらポイント入れずに飛ばす
+                    console.log('miss!');
+                    changeLetterClass();
+                    verificationStartTime = millis();
                 }
+                // setTimeout(() => {console.log("this is the first message")}, 3000);
             }
 
             if (time_count <= 0) {
