@@ -31,11 +31,19 @@ let time_count = 30;
 let verificationStartTime;
 let verificationTime;
 
+let correct_sound;
+let incorrect_sound;
+let result_sound;
+
 var hands;
 
 function preload() {
     data = loadJSON("./js/lib/static_yubimoji.json");
     word_data = loadJSON("./js/lib/meishi.json");
+
+    correct_sound = loadSound('../sounds/correct.mp3');
+    incorrect_sound = loadSound('../sounds/wrong.mp3');
+    result_sound = loadSound('../sounds/result2.mp3');
 }
 
 function onResults(results) {
@@ -110,11 +118,13 @@ function onResults(results) {
                     // console.log(distances);
                     // 認識成功したらscore +5
                     score_count += 5;
+                    correct_sound.play();
                     changeLetterClass();
                     verificationStartTime = millis();
                 } else if (verificationTime >= veriSec) {
                     // 5秒以上認識できなかったらポイント入れずに飛ばす
                     console.log('miss!');
+                    incorrect_sound.play();
                     changeLetterClass();
                     verificationStartTime = millis();
                 }
@@ -122,6 +132,7 @@ function onResults(results) {
             }
 
             if (time_count <= 0) {
+                result_sound.play();
                 showResult();
             }
         }
