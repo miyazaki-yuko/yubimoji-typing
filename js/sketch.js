@@ -59,9 +59,11 @@ function onResults(results) {
             const current_letter = document.querySelector('.current_letter').innerText;
             for (let i = 0; i < data.length; i++) {
                 if (data[i].word == current_letter) {
-                    data_angles = data[i].angles;
+                    // data_angles = data[i].angles;
+                    console.log(data[i].angles);
                 }
             }
+            
 
             calcAngleZero();
             calcAngle();

@@ -53,6 +53,7 @@ function turnNextPage(e) {
       // Tutorial Modeがdocument内にあったら消去する
       document.querySelector('#tutorialMode').remove();
       tutorial_mode = false;
+      stopMediaPipeHands();
     }
     current_page.remove();
     view_area.append(frames[data_index]);
@@ -128,19 +129,17 @@ function changeLetterClass() {
     // classの変更
     letters[letter_num].classList.remove('current_letter');
     letters[letter_num + 1].classList.add('current_letter');
-    current_page = view_area.firstElementChild;
-    if (current_page.id == "gameModeGuide") {
-      // example areaの文字追加
-      document.querySelector('.letterArea').textContent = letters[letter_num + 1].innerText;
 
-      // 参考画像取得・表示
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].word == letters[letter_num + 1].innerText) {
-          data_image = data[i].html;
-        }
+    // example areaの文字追加
+    document.querySelector('.letterArea').textContent = letters[letter_num + 1].innerText;
+
+    // 参考画像取得・表示
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].word == letters[letter_num + 1].innerText) {
+        data_image = data[i].html;
       }
-      document.querySelector('.showImageArea').innerHTML = data_image;
     }
+    document.querySelector('.showImageArea').innerHTML = data_image;
 
     letter_num++;
 
