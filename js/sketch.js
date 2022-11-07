@@ -15,9 +15,12 @@ let inputs = [];
 let data_angles = [];
 let distances = [];
 let draw_distances = [];
-let draw_angles = [];
+
+let euc_distances = [];
+let min_data_angles = [];
 
 const max_distance = 30;
+const min_distance = 30;
 
 let data;
 let word_data;
@@ -59,20 +62,21 @@ function onResults(results) {
             const current_letter = document.querySelector('.current_letter').innerText;
             for (let i = 0; i < data.length; i++) {
                 if (data[i].word == current_letter) {
-                    // data_angles = data[i].angles;
-                    console.log(data[i].angles);
+                    data_angles = data[i].angles;
+                    // console.log(data_angles);
                 }
             }
             
 
             calcAngleZero();
             calcAngle();
+            calcEuclideanDistance();
             calcDistance();
             inputs = [];
 
-            if (distances.length > 0) {
-                if (max(distances) < max_distance) {
-                    console.log(distances);
+            if (euc_distances.length > 0) {
+                if (min(euc_distances) < min_distance) {
+                    // console.log("ok");
                     changeLetterClass();
                 }
             }
@@ -111,12 +115,13 @@ function onResults(results) {
 
             calcAngleZero();
             calcAngle();
+            calcEuclideanDistance();
             calcDistance();
             inputs = [];
 
             verificationTime = now - verificationStartTime;
-            if (distances.length > 0) {
-                if (max(distances) < max_distance) {
+            if (euc_distances.length > 0) {
+                if (min(euc_distances) < min_distance) {
                     // console.log(distances);
                     // 認識成功したらscore +5
                     score_count += 5;
@@ -211,6 +216,46 @@ function calcAngle() {
     }
 }
 
+function calcEuclideanDistance() {
+    let calc_angle;
+    let euc_distance = 0;
+    euc_distances = [];
+    euc_data = [];
+
+
+    if(inputs.length > 0) {
+        for(let i = 0; i < data_angles.length; i++) {
+            //calc euclidean distance
+            let squared_val = 0;
+            calc_angle = data_angles[i];
+            // console.log(data_angles[i]);
+            for(let j = 0; j < inputs.length; j++) {
+                squared_val += pow(calc_angle[j] - inputs[j], 2);
+            }
+            euc_distance = sqrt(squared_val);
+
+            // make new array for calcDistance
+            euc_data.push({
+                angles: calc_angle,
+                distance: euc_distance
+            });
+
+            // for determine correct or incorrect
+            // add euclidean distance per data 
+            euc_distances.push(euc_distance);
+        }
+
+        // derive the shortest distance
+        euc_data.sort(function(a,b) {
+            if(a.distance > b.distance) return 1;
+            else return -1;
+        });
+        min_data_angles = euc_data[0].angles;
+        // console.log(min_data_angles);
+    }
+}
+
+// feedback wrong palm
 function calcDistance() {
     distances = [];
     draw_distances = [];
@@ -218,15 +263,15 @@ function calcDistance() {
     let difference = 0;
     if (inputs.length > 0) {
         for (let i = 0; i < inputs.length; i++) {
-            difference = abs(data_angles[i] - inputs[i]);
+            difference = abs(min_data_angles[i] - inputs[i]);
             if (difference > 180) {
-                if (data_angles[i] < 180) {
-                    difference = 360 - inputs[i] + data_angles[i];
+                if (min_data_angles[i] < 180) {
+                    difference = 360 - inputs[i] + min_data_angles[i];
                 } else {
-                    difference = 360 - data_angles[i] + inputs[i];
+                    difference = 360 - min_data_angles[i] + inputs[i];
                 }
             } else {
-                difference = data_angles[i] - inputs[i];
+                difference = min_data_angles[i] - inputs[i];
             }
             distances.push(abs(difference));
             draw_distances.push(abs(difference));
@@ -269,7 +314,7 @@ function draw() {
             rect(x - 2, y - 2, 4, 4);
 
             // text(data_angles[i], x, y);
-            text(draw_distances[i], x, y);
+            // text(draw_distances[i], x, y);
 
             // draw the skeleton
             isPalm = palms.indexOf(i); // is it a palm landmark or finger landmark?
