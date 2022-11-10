@@ -30,13 +30,12 @@ body {
 }
 #tutorialMode {
     background-color: #ffeead;
-    /* margin-top: 10vh; */
-    padding: 12vh 5vh;
+    padding: 7vh 5vh;
 }
 #gameModeGuide, #gameMode {
     background-color: #96ceb4;
     color: #fff8e5;
-    padding: 10vw;
+    padding: 3vw;
 }
 
 .title {
@@ -192,14 +191,15 @@ body {
     font-size: 1.6rem;
     color: #444444;
     width: 20%;
+    height: 40px;
     margin: auto;
 }
 .showImageArea {
     background-color: #fff;
-    width: 60%;
+    width: 650px;
+    height: 400px;
     transform: scale(-1.0, 1.0);
-    height: auto;
-    margin: 3vh auto;
+    margin: 3vh 5vh;
     padding: 3vh;
     border-radius: 30px;
 }

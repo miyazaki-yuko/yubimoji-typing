@@ -16,6 +16,8 @@ let data_image;
 let score_count = 0;
 let result_letter_count = 0;
 
+let now_mediapipe = false;
+
 window.onload = function () {
   frames = document.querySelectorAll('body .frame');
   // console.log(frames);
@@ -53,7 +55,10 @@ function turnNextPage(e) {
       // Tutorial Modeがdocument内にあったら消去する
       document.querySelector('#tutorialMode').remove();
       tutorial_mode = false;
-      stopMediaPipeHands();
+      if(now_mediapipe) {
+        stopMediaPipeHands();
+      }
+      
     }
     current_page.remove();
     view_area.append(frames[data_index]);
@@ -113,11 +118,7 @@ function changeLetterClass() {
       tutorial_mode = false;
       stopMediaPipeHands();
     } else if (game_mode) {
-      // 点数加算
-      // score_count += 5;
-      result_letter_count++;
-      let score = document.querySelector('#score');
-      score.innerText = `${score_count}`;
+      changeScore();
       // 前に取ったキーワードを削除
       while (word_area.firstChild) {
         word_area.removeChild(word_area.firstChild);
@@ -129,45 +130,75 @@ function changeLetterClass() {
     // classの変更
     letters[letter_num].classList.remove('current_letter');
     letters[letter_num + 1].classList.add('current_letter');
-
-    // example areaの文字追加
-    document.querySelector('.letterArea').textContent = letters[letter_num + 1].innerText;
-
-    // 参考画像取得・表示
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].word == letters[letter_num + 1].innerText) {
-        data_image = data[i].html;
-      }
+    if(current_page.id == "gameModeGuide" || tutorial_mode) {
+      showNextSamples(letters);
     }
-    document.querySelector('.showImageArea').innerHTML = data_image;
-
     letter_num++;
 
     if (game_mode) {
-      // スコア追加
-      // score_count += 5;
-      result_letter_count++;
-      let score = document.querySelector('#score');
-      score.innerText = `${score_count}`;
+      changeScore();
     }
   }
+}
+
+function changeScore() {
+  result_letter_count++;
+  let score = document.querySelector('#score');
+  score.innerText = `${score_count}`;
+}
+
+function showNextSamples(letters) {
+  // example areaの文字追加
+  document.querySelector('.letterArea').innerText = letters[letter_num + 1].innerText;
+  
+
+  // 参考画像取得・表示
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].word == letters[letter_num + 1].innerText) {
+      data_image = data[i].html;
+    }
+  }
+  document.querySelector('.showImageArea').innerHTML = data_image;
+}
+
+function showCurrentSamples() {
+  const current_letter = document.querySelector(".current_letter");
+  console.log(current_letter);
+
+  document.querySelector('.letterArea').innerText = current_letter.innerText;
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].word == current_letter.innerText) {
+      data_image = data[i].html;
+    }
+  }
+  document.querySelector('.showImageArea').innerHTML = data_image;
+}
+
+function deleteSamples() {
+  document.querySelector('.letterArea').innerText = "";
+  document.querySelector('.showImageArea').innerHTML = "";
 }
 
 function remakeCanvas() {
   // スコア・タイム・カウント開始フラグのリセット
   score_count = 0;
+  result_letter_count = 0;
   time_count = 30;
-  game_start = false;
   g_landmarks = [];
-  // console.log(g_landmarks);
+  game_start = false;
+  console.log(g_landmarks.length);
   let score = document.querySelector('#score');
   score.innerText = `${score_count}`;
   let time = document.querySelector('#time');
   time.innerText = `${time_count}`;
 
+  console.log('remake canvas');
+  let debug = document.querySelector('#gameMode');
+  console.log(debug);
+
   // videoがなければ作成する
-  let camera_container = document.querySelector('.cameraContainer');
-  if (document.querySelector('#gameModeGuide .input_video') == null || document.querySelector('#gameMode .input_video' == null)) {
+  let camera_container = document.querySelector('#viewArea .cameraContainer');
+  if (document.querySelector('#viewArea .input_video') == null) {
     console.log('no video');
     let new_video = document.createElement('video');
     new_video.classList.add('input_video');

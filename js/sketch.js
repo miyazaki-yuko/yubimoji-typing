@@ -122,15 +122,20 @@ function onResults(results) {
             verificationTime = now - verificationStartTime;
             if (euc_distances.length > 0) {
                 if (min(euc_distances) < min_distance) {
-                    // console.log(distances);
                     // 認識成功したらscore +5
                     score_count += 5;
                     correct_sound.play();
                     changeLetterClass();
+                    if(current_page.id == "gameMode") {
+                        deleteSamples();
+                    }
                     verificationStartTime = millis();
                 } else if (verificationTime >= veriSec) {
                     // 5秒以上認識できなかったらポイント入れずに飛ばす
                     console.log('miss!');
+                    if(current_page.id == "gameMode") {
+                        showCurrentSamples();
+                    }
                     incorrect_sound.play();
                     changeLetterClass();
                     verificationStartTime = millis();
@@ -360,7 +365,7 @@ function startMediaPipeHands() {
         // deviceId: _deviceId
     });
     stream = camera.start();
-
+    now_mediapipe = true;
 }
 
 function stopMediaPipeHands() {
@@ -372,6 +377,7 @@ function stopMediaPipeHands() {
         videoElement.remove();
     }
     g_landmarks = [];
+    now_mediapipe = false;
     // draw();
 
 }
