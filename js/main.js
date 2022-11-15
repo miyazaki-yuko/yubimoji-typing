@@ -18,47 +18,87 @@ let result_letter_count = 0;
 
 let now_mediapipe = false;
 
+let animation_page = view_area.firstElementChild;
+
 window.onload = function () {
   frames = document.querySelectorAll('body .frame');
   // console.log(frames);
   explanations = document.querySelectorAll('.explanation');
   yubimoji_example = document.querySelectorAll('body .yubimojiExample');
+  
   // for (let i = 1; i < frames.length; i++) {
   //     frames[i].remove();
   // }
 }
 
+function pageTransitionAnimation(num, color, animation) {
+  let bg_colors = ['#ffb344', '#00a19d', '#e05d5d', '#fff8e5'];
+  let transition_divs = animation_page.children;
+  if(num == 4) {
+    for(let i = 0; i < num; i++) {
+      let transition_div = transition_divs[i];
+      transition_div.classList.add('appear');
+      transition_div.style.background = bg_colors[i];
+      transition_div.style.animationName = animation;
+    }
+  } else {
+    let transition_div = transition_divs[num];
+    transition_div.classList.add('appear');
+    transition_div.style.background = color;
+    transition_div.style.animationName = animation;
+  }
+  
+}
+
 function turnNextPage(e) {
-  current_page = view_area.firstElementChild;
+  current_page = view_area.firstElementChild.nextElementSibling;
   const data_index = e.getAttribute('data-index');
   const data_level = e.getAttribute('data-level');
 
   // Tutorial Name Input 
   // 入力されてなければ注意を出す(要：文字列のみ受け付け・ひらがなのみ受け付け)
-  if (data_index == 3) {
-    let user_name = document.querySelector('#typeYourName');
-    if (user_name.value) {
-      tutorial_word = user_name.value;
+  if(data_index == 1) {
+    pageTransitionAnimation(4, '#ffeead', 'PageAnime');
+    let page_change_div = animation_page.firstElementChild;
+    page_change_div.addEventListener('animationend', () => {
+      console.log('animation end');
       current_page.remove();
       view_area.appendChild(frames[data_index]);
-      getTutorialLetter();
+    })
+    
+  } else if (data_index == 3) {
+    let user_name = document.querySelector('#typeYourName');
+    if (user_name.value) {
+      if (user_name.value.match(/^[ぁ-んー　]*$/)) {
+        tutorial_word = user_name.value;
+        current_page.remove();
+        view_area.appendChild(frames[data_index]);
+        getTutorialLetter();
+      } else {
+        document.querySelector('.cautionText').innerHTML = "ひらがなで入力してください";
+      }
+
     } else {
       document.querySelector('.cautionText').innerHTML = "名前を入力してください";
       // alert('名前を入力してください');
     }
   } else if (data_index == 4) { // Tutorial Mode
-    startMediaPipeHands();
-    current_page.remove();
-    view_area.append(frames[data_index]);
+    pageTransitionAnimation(0, '#ffeead', 'PageAnime');
+    let page_change_div = animation_page.firstElementChild;
+    page_change_div.addEventListener('animationend', () => {
+      startMediaPipeHands();
+      current_page.remove();
+      view_area.appendChild(frames[data_index]);
+    })
   } else if (data_index == 6) { // Skip Tutorial Button
     if (document.querySelector('#tutorialMode')) {
       // Tutorial Modeがdocument内にあったら消去する
       document.querySelector('#tutorialMode').remove();
       tutorial_mode = false;
-      if(now_mediapipe) {
+      if (now_mediapipe) {
         stopMediaPipeHands();
       }
-      
+
     }
     current_page.remove();
     view_area.append(frames[data_index]);
@@ -66,6 +106,9 @@ function turnNextPage(e) {
     current_page.remove();
     view_area.append(frames[data_index]);
     remakeCanvas();
+    for (let i = 0; i < explanations.length; i++) {
+      explanations[i].classList.remove('explanation__show');
+    }
   } else { // その他ページ遷移
     current_page.remove();
     view_area.appendChild(frames[data_index]);
@@ -130,7 +173,7 @@ function changeLetterClass() {
     // classの変更
     letters[letter_num].classList.remove('current_letter');
     letters[letter_num + 1].classList.add('current_letter');
-    if(current_page.id == "gameModeGuide" || tutorial_mode) {
+    if (current_page.id == "gameModeGuide" || tutorial_mode) {
       showNextSamples(letters);
     }
     letter_num++;
@@ -150,7 +193,7 @@ function changeScore() {
 function showNextSamples(letters) {
   // example areaの文字追加
   document.querySelector('.letterArea').innerText = letters[letter_num + 1].innerText;
-  
+
 
   // 参考画像取得・表示
   for (let i = 0; i < data.length; i++) {
@@ -204,7 +247,7 @@ function remakeCanvas() {
     new_video.classList.add('input_video');
     camera_container.prepend(new_video);
   }
-  
+
   // Mediapipe Hands用のキャンバスを作成する
   let mycanvas = createCanvas(640, 360);
   mycanvas.parent("#gameCanvas");

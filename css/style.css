@@ -1,4 +1,79 @@
-html, body, div, span, applet, object, iframe, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, span {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video,
+span {
     margin: 0;
     padding: 0;
     border: 0;
@@ -15,24 +90,100 @@ body {
     color: #e05d5d;
 }
 
-#chooseHand, #selectMode, #arrowUseCamera, #yubimojiList {
-    margin-top: 15vh;   
+#pageTransition div{
+    display: none;
+}
+
+#pageTransition div.appear {
+    display: block;
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 999;
+    transform: scaleX(0);
+    /* transition: .6s; */
+}
+
+#pageTransition div.appear:nth-of-type(1) {
+    /* animation-name: PageAnime; */
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+#pageTransition div.appear:nth-of-type(2) {
+    /* animation-name: PageAnime; */
+    animation-duration: 1.2s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-delay: .1s;
+}
+
+#pageTransition div.appear:nth-of-type(3) {
+    /* animation-name: PageAnime; */
+    animation-duration: 1.2s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-delay: .2s;
+}
+
+#pageTransition div.appear:nth-of-type(4) {
+    /* animation-name: PageAnime; */
+    animation-duration: 1.3s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-delay: .3s;
+}
+@keyframes PageAnime {
+    0% {
+        transform-origin: left;
+        transform: scaleX(0);
+    }
+    50% {
+        transform-origin: left;
+        transform: scaleX(1);
+    }
+    50.001% {
+        transform-origin: right;
+        transform: scaleX(1);
+    }
+    100% {
+        transform-origin: right;
+        transform: scaleX(0);
+    }
+}
+
+
+#chooseHand,
+#selectMode,
+#arrowUseCamera,
+#yubimojiList {
+    margin-top: 15vh;
     padding: 5vh;
 }
+
 #top {
     margin-top: 25vh;
     padding: 5vh;
 }
+
 #tutorialNameInput {
     background-color: #ffeead;
     /* margin-top: 10vh; */
     padding: 20vh 5vh;
 }
+
 #tutorialMode {
     background-color: #ffeead;
     padding: 7vh 5vh;
 }
-#gameModeGuide, #gameMode {
+
+#gameModeGuide,
+#gameMode {
     background-color: #96ceb4;
     color: #fff8e5;
     padding: 3vw;
@@ -44,6 +195,7 @@ body {
     margin: 5vw;
     letter-spacing: 1.2rem;
 }
+
 .button {
     width: 15vw;
     position: relative;
@@ -60,6 +212,7 @@ body {
 #divContainer {
     display: none;
 }
+
 .backPageArrow {
     color: #c5c5c5;
     font-size: 3rem;
@@ -73,11 +226,14 @@ body {
     margin: auto 8vw;
     width: 8vw;
 }
-.leftHandButton, .leftHand {
+
+.leftHandButton,
+.leftHand {
     filter: saturate(0%);
     opacity: 0.4;
     cursor: default;
 }
+
 .handImageArea img {
     width: 15%;
     height: auto;
@@ -89,6 +245,7 @@ body {
     margin-top: 20vh;
     margin-bottom: 7vh;
 }
+
 /* .iconContainer img {
     width: 5%;
     height: auto;
@@ -98,6 +255,7 @@ body {
     color: #ffb344;
     font-size: 5rem;
 }
+
 .cameraButton {
     width: 21vw;
 }
@@ -107,6 +265,7 @@ body {
 #tutorialNameInput {
     background-color: #ffeead;
 }
+
 #typeYourName {
     width: 70%;
     height: 6vh;
@@ -117,19 +276,23 @@ body {
     color: #444444;
     text-align: center;
 }
+
 .inputArea {
     width: 30vw;
     margin: 10vh auto;
 }
+
 .cautionText {
     font-size: 1.1rem;
     text-align: left;
     width: 70%;
     margin: 4vh auto;
 }
+
 .nextButton {
     width: 7vw;
 }
+
 .skipTutorialButton {
     width: 10vw;
     margin-left: 85vw;
@@ -139,12 +302,14 @@ body {
     padding: 0.3vh;
     cursor: pointer;
 }
+
 .skipTutorialButton div {
     display: inline-block;
     font-size: 1.4rem;
     color: #00a19d;
     margin: auto 0.4vh;
 }
+
 .skipTriangle {
     vertical-align: text-top;
     width: 1vh;
@@ -158,9 +323,11 @@ body {
 .gameInstructionText {
     padding-left: 10vw;
 }
-.gameInstructionText div{
+
+.gameInstructionText div {
     display: inline-block;
 }
+
 .wordArea {
     width: 20vw;
     height: 6vh;
@@ -172,20 +339,24 @@ body {
     color: #c5c5c5;
     vertical-align: middle;
 }
+
 .current_letter {
     color: #444444;
 }
+
 .subText {
     font-size: 1.6rem;
     font-weight: bold;
     vertical-align: bottom;
 }
+
 .yubimojiInputArea {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 9vh auto 2vh;
 }
+
 .letterArea {
     background-color: #fff;
     font-size: 1.6rem;
@@ -194,6 +365,7 @@ body {
     height: 40px;
     margin: auto;
 }
+
 .showImageArea {
     background-color: #fff;
     width: 650px;
@@ -203,18 +375,22 @@ body {
     padding: 3vh;
     border-radius: 30px;
 }
-.showImageArea img{
+
+.showImageArea img {
     width: 60%;
 }
+
 .cameraContainer {
     position: relative;
 }
+
 .input_video {
     position: relative;
     width: 640px;
     height: 360px;
     transform: scale(-1, 1);
 }
+
 #tutorialCanvas {
     position: absolute;
     left: 0px;
@@ -230,6 +406,7 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 .tutorialEndText {
     font-weight: bold;
     font-size: 2.4rem;
@@ -244,18 +421,21 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
 .item {
     width: 30%;
 }
-.yubimojiListLink{
+
+.yubimojiListLink {
     margin-top: 5vh;
     font-size: 1.2rem;
     /* font-weight: bold; */
     color: #00a19d;
 }
+
 .explanation {
     font-size: 1.2rem;
-    color:#444444;
+    color: #444444;
     background-color: #fff;
     position: relative;
     display: inline-block;
@@ -267,9 +447,11 @@ body {
     box-sizing: border-box;
     opacity: 0;
 }
+
 .explanation__show {
     opacity: 1;
 }
+
 .explanation:before {
     content: "";
     position: absolute;
@@ -280,6 +462,7 @@ body {
     border-right: 12px solid #fff;
     z-index: 2;
 }
+
 .explanation:after {
     content: "";
     position: absolute;
@@ -290,6 +473,7 @@ body {
     border-right: 14px solid #ffb344;
     z-index: 1;
 }
+
 .yubimojiListLink a {
     color: #00a19d;
     border-bottom: solid 2px #00a19d;
@@ -308,23 +492,31 @@ body {
     display: flex;
     justify-content: flex-end;
 }
-.scoreBoard div, .timeBoard div{
+
+.scoreBoard div,
+.timeBoard div {
     display: inline-block;
     margin: auto 1vh;
 }
-.scoreBoard, .timeBoard {
+
+.scoreBoard,
+.timeBoard {
     background-color: #fff8e5;
     margin: auto 1vh;
     padding: 0.8vh 3vh;
     border-radius: 50px;
 }
+
 .scoreBoard {
     color: #e05d5d;
 }
+
 .timeBoard {
     color: #00a19d;
 }
-#score, #time {
+
+#score,
+#time {
     font-size: 1.6rem;
     font-weight: bold;
 }
@@ -340,9 +532,11 @@ body {
     margin: 2vw;
     color: #e05d5d;
 }
+
 .evaluations {
     margin: 6vh 20vw;
 }
+
 .evaluation {
     display: flex;
     align-items: center;
@@ -351,13 +545,16 @@ body {
     margin: 8vh;
     border-bottom: #00a19d 3px solid;
 }
+
 .resultTitle {
     font-size: 1.2rem;
 }
+
 .point {
     font-size: 1.8rem;
     font-weight: bold;
 }
+
 .comment {
     position: relative;
     display: inline-block;
@@ -371,6 +568,7 @@ body {
     color: #444444;
     box-sizing: border-box;
 }
+
 .comment:before {
     content: "";
     position: absolute;
@@ -381,6 +579,7 @@ body {
     border-bottom: 12px solid #fff;
     z-index: 2;
 }
+
 .comment:after {
     content: "";
     position: absolute;
@@ -392,7 +591,7 @@ body {
     z-index: 1;
 }
 
-.backButton {   
+.backButton {
     display: block;
     margin-left: auto;
 }
@@ -404,14 +603,16 @@ body {
     flex-wrap: wrap;
     margin: auto 10vw;
 }
+
 .hiraganaList li {
-    list-style: none!important;
+    list-style: none !important;
     width: 25%;
     /* font-weight: bold; */
     font-size: 2.4rem;
     margin: 5vh 0;
     cursor: pointer;
 }
+
 .listTriangle {
     color: #ffb344;
 }
@@ -431,29 +632,32 @@ body {
     height: 60vh;
     margin: 5vh 17vw;
 }
+
 .letter {
     color: #444444;
     font-size: 5rem;
     margin: 20vh;
 }
+
 .keen-slider__slide img {
     background-color: #fff8e5;
     width: 40%;
     transform: scale(-1.0, 1.0);
     padding: 2vh;
 }
+
 .navigation-wrapper {
     position: relative;
     padding-top: 10vh;
-  }
-  
-  .dots {
+}
+
+.dots {
     display: flex;
     padding: 10px 0;
     justify-content: center;
-  }
-  
-  .dot {
+}
+
+.dot {
     border: none;
     width: 5px;
     height: 5px;
@@ -462,36 +666,36 @@ body {
     margin: 0 5px;
     padding: 5px;
     cursor: pointer;
-  }
-  
-  .dot:focus {
+}
+
+.dot:focus {
     outline: none;
-  }
-  
-  .dot--active {
+}
+
+.dot--active {
     background: #fff8e5;
-  }
-  
-  .arrow {
+}
+
+.arrow {
     width: 120px;
     height: 120px;
     position: absolute;
     top: 50%;
     color: #fff;
     cursor: pointer;
-  }
-  
-  .arrow--left {
+}
+
+.arrow--left {
     left: 15px;
     font-size: 6rem;
-  }
-  
-  .arrow--right {
+}
+
+.arrow--right {
     left: auto;
     right: 15px;
     font-size: 6rem;
-  }
-  
-  .arrow--disabled{
+}
+
+.arrow--disabled {
     color: #ffd99d;
-  }
+}

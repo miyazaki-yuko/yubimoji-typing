@@ -100,7 +100,7 @@ function onResults(results) {
             
             // console.log(elapsedTime);
             // 1秒経ったら
-            if (elapsedTime >= oneSec) {
+            if (game_start==true && elapsedTime >= oneSec) {
                 time_count--;
                 startTime = millis();
             }
