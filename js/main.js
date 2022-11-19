@@ -10,63 +10,85 @@ let tutorial_letters = [];
 let tutorial_mode = false;
 let game_mode = false;
 let letter_num = 0; // 文字数
-
-let data_image;
-
 let score_count = 0;
 let result_letter_count = 0;
+
+let data_image;
 
 let now_mediapipe = false;
 
 let animation_page = view_area.firstElementChild;
+let end_animation = false;
 
 window.onload = function () {
   frames = document.querySelectorAll('body .frame');
   // console.log(frames);
   explanations = document.querySelectorAll('.explanation');
   yubimoji_example = document.querySelectorAll('body .yubimojiExample');
-  
+
   // for (let i = 1; i < frames.length; i++) {
   //     frames[i].remove();
   // }
 }
 
-function pageTransitionAnimation(num, color, animation) {
-  let bg_colors = ['#ffb344', '#00a19d', '#e05d5d', '#fff8e5'];
+function pageTransitionAnimation(index, color, animation) {
+  let bg_colors = ['#ffb344', '#00a19d', '#e05d5d'];
+  shuffle(bg_colors, true);
+  bg_colors.push(color);
   let transition_divs = animation_page.children;
-  if(num == 4) {
-    for(let i = 0; i < num; i++) {
-      let transition_div = transition_divs[i];
-      transition_div.classList.add('appear');
-      transition_div.style.background = bg_colors[i];
-      transition_div.style.animationName = animation;
-    }
-  } else {
-    let transition_div = transition_divs[num];
+  for (let i = 0; i < 4; i++) {
+    let transition_div = transition_divs[i];
     transition_div.classList.add('appear');
-    transition_div.style.background = color;
+    transition_div.style.background = bg_colors[i];
     transition_div.style.animationName = animation;
   }
-  
+
+  let turn_page_div = animation_page.firstElementChild;
+    turn_page_div.addEventListener('animationend', () => {
+      console.log('animation end');
+      turnNextPage(index);
+    }, {once: true});
 }
 
-function turnNextPage(e) {
-  current_page = view_area.firstElementChild.nextElementSibling;
+function removeAnimationClass() {
+  let transition_divs = animation_page.children;
+  for (let i = 0; i < 4; i++) {
+    let transition_div = transition_divs[i];
+    transition_div.classList.remove('appear');
+  }
+}
+
+function setAnimation(e) {
+  const animation_status = e.getAttribute('animation');
   const data_index = e.getAttribute('data-index');
-  const data_level = e.getAttribute('data-level');
+  console.log(data_index);
+
+  if (animation_status == 'on') {
+    if (data_index == 1) {
+      pageTransitionAnimation(data_index, '#fff8e5', 'LeftAnime');
+    } else if (data_index == 4) {
+      pageTransitionAnimation(data_index, '#ffeead', 'LeftAnime');
+    } else if (data_index == 6) {
+      pageTransitionAnimation(data_index, '#fff8e5', 'LeftAnime');
+    } 
+  } else {
+    turnNextPage(data_index);
+  }
+}
+
+function turnNextPage(index) {
+  current_page = view_area.firstElementChild.nextElementSibling;
+  const data_index = index;
+  // console.log(data_index);
+  let last_animation_div = animation_page.lastElementChild;
+  last_animation_div.addEventListener('animationend', () => {
+    console.log('remove class')
+    removeAnimationClass();
+  })
 
   // Tutorial Name Input 
   // 入力されてなければ注意を出す(要：文字列のみ受け付け・ひらがなのみ受け付け)
-  if(data_index == 1) {
-    pageTransitionAnimation(4, '#ffeead', 'PageAnime');
-    let page_change_div = animation_page.firstElementChild;
-    page_change_div.addEventListener('animationend', () => {
-      console.log('animation end');
-      current_page.remove();
-      view_area.appendChild(frames[data_index]);
-    })
-    
-  } else if (data_index == 3) {
+  if (data_index == 3) {
     let user_name = document.querySelector('#typeYourName');
     if (user_name.value) {
       if (user_name.value.match(/^[ぁ-んー　]*$/)) {
@@ -83,22 +105,18 @@ function turnNextPage(e) {
       // alert('名前を入力してください');
     }
   } else if (data_index == 4) { // Tutorial Mode
-    pageTransitionAnimation(0, '#ffeead', 'PageAnime');
-    let page_change_div = animation_page.firstElementChild;
-    page_change_div.addEventListener('animationend', () => {
-      startMediaPipeHands();
-      current_page.remove();
-      view_area.appendChild(frames[data_index]);
-    })
+    startMediaPipeHands();
+    current_page.remove();
+    view_area.appendChild(frames[data_index]);
   } else if (data_index == 6) { // Skip Tutorial Button
     if (document.querySelector('#tutorialMode')) {
       // Tutorial Modeがdocument内にあったら消去する
       document.querySelector('#tutorialMode').remove();
       tutorial_mode = false;
+      console.log(now_mediapipe);
       if (now_mediapipe) {
         stopMediaPipeHands();
       }
-
     }
     current_page.remove();
     view_area.append(frames[data_index]);
@@ -151,13 +169,12 @@ function getTutorialLetter() {
 function changeLetterClass() {
   const word_area = document.querySelector('.wordArea');
   const letters = word_area.children;
-  current_page = view_area.firstElementChild;
+  current_page = view_area.firstElementChild.nextElementSibling;
 
   if (letter_num == letters.length - 1) { // キーワードの最後の文字が認識されたら
     if (tutorial_mode) {
       // Tutorial Mode終了
-      current_page.remove();
-      view_area.appendChild(frames[5]);
+      turnNextPage(5);
       tutorial_mode = false;
       stopMediaPipeHands();
     } else if (game_mode) {
@@ -191,6 +208,7 @@ function changeScore() {
 }
 
 function showNextSamples(letters) {
+  console.log('show next samples');
   // example areaの文字追加
   document.querySelector('.letterArea').innerText = letters[letter_num + 1].innerText;
 
@@ -258,7 +276,7 @@ function remakeCanvas() {
 }
 
 function getRandomWord() {
-  current_page = view_area.firstElementChild;
+  current_page = view_area.firstElementChild.nextElementSibling;
   let length = Object.keys(word_data).length;
   let r = int(random(0, length));
   let keyword = word_data[r].kana;
@@ -313,16 +331,9 @@ function hiddenExplanation(e) {
   explanations[data_level].classList.remove('explanation__show');
 }
 
-function backPage(e) {
-  current_page = view_area.firstElementChild;
-  let data_index = e.getAttribute('data-index');
-  current_page.remove();
-  view_area.appendChild(frames[data_index]);
-}
-
 function showYubimojiImages(e) {
   const id = e.getAttribute('id');
-  current_page = view_area.firstElementChild;
+  current_page = view_area.firstElementChild.nextElementSibling;
   if (id == 'aGyou') {
     current_page.remove();
     view_area.appendChild(yubimoji_example[0]);
@@ -440,9 +451,7 @@ function navigation(slider) {
     backPageArrow.innerHTML = "<i class='fa-solid fa-arrow-left'></i>";
     backPageArrow.addEventListener("click", () => {
       markup(true);
-      current_page = view_area.firstElementChild;
-      current_page.remove();
-      view_area.appendChild(frames[10]);
+      turnNextPage(10);
       // backPage();
     });
 
@@ -485,10 +494,7 @@ function navigation(slider) {
 function showResult() {
   stopMediaPipeHands();
   game_mode = false;
-  current_page = view_area.firstElementChild;
-  current_page.remove();
-  view_area.appendChild(frames[9]);
-
+  pageTransitionAnimation(9, '#fff8e5', 'UpAnime');
   // show score
   let result_score = document.querySelector('.resultScore');
   result_score.innerText = `${score_count}`;

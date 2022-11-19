@@ -369,6 +369,7 @@ function startMediaPipeHands() {
 }
 
 function stopMediaPipeHands() {
+    console.log('stop mediapipe hands')
     if (document.querySelector('video')) {
         let stream = videoElement.srcObject;
         window.cancelAnimationFrame(id_callback_camera_utils);

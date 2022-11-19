@@ -105,18 +105,17 @@ body {
     pointer-events: none;
     z-index: 999;
     transform: scaleX(0);
+    transform: scaleY(0);
     /* transition: .6s; */
 }
 
 #pageTransition div.appear:nth-of-type(1) {
-    /* animation-name: PageAnime; */
     animation-duration: 1s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
 }
 
 #pageTransition div.appear:nth-of-type(2) {
-    /* animation-name: PageAnime; */
     animation-duration: 1.2s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
@@ -124,7 +123,6 @@ body {
 }
 
 #pageTransition div.appear:nth-of-type(3) {
-    /* animation-name: PageAnime; */
     animation-duration: 1.2s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
@@ -132,13 +130,12 @@ body {
 }
 
 #pageTransition div.appear:nth-of-type(4) {
-    /* animation-name: PageAnime; */
     animation-duration: 1.3s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
     animation-delay: .3s;
 }
-@keyframes PageAnime {
+@keyframes LeftAnime {
     0% {
         transform-origin: left;
         transform: scaleX(0);
@@ -155,6 +152,24 @@ body {
         transform-origin: right;
         transform: scaleX(0);
     }
+}
+
+@keyframes UpAnime {
+    0% {
+        transform-origin:bottom;
+        transform:scaleY(0);
+      }
+      50% {
+        transform-origin:bottom;
+        transform:scaleY(1);
+      }
+      50.001% {
+        transform-origin:top;
+      }
+      100% {
+        transform-origin:top;
+        transform:scaleY(0);
+      }
 }
 
 

@@ -35,7 +35,7 @@
             <div class="animationArea">
 
             </div>
-            <div class="start button" data-index="1" onclick="turnNextPage(this)">
+            <div class="start button" data-index="1" animation="on" onclick="setAnimation(this)">
                 <div class="innerText">
                     スタート
                 </div>
@@ -55,7 +55,7 @@
                 <div class="handButtons button leftHandButton" onclick="chooseLeftHand(this)">
                     <div class="innerText">左手</div>
                 </div>
-                <div class="handButtons button rightHandButton" data-index="2" onclick="turnNextPage(this)">
+                <div class="handButtons button rightHandButton" data-index="2" animation="off" onclick="setAnimation(this)">
                     <div class="innerText">右手</div>
                 </div>
 
@@ -72,10 +72,10 @@
                     の・も・り・を・ん　は打てません
                 </div>
             </div>
-            <div class="nextButton button" data-index="3" onclick="turnNextPage(this)">
+            <div class="nextButton button" data-index="3" animation="off" onclick="setAnimation(this)">
                 <div class="innerText">次へ</div>
             </div>
-            <div class="skipTutorialButton" data-index="6" onclick="turnNextPage(this)">
+            <div class="skipTutorialButton" data-index="6" animation="off" onclick="setAnimation(this)">
                 <div class="skipTriangle"></div>
                 <div class="innerText">スキップ</div>
             </div>
@@ -85,7 +85,7 @@
             <div class="iconContainer">
                 <i class="fa-solid fa-camera"></i>
             </div>
-            <div class="cameraButton button" data-index="4" onclick="turnNextPage(this)">
+            <div class="cameraButton button" data-index="4" animation="on" onclick="setAnimation(this)">
                 <div class="innerText">カメラをオンにする</div>
             </div>
         </div>
@@ -110,14 +110,14 @@
                 </div>
 
             </div>
-            <div class="skipTutorialButton" data-index="6" onclick="turnNextPage(this)">
+            <div class="skipTutorialButton" data-index="6" animation="off" onclick="setAnimation(this)">
                 <div class="skipTriangle"></div>
                 <div class="innerText">スキップ</div>
             </div>
         </div>
         <div id="tutorialEnd" class="frame">
             <div class="tutorialEndText">素晴らしい！！</div>
-            <div class="nextButton button" data-index="6" onclick="turnNextPage(this)">
+            <div class="nextButton button" data-index="6" animation="on" onclick="setAnimation(this)">
                 <div class="innerText">次へ</div>
             </div>
         </div>
@@ -125,7 +125,7 @@
             <div class="instructionText">モードを選んでください</div>
             <div class="modeList">
                 <div class="item empty"></div>
-                <div class="item modeButton"  data-index="7" onclick="turnNextPage(this)">
+                <div class="item modeButton"  data-index="7" animation="off" onclick="setAnimation(this)">
                     <div class="button" data-level="0" onmouseover="showExplanation(this)"
                         onmouseleave="hiddenExplanation(this)">
                         <div class="innerText">入門</div>
@@ -133,7 +133,7 @@
                 </div>
                 <div class="item explanation">ガイドが付きます</div>
                 <div class="item empty"></div>
-                <div class="item modeButton" data-index="8" onclick="turnNextPage(this)">
+                <div class="item modeButton" data-index="8" animation="off" onclick="setAnimation(this)">
                     <div class="button" data-level="1" onmouseover="showExplanation(this)"
                         onmouseleave="hiddenExplanation(this)">
                         <div class="innerText">通常</div>
@@ -141,7 +141,7 @@
                 </div>
                 <div class="item explanation">ガイドなしで挑戦してみよう</div>
                 <div class="item empty"></div>
-                <div class="yubimojiListLink" data-index="10" onclick="turnNextPage(this)">
+                <div class="yubimojiListLink" data-index="10" animation="off" onclick="setAnimation(this)">
                     <a>指文字一覧</a>
                 </div>
                 <div class="item empty"></div>
@@ -241,7 +241,7 @@
             <div class="comment">
                 <div class="innerText">スピードがより出せるといいですね</div>
             </div>
-            <div class="button backButton" data-index="6" onclick="backPage(this)">
+            <div class="button backButton" data-index="6" animation="off" onclick="setAnimation(this)">
                 メニューへ戻る
             </div>
         </div>
