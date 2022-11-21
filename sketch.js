@@ -339,7 +339,7 @@ function draw() {
 }
 
 function startMediaPipeHands() {
-    console.log('start Mediapipe Hands');
+    // console.log('start Mediapipe Hands');
     // videoElement = document.createElement('video');
     videoElement = document.getElementsByClassName('input_video')[0];
     // document.querySelector('body').appendChild(videoElement);
@@ -371,7 +371,7 @@ function startMediaPipeHands() {
 }
 
 function stopMediaPipeHands() {
-    console.log('stop mediapipe hands')
+    // console.log('stop mediapipe hands')
     if (document.querySelector('video')) {
         let stream = videoElement.srcObject;
         window.cancelAnimationFrame(id_callback_camera_utils);

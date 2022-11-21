@@ -45,7 +45,7 @@ function pageTransitionAnimation(index, color, animation) {
 
   let turn_page_div = animation_page.firstElementChild;
     turn_page_div.addEventListener('animationend', () => {
-      console.log('animation end');
+      // console.log('animation end');
       turnNextPage(index);
     }, {once: true});
 }
@@ -61,7 +61,6 @@ function removeAnimationClass() {
 function setAnimation(e) {
   const animation_status = e.getAttribute('animation');
   const data_index = e.getAttribute('data-index');
-  console.log(data_index);
 
   if (animation_status == 'on') {
     if (data_index == 1) {
@@ -82,7 +81,7 @@ function turnNextPage(index) {
   // console.log(data_index);
   let last_animation_div = animation_page.lastElementChild;
   last_animation_div.addEventListener('animationend', () => {
-    console.log('remove class')
+    // console.log('remove class')
     removeAnimationClass();
   })
 
@@ -113,7 +112,7 @@ function turnNextPage(index) {
       // Tutorial Modeがdocument内にあったら消去する
       document.querySelector('#tutorialMode').remove();
       tutorial_mode = false;
-      console.log(now_mediapipe);
+      // console.log(now_mediapipe);
       if (now_mediapipe) {
         stopMediaPipeHands();
       }
@@ -212,7 +211,7 @@ function changeScore() {
 }
 
 function showNextSamples(letters) {
-  console.log('show next samples');
+  // console.log('show next samples');
   // example areaの文字追加
   document.querySelector('.letterArea').innerText = letters[letter_num + 1].innerText;
 
@@ -228,7 +227,7 @@ function showNextSamples(letters) {
 
 function showCurrentSamples() {
   const current_letter = document.querySelector(".current_letter");
-  console.log(current_letter);
+  // console.log(current_letter);
 
   document.querySelector('.letterArea').innerText = current_letter.innerText;
   for (let i = 0; i < data.length; i++) {
@@ -251,20 +250,17 @@ function remakeCanvas() {
   time_count = 30;
   g_landmarks = [];
   game_start = false;
-  console.log(g_landmarks.length);
   let score = document.querySelector('#score');
   score.innerText = `${score_count}`;
   let time = document.querySelector('#time');
   time.innerText = `${time_count}`;
 
-  console.log('remake canvas');
-  let debug = document.querySelector('#gameMode');
-  console.log(debug);
+  // console.log('remake canvas');
 
   // videoがなければ作成する
   let camera_container = document.querySelector('#viewArea .cameraContainer');
   if (document.querySelector('#viewArea .input_video') == null) {
-    console.log('no video');
+    // console.log('no video');
     let new_video = document.createElement('video');
     new_video.classList.add('input_video');
     camera_container.prepend(new_video);
@@ -482,7 +478,6 @@ function navigation(slider) {
     updateClasses()
   })
   slider.on("optionsChanged", () => {
-    console.log(2)
     markup(true)
     markup()
     updateClasses()
