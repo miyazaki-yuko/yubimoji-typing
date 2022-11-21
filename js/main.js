@@ -496,7 +496,6 @@ function navigation(slider) {
 }
 
 function showResult() {
-  stopMediaPipeHands();
   // show score
   let result_score = document.querySelector('.resultScore');
   result_score.innerText = `${score_count}`;
