@@ -143,7 +143,8 @@ function onResults(results) {
                 // setTimeout(() => {console.log("this is the first message")}, 3000);
             }
 
-            if (time_count == 0) {
+            if (time_count <= 0) {
+                game_mode = false;
                 result_sound.play();
                 console.log('show result');
                 // pageTransitionAnimation(9, '#fff8e5', 'UpAnime');
