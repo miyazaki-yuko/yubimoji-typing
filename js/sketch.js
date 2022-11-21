@@ -44,9 +44,9 @@ function preload() {
     data = loadJSON("./js/lib/static_yubimoji.json");
     word_data = loadJSON("./js/lib/meishi.json");
 
-    correct_sound = loadSound('../sounds/correct.mp3');
-    incorrect_sound = loadSound('../sounds/wrong.mp3');
-    result_sound = loadSound('../sounds/result2.mp3');
+    correct_sound = loadSound('../../sounds/correct.mp3');
+    incorrect_sound = loadSound('../../sounds/wrong.mp3');
+    result_sound = loadSound('../../sounds/result2.mp3');
 }
 
 function onResults(results) {
