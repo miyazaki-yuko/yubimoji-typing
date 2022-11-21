@@ -146,6 +146,7 @@ function onResults(results) {
             if (time_count <= 0) {
                 game_mode = false;
                 result_sound.play();
+                stopMediaPipeHands();
                 pageTransitionAnimation(9, '#fff8e5', 'UpAnime');
             }
         }
