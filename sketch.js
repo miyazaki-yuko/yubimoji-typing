@@ -146,8 +146,7 @@ function onResults(results) {
             if (time_count <= 0) {
                 game_mode = false;
                 result_sound.play();
-                console.log('show result');
-                // pageTransitionAnimation(9, '#fff8e5', 'UpAnime');
+                pageTransitionAnimation(9, '#fff8e5', 'UpAnime');
             }
         }
 
