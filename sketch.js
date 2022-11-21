@@ -145,7 +145,7 @@ function onResults(results) {
 
             if (time_count <= 0) {
                 result_sound.play();
-                showResult();
+                pageTransitionAnimation(9, '#fff8e5', 'UpAnime');
             }
         }
 

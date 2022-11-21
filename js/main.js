@@ -127,6 +127,10 @@ function turnNextPage(index) {
     for (let i = 0; i < explanations.length; i++) {
       explanations[i].classList.remove('explanation__show');
     }
+  } else if (data_index == 9) {
+    current_page.remove();
+    view_area.appendChild(frames[data_index]);
+    showResult();
   } else { // その他ページ遷移
     current_page.remove();
     view_area.appendChild(frames[data_index]);
@@ -494,7 +498,6 @@ function navigation(slider) {
 function showResult() {
   stopMediaPipeHands();
   game_mode = false;
-  pageTransitionAnimation(9, '#fff8e5', 'UpAnime');
   // show score
   let result_score = document.querySelector('.resultScore');
   result_score.innerText = `${score_count}`;
