@@ -77,6 +77,7 @@ function onResults(results) {
             if (euc_distances.length > 0) {
                 if (min(euc_distances) < min_distance) {
                     // console.log("ok");
+                    correct_sound.play();
                     changeLetterClass();
                 }
             }
@@ -85,7 +86,6 @@ function onResults(results) {
         // gameMode
         if (game_mode) {
             let time = document.querySelector('#time');
-            // console.log(time);
             time.innerText = `${time_count}`;
 
             // count time
@@ -98,7 +98,6 @@ function onResults(results) {
             const now = millis();
             elapsedTime = now - startTime;
             
-            // console.log(elapsedTime);
             // 1秒経ったら
             if (game_start==true && elapsedTime >= oneSec) {
                 time_count--;

@@ -75,7 +75,7 @@
             <div class="nextButton button" data-index="3" animation="off" onclick="setAnimation(this)">
                 <div class="innerText">次へ</div>
             </div>
-            <div class="skipTutorialButton" data-index="6" animation="off" onclick="setAnimation(this)">
+            <div class="skipTutorialButton" data-index="6" animation="on" onclick="setAnimation(this)">
                 <div class="skipTriangle"></div>
                 <div class="innerText">スキップ</div>
             </div>
@@ -110,7 +110,7 @@
                 </div>
 
             </div>
-            <div class="skipTutorialButton" data-index="6" animation="off" onclick="setAnimation(this)">
+            <div class="skipTutorialButton" data-index="6" animation="on" onclick="setAnimation(this)">
                 <div class="skipTriangle"></div>
                 <div class="innerText">スキップ</div>
             </div>
@@ -125,16 +125,16 @@
             <div class="instructionText">モードを選んでください</div>
             <div class="modeList">
                 <div class="item empty"></div>
-                <div class="item modeButton"  data-index="7" animation="off" onclick="setAnimation(this)">
-                    <div class="button" data-level="0" onmouseover="showExplanation(this)"
+                <div class="item modeButton" >
+                    <div class="button" data-level="0" data-index="7" animation="off" onclick="setAnimation(this)" onmouseover="showExplanation(this)"
                         onmouseleave="hiddenExplanation(this)">
                         <div class="innerText">入門</div>
                     </div>
                 </div>
                 <div class="item explanation">ガイドが付きます</div>
                 <div class="item empty"></div>
-                <div class="item modeButton" data-index="8" animation="off" onclick="setAnimation(this)">
-                    <div class="button" data-level="1" onmouseover="showExplanation(this)"
+                <div class="item modeButton">
+                    <div class="button" data-level="1" data-index="8" animation="off" onclick="setAnimation(this)" onmouseover="showExplanation(this)"
                         onmouseleave="hiddenExplanation(this)">
                         <div class="innerText">通常</div>
                     </div>
@@ -246,7 +246,7 @@
             </div>
         </div>
         <div id="yubimojiList" class="frame">
-            <div class="backPageArrow" data-index="6" onclick="backPage(this)"><i class="fa-solid fa-arrow-left"></i>
+            <div class="backPageArrow" data-index="6" animation="on" onclick="setAnimation(this)"><i class="fa-solid fa-arrow-left"></i>
             </div>
             <ul class="hiraganaList">
                 <li id="aGyou" onclick="showYubimojiImages(this)">

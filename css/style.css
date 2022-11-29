@@ -234,6 +234,7 @@ body {
     position: absolute;
     top: 5%;
     left: 5%;
+    cursor: pointer;
 }
 
 /* Choose Hand */
@@ -444,6 +445,7 @@ body {
 .yubimojiListLink {
     margin-top: 5vh;
     font-size: 1.2rem;
+    cursor: pointer;
     /* font-weight: bold; */
     color: #00a19d;
 }
