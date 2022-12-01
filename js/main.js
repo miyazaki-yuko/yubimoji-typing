@@ -523,3 +523,4 @@ function reStart() {
     turnNextPage(8);
   }
 }
+
