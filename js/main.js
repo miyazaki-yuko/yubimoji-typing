@@ -20,6 +20,8 @@ let now_mediapipe = false;
 let animation_page = view_area.firstElementChild;
 let end_animation = false;
 
+let page_array = [];
+
 window.onload = function () {
   frames = document.querySelectorAll('body .frame');
   // console.log(frames);
@@ -83,7 +85,7 @@ function turnNextPage(index) {
   last_animation_div.addEventListener('animationend', () => {
     // console.log('remove class')
     removeAnimationClass();
-  })
+  });
 
   // Tutorial Name Input 
   // 入力されてなければ注意を出す(要：文字列のみ受け付け・ひらがなのみ受け付け)
@@ -205,7 +207,6 @@ function changeLetterClass() {
 }
 
 function changeScore() {
-  result_letter_count++;
   let score = document.querySelector('#score');
   score.innerText = `${score_count}`;
 }
@@ -512,4 +513,13 @@ function showResult() {
   result_rank.innerText = rank;
   result_comment.innerText = comment;
 
+}
+
+function reStart() {
+  // console.log(current_page);
+  if(current_page.id == "gameModeGuide") {
+    turnNextPage(7);
+  } else if (current_page.id == "gameMode") {
+    turnNextPage(8);
+  }
 }

@@ -311,7 +311,7 @@ body {
 
 .skipTutorialButton {
     width: 10vw;
-    margin-left: 85vw;
+    margin-left: auto;
     margin-top: 2vh;
     border: solid 3px #00a19d;
     border-radius: 100vh;
@@ -504,8 +504,7 @@ body {
     top: 0px;
 }
 
-/* result */
-#scoreAndTime {
+#informations {
     display: flex;
     justify-content: flex-end;
 }
@@ -538,9 +537,19 @@ body {
     font-weight: bold;
 }
 
+.endButton {
+    width: 10vw;
+    background-color: #dd4a48;
+    color: #fff8e5;
+    margin: auto 1vh;
+    padding: 0.8vh 1vh;
+    cursor: pointer;
+}
+
+/* result */
 #result {
     background-color: #fff8e5;
-    padding: 10vh 15vw;
+    padding: 7vh 15vw;
 }
 
 .instructionText {
@@ -575,7 +584,7 @@ body {
 .comment {
     position: relative;
     display: inline-block;
-    margin: 1em 0 2.1em;
+    margin: 1em 0 0;
     /* min-width: 120px; */
     /* max-width: 100%; */
     font-size: 1.2rem;
@@ -611,6 +620,11 @@ body {
 .backButton {
     display: block;
     margin-left: auto;
+}
+.restart {
+    display: block;
+    margin-left: auto;
+    margin-bottom: 3vh;
 }
 
 /* yubimojiList */
@@ -716,3 +730,4 @@ body {
 .arrow--disabled {
     color: #ffd99d;
 }
+

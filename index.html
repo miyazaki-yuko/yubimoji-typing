@@ -167,7 +167,7 @@
                     <div id="gameCanvas"></div>
                 </div>
             </div>
-            <div id="scoreAndTime">
+            <div id="informations">
                 <div class="scoreBoard">
                     <div class="label">スコア: </div>
                     <div id="score">0</div>
@@ -178,7 +178,11 @@
                     <div id="time">30</div>
                     <div class="unit">sec</div>
                 </div>
+                <div class="endButton button" onclick="endGame()">
+                    <div class="innerText">やめる</div>
+                </div>
             </div>
+
 
         </div>
         <div id="gameMode" class="frame">
@@ -201,7 +205,7 @@
                 </div>
                 <div class="empty"></div>
             </div>
-            <div id="scoreAndTime">
+            <div id="informations">
                 <div class="scoreBoard">
                     <div class="label">スコア: </div>
                     <div id="score">0</div>
@@ -212,7 +216,11 @@
                     <div id="time">30</div>
                     <div class="unit">sec</div>
                 </div>
+                <div class="endButton button" onclick="endGame()">
+                    <div class="innerText">やめる</div>
+                </div>
             </div>
+            
 
         </div>
         <div id="result" class="frame">
@@ -240,6 +248,9 @@
             </div>
             <div class="comment">
                 <div class="innerText">スピードがより出せるといいですね</div>
+            </div>
+            <div class="button restart" onclick="reStart()">
+                もう一度あそぶ
             </div>
             <div class="button backButton" data-index="6" animation="off" onclick="setAnimation(this)">
                 メニューへ戻る

@@ -66,7 +66,7 @@ function onResults(results) {
                     // console.log(data_angles);
                 }
             }
-            
+
 
             calcAngleZero();
             calcAngle();
@@ -97,9 +97,9 @@ function onResults(results) {
             }
             const now = millis();
             elapsedTime = now - startTime;
-            
+
             // 1秒経ったら
-            if (game_start==true && elapsedTime >= oneSec) {
+            if (game_start == true && elapsedTime >= oneSec) {
                 time_count--;
                 startTime = millis();
             }
@@ -123,16 +123,17 @@ function onResults(results) {
                 if (min(euc_distances) < min_distance) {
                     // 認識成功したらscore +5
                     score_count += 5;
+                    result_letter_count++;
                     correct_sound.play();
                     changeLetterClass();
-                    if(current_page.id == "gameMode") {
+                    if (current_page.id == "gameMode") {
                         deleteSamples();
                     }
                     verificationStartTime = millis();
                 } else if (verificationTime >= veriSec) {
                     // 5秒以上認識できなかったらポイント入れずに飛ばす
                     console.log('miss!');
-                    if(current_page.id == "gameMode") {
+                    if (current_page.id == "gameMode") {
                         showCurrentSamples();
                     }
                     incorrect_sound.play();
@@ -143,10 +144,7 @@ function onResults(results) {
             }
 
             if (time_count <= 0) {
-                game_mode = false;
-                result_sound.play();
-                stopMediaPipeHands();
-                pageTransitionAnimation(9, '#fff8e5', 'UpAnime');
+                endGame();
             }
         }
 
@@ -229,13 +227,13 @@ function calcEuclideanDistance() {
     euc_data = [];
 
 
-    if(inputs.length > 0) {
-        for(let i = 0; i < data_angles.length; i++) {
+    if (inputs.length > 0) {
+        for (let i = 0; i < data_angles.length; i++) {
             //calc euclidean distance
             let squared_val = 0;
             calc_angle = data_angles[i];
             // console.log(data_angles[i]);
-            for(let j = 0; j < inputs.length; j++) {
+            for (let j = 0; j < inputs.length; j++) {
                 squared_val += pow(calc_angle[j] - inputs[j], 2);
             }
             euc_distance = sqrt(squared_val);
@@ -252,8 +250,8 @@ function calcEuclideanDistance() {
         }
 
         // derive the shortest distance
-        euc_data.sort(function(a,b) {
-            if(a.distance > b.distance) return 1;
+        euc_data.sort(function (a, b) {
+            if (a.distance > b.distance) return 1;
             else return -1;
         });
         min_data_angles = euc_data[0].angles;
@@ -335,6 +333,13 @@ function draw() {
             line(x, y, line_next.x * 640, line_next.y * 360);
         }
     }
+}
+
+function endGame() {
+    game_mode = false;
+    result_sound.play();
+    stopMediaPipeHands();
+    pageTransitionAnimation(9, '#fff8e5', 'UpAnime');
 }
 
 function startMediaPipeHands() {
