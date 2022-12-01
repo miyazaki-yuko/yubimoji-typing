@@ -175,8 +175,7 @@ body {
 
 #chooseHand,
 #selectMode,
-#arrowUseCamera,
-#yubimojiList {
+#arrowUseCamera {
     margin-top: 15vh;
     padding: 5vh;
 }
@@ -229,11 +228,11 @@ body {
 }
 
 .backPageArrow {
+    width: 7vw;
     color: #c5c5c5;
     font-size: 3rem;
-    position: absolute;
-    top: 5%;
-    left: 5%;
+    margin-right: auto;
+    padding-top: 2vh;
     cursor: pointer;
 }
 
@@ -628,7 +627,46 @@ body {
 }
 
 /* yubimojiList */
-.hiraganaList {
+#yubimojiList {
+    display: block;
+    background-color: #ffd99d;
+}
+
+#yubimojiImageContainer {
+    display: grid;
+    width: 95vw;
+    height: 95vh;
+    padding: 3vh 5vh;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 2vh;
+    grid-auto-flow: column;
+    direction: rtl;
+}
+
+#yubimojiImageContainer div {
+    padding: 1vh;
+    background-color: #fff8e5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#yubimojiImageContainer img {
+    width: 80%;
+    height: auto;
+    transform: scale(-1.0, 1.0);
+}
+
+.letter {
+    color: #e05d5d;
+    font-size: 1.2rem;
+    /* margin: 20vh; */
+}
+
+
+/* .hiraganaList {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -638,7 +676,7 @@ body {
 .hiraganaList li {
     list-style: none !important;
     width: 25%;
-    /* font-weight: bold; */
+    
     font-size: 2.4rem;
     margin: 5vh 0;
     cursor: pointer;
@@ -729,5 +767,5 @@ body {
 
 .arrow--disabled {
     color: #ffd99d;
-}
+} */
 

@@ -38,6 +38,8 @@ let correct_sound;
 let incorrect_sound;
 let result_sound;
 
+let yubimoji_image_array = [];
+
 var hands;
 
 function preload() {
@@ -290,7 +292,30 @@ function setup() {
     let mycanvas = createCanvas(640, 360);
     mycanvas.parent("#tutorialCanvas");
 
+    let yubimoji_list = document.querySelector('#yubimojiImageContainer');
     data = data.data;
+
+    let no_image = [36, 38, 46, 48];
+
+    for (let i = 0; i < data.length; i++) {
+        let yubimoji_div = document.createElement('div');
+        let letter_div = document.createElement('div');
+        letter_div.classList.add('letter');
+        // やゆよ　わをん　の列を間に開ける
+        if (no_image.indexOf(i) == -1) { // no_imageの中に値がなければ
+            letter_div.innerText = data[i].word;
+            yubimoji_div.innerHTML = data[i].html;
+        }
+        // letter_div を先頭に追加
+        yubimoji_div.prepend(letter_div);
+        yubimoji_list.appendChild(yubimoji_div);
+
+        // モーダル用の配列
+        yubimoji_image_array.push(yubimoji_div);
+    }
+
+    console.log(yubimoji_image_array);
+    
 }
 
 function draw() {
