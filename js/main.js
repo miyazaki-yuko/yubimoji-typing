@@ -529,11 +529,9 @@ function showYubimojiList() {
     let yubimoji_div = document.createElement('div');
     let letter_div = document.createElement('div');
     letter_div.classList.add('letter');
-    // やゆよ　わをん　の列を間に開ける
-    if (no_image.indexOf(i) == -1) { // no_imageの中に値がなければ
-      letter_div.innerText = data[i].word;
-      yubimoji_div.innerHTML = data[i].html;
-    }
+
+    letter_div.innerText = data[i].word;
+    yubimoji_div.innerHTML = data[i].html;
     // letter_div を先頭に追加
     yubimoji_div.prepend(letter_div);
     yubimoji_list.appendChild(yubimoji_div);
@@ -542,13 +540,18 @@ function showYubimojiList() {
     yubimoji_image_array.push(yubimoji_div);
   }
 
-  console.log(yubimoji_image_array);
+  // やゆよ　わをん　の間を開ける
+  for(let i = 0; i < no_image.length; i++) {
+    let dummy_div = document.createElement('div');
+    let before_div = yubimoji_list.children[no_image[i]];
+    before_div.before(dummy_div);
+  }
+
+  // popup
   let modal_area = document.querySelector('#modal_area');
   let modal_container = document.querySelector('.modal_container');
   for (let i = 0; i < yubimoji_image_array.length; i++) {
     yubimoji_image_array[i].addEventListener('click', function () {
-      // console.log(i + 'clicked');
-      // console.log(yubimoji_image_array[i].innerHTML);
       modal_container.innerHTML = yubimoji_image_array[i].innerHTML;
       modal_area.classList.add('show');
     });
