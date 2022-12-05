@@ -47,10 +47,10 @@ function pageTransitionAnimation(index, color, animation) {
   }
 
   let turn_page_div = animation_page.firstElementChild;
-    turn_page_div.addEventListener('animationend', () => {
-      // console.log('animation end');
-      turnNextPage(index);
-    }, {once: true});
+  turn_page_div.addEventListener('animationend', () => {
+    // console.log('animation end');
+    turnNextPage(index);
+  }, { once: true });
 }
 
 function removeAnimationClass() {
@@ -72,7 +72,7 @@ function setAnimation(e) {
       pageTransitionAnimation(data_index, '#ffeead', 'LeftAnime');
     } else if (data_index == 6) {
       pageTransitionAnimation(data_index, '#fff8e5', 'LeftAnime');
-    } 
+    }
   } else {
     turnNextPage(data_index);
   }
@@ -522,46 +522,45 @@ function showResult() {
 
 function showYubimojiList() {
   let yubimoji_list = document.querySelector('#yubimojiImageContainer');
-    data = data.data;
 
-    let no_image = [36, 38, 46, 48];
+  let no_image = [36, 38, 46, 48];
 
-    for (let i = 0; i < data.length; i++) {
-        let yubimoji_div = document.createElement('div');
-        let letter_div = document.createElement('div');
-        letter_div.classList.add('letter');
-        // やゆよ　わをん　の列を間に開ける
-        if (no_image.indexOf(i) == -1) { // no_imageの中に値がなければ
-            letter_div.innerText = data[i].word;
-            yubimoji_div.innerHTML = data[i].html;
-        }
-        // letter_div を先頭に追加
-        yubimoji_div.prepend(letter_div);
-        yubimoji_list.appendChild(yubimoji_div);
-
-        // モーダル用の配列
-        yubimoji_image_array.push(yubimoji_div);
+  for (let i = 0; i < data.length; i++) {
+    let yubimoji_div = document.createElement('div');
+    let letter_div = document.createElement('div');
+    letter_div.classList.add('letter');
+    // やゆよ　わをん　の列を間に開ける
+    if (no_image.indexOf(i) == -1) { // no_imageの中に値がなければ
+      letter_div.innerText = data[i].word;
+      yubimoji_div.innerHTML = data[i].html;
     }
+    // letter_div を先頭に追加
+    yubimoji_div.prepend(letter_div);
+    yubimoji_list.appendChild(yubimoji_div);
 
-    console.log(yubimoji_image_array);
-    let modal_area = document.querySelector('#modal_area');
-    let modal_container = document.querySelector('.modal_container');
-    for(let i = 0; i < yubimoji_image_array.length; i++) {
-      yubimoji_image_array[i].addEventListener('click', function() {
-        // console.log(i + 'clicked');
-        // console.log(yubimoji_image_array[i].innerHTML);
-        modal_container.innerHTML = yubimoji_image_array[i].innerHTML;
-        modal_area.classList.add('show');
-      });
-    }
-    modal_area.addEventListener('click', function() {
-      modal_area.classList.remove('show');
+    // モーダル用の配列
+    yubimoji_image_array.push(yubimoji_div);
+  }
+
+  console.log(yubimoji_image_array);
+  let modal_area = document.querySelector('#modal_area');
+  let modal_container = document.querySelector('.modal_container');
+  for (let i = 0; i < yubimoji_image_array.length; i++) {
+    yubimoji_image_array[i].addEventListener('click', function () {
+      // console.log(i + 'clicked');
+      // console.log(yubimoji_image_array[i].innerHTML);
+      modal_container.innerHTML = yubimoji_image_array[i].innerHTML;
+      modal_area.classList.add('show');
     });
+  }
+  modal_area.addEventListener('click', function () {
+    modal_area.classList.remove('show');
+  });
 }
 
 function reStart() {
   // console.log(current_page);
-  if(current_page.id == "gameModeGuide") {
+  if (current_page.id == "gameModeGuide") {
     turnNextPage(7);
   } else if (current_page.id == "gameMode") {
     turnNextPage(8);

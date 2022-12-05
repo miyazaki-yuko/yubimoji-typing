@@ -573,6 +573,13 @@ body {
 
 .resultTitle {
     font-size: 1.2rem;
+    width: 80px;
+}
+.resultScore {
+    width: 100px;
+}
+.unit {
+    width: 40px;
 }
 
 .point {
