@@ -21,7 +21,7 @@ let animation_page = view_area.firstElementChild;
 let end_animation = false;
 
 let page_array = [];
-let yubimoji_image_array = [];
+
 
 window.onload = function () {
   frames = document.querySelectorAll('body .frame');
@@ -518,7 +518,7 @@ function showResult() {
 
 function showYubimojiList() {
   let yubimoji_list = document.querySelector('#yubimojiImageContainer');
-
+  let yubimoji_image_array = [];
   let no_image = [36, 38, 46, 48];
 
   for (let i = 0; i < data.length; i++) {
