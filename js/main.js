@@ -133,10 +133,6 @@ function turnNextPage(index) {
     current_page.remove();
     view_area.appendChild(frames[data_index]);
     showResult();
-  } else if (data_index == 10) {
-    current_page.remove();
-    view_area.appendChild(frames[data_index]);
-    showYubimojiList();
   } else { // その他ページ遷移
     current_page.remove();
     view_area.appendChild(frames[data_index]);

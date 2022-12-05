@@ -667,8 +667,9 @@ body {
 }
 
 .letter {
-    color: #e05d5d;
+    color: #777777;
     font-size: 1.2rem;
+    font-weight: bold;
     /* margin: 20vh; */
 }
 #modal_area {

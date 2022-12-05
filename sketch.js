@@ -290,6 +290,8 @@ function setup() {
     let mycanvas = createCanvas(640, 360);
     mycanvas.parent("#tutorialCanvas");
     data = data.data;
+
+    showYubimojiList();
 }
 
 function draw() {
