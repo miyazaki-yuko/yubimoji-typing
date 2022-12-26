@@ -94,10 +94,14 @@ function turnNextPage(index) {
     let user_name = document.querySelector('#typeYourName');
     if (user_name.value) {
       if (user_name.value.match(/^[ぁ-んー　]*$/)) {
-        tutorial_word = user_name.value;
-        current_page.remove();
-        view_area.appendChild(frames[data_index]);
-        getTutorialLetter();
+        if (user_name.value.match(/[のもりをんがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ]/)) {
+          document.querySelector('.cautionText').innerHTML = "の・も・り・を・ん・濁音・半濁音は入力できません";
+        } else {
+          tutorial_word = user_name.value;
+          current_page.remove();
+          view_area.appendChild(frames[data_index]);
+          getTutorialLetter();
+        }
       } else {
         document.querySelector('.cautionText').innerHTML = "ひらがなで入力してください";
       }
@@ -537,7 +541,7 @@ function showYubimojiList() {
   }
 
   // やゆよ　わをん　の間を開ける
-  for(let i = 0; i < no_image.length; i++) {
+  for (let i = 0; i < no_image.length; i++) {
     let dummy_div = document.createElement('div');
     let before_div = yubimoji_list.children[no_image[i]];
     before_div.before(dummy_div);
