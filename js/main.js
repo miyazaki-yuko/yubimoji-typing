@@ -272,6 +272,11 @@ function remakeCanvas() {
     camera_container.prepend(new_video);
   }
 
+  // showImageAreaに画像があったら削除
+  let show_image_area = document.querySelector('#viewArea .showImageArea');
+  if(show_image_area !== null) {
+    deleteSamples();
+  }
   // Mediapipe Hands用のキャンバスを作成する
   let mycanvas = createCanvas(640, 360);
   mycanvas.parent("#gameCanvas");

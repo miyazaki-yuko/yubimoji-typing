@@ -545,6 +545,47 @@ body {
     cursor: pointer;
 }
 
+.messageArea {
+    position: relative;
+    width: 40%;
+    margin: 1vh auto;
+    font-size: 1.2rem;
+    font-weight: 100;
+    padding: 1vh;
+    border: solid 5px #00a19d;
+    background-color: #00a19d;
+    color: #fff8e5;
+    box-sizing: border-box;
+}
+.messageArea:before {
+    content: "";
+    position: absolute;
+    top: -24px;
+    left: 50%;
+    margin-left: -15px;
+    border: 12px solid transparent;
+    border-bottom: 12px solid #00a19d;
+    z-index: 2;
+}
+
+.messageArea:after {
+    content: "";
+    position: absolute;
+    top: -34px;
+    left: 50%;
+    margin-left: -19px;
+    border: 16px solid transparent;
+    border-bottom: 16px solid #00a19d;
+    z-index: 1;
+}
+
+#gameMode .cameraContainer {
+    top: -2vh;
+}
+#gameMode .yubimojiInputArea {
+    margin: 4vh auto 2vh;
+}
+
 /* result */
 #result {
     background-color: #fff8e5;
