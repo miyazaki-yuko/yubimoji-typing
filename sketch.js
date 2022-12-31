@@ -308,15 +308,15 @@ function draw() {
             let y = g_landmarks[i].y * 360;
             let line_next;
             if (draw_distances[i] < max_distance) {
-                fill(150);
-                stroke(150);
+                fill('rgba(180, 180, 180, 0.4)');
+                stroke('rgba(180, 180, 180, 0.4)');
             } else {
                 fill(255, 0, 0);
                 stroke(255, 0, 0);
             }
-            strokeWeight(1);
+            strokeWeight(3);
             textSize(12);
-            rect(x - 2, y - 2, 4, 4);
+            rect(x - 2, y - 2, 8, 8);
 
             // text(data_angles[i], x, y);
             // text(draw_distances[i], x, y);
